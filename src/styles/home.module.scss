@@ -1,0 +1,136 @@
+.hero,
+.how,
+.why,
+.features {
+  margin-bottom: 6rem;
+
+  @media screen and (min-width: 769px) {
+    margin-bottom: 11rem;
+  }
+}
+
+.how,
+.why,
+.features {
+  h2 {
+    text-transform: capitalize;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.why {
+  @media screen and (min-width: 769px) {
+    width: 60%;
+    max-width: 50rem;
+  }
+
+  @media screen and (min-width: 991px) {
+    width: 50%;
+  }
+}
+
+.how {
+  margin-bottom: 2rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+
+  &__media {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  &__body {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+
+    &__media {
+      flex: 50%;
+      transform: scale(1.2);
+      margin-bottom: 0;
+    }
+
+    &__body {
+      flex: 50%;
+      margin-bottom: 0;
+    }
+  }
+  @media screen and (min-width: 991px) {
+    &__media {
+      transform: scale(1);
+      flex: 60%;
+    }
+
+    &__body {
+      flex: 40%;
+    }
+  }
+}
+
+.features {
+  text-align: center;
+
+  ul {
+    padding: 0;
+    margin: auto;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  li {
+    margin-bottom: 2rem;
+    max-width: 15rem;
+
+    img {
+      width: 50px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    & > div {
+      text-align: left;
+    }
+
+    &:last-child {
+      margin-bottom: 1rem;
+    }
+
+    h6 {
+      margin-bottom: 0.6rem;
+    }
+  }
+  @media screen and (min-width: 508px) {
+    ul {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+  @media screen and (min-width: 769px) {
+    text-align: left;
+
+    ul {
+      width: unset;
+      margin: unset;
+      justify-content: flex-start;
+    }
+
+    li,
+    li:last-child {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    li:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+  @media screen and (min-width: 991px) {
+    margin-top: -3rem;
+  }
+}
