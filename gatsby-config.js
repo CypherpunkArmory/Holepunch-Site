@@ -28,6 +28,19 @@ module.exports = {
         icon: 'src/images/Holepunch-Icon.png', // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-css-modules',
+      options: {
+        generateScopedName: '[name]--[local]--[hash:base64:5]', // overrides default configuration
+        filetypes: {
+          '.scss': {
+            syntax: 'postcss-scss',
+            plugins: ['postcss-nested'],
+          },
+        },
+        exclude: '/global/',
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
