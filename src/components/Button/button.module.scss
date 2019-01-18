@@ -1,0 +1,62 @@
+.btn {
+  display: inline-block;
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.6rem 1.7rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  outline: none;
+
+  &_blue {
+    background-image: linear-gradient(
+      -52deg,
+      #50c3f7 0%,
+      #03a9f4 35%,
+      #0388d1 100%
+    );
+  }
+
+  &_round {
+    border-radius: 100rem;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-image: linear-gradient(
+      -52deg,
+      #708893 0%,
+      #5e90a7 35%,
+      #49616d 100%
+    );
+    color: #666666;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:hover,
+  &:visited {
+    text-decoration: none;
+    color: white;
+    .icon {
+      left: 0.2rem;
+    }
+  }
+}
+
+.icon {
+  $icon-size: 0.3rem;
+  border: solid white;
+  transform: rotate(-45deg);
+  border-width: 0 ($icon-size / 2) ($icon-size / 2) 0;
+  display: inline-block;
+  padding: $icon-size;
+  position: relative;
+  margin-left: 2px;
+  left: 0px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+}

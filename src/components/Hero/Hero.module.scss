@@ -1,6 +1,67 @@
+$text-color: #375463;
+$bg-color: #fafafa;
+
 .hero {
-  background-color: #fafafa;
+  background-color: $bg-color;
   width: 100%;
+  min-height: 35rem;
   height: 100vh;
-  padding-top: 7rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  img {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    touch-action: none;
+  }
+
+  :global(.container) {
+    position: relative;
+    z-index: 5;
+  }
+
+  &__head {
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    &__head {
+      width: 70%;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    &__head {
+      width: 60%;
+    }
+  }
+  :global(.particles) {
+    position: absolute;
+    height: 100%;
+    right: 0;
+
+    svg {
+      width: auto;
+      height: 100%;
+      overflow: visible;
+    }
+
+    @media screen and (min-width: 991px) {
+      right: 10%;
+      top: -2rem;
+    }
+  }
 }
