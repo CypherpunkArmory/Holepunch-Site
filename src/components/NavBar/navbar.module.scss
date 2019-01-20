@@ -1,0 +1,253 @@
+$text-color: #375463;
+$bg-color: #fafafa;
+
+.navbar {
+  position: fixed;
+  z-index: 80;
+  width: 100%;
+  padding: 1rem 0;
+  transition: 0.45s padding ease;
+
+  :global(.container) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    height: 100%;
+  }
+
+  &_open {
+    height: unset;
+    background-color: $bg-color;
+
+    .nav {
+      padding: 2rem 0;
+      opacity: 1;
+      z-index: 56;
+      height: unset;
+      pointer-events: visible;
+    }
+
+    .btn-line:nth-of-type(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .btn-line:nth-of-type(2) {
+      transform: translateX(30px);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .btn-line:nth-of-type(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+}
+
+.navbar_scrolled {
+  width: 100%;
+  background-color: $bg-color;
+  box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+  padding: 0rem;
+
+  .brand {
+    width: 2.5rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .nav a {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.nav {
+  width: 100%;
+  flex: 100%;
+  height: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+
+  a {
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    z-index: 56;
+    padding: 0 !important;
+    flex: unset;
+    height: unset;
+    opacity: 1;
+    flex-direction: row;
+    width: unset;
+    pointer-events: visible;
+  }
+}
+
+.brand {
+  width: 7rem;
+}
+
+.btn {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  z-index: 70;
+  cursor: pointer;
+
+  &__bars {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__bar {
+    width: 22px;
+    height: 3px;
+    background: $text-color;
+    transition: transform 0.3s ease;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+}
+
+.sidebar {
+  background: #668696;
+  width: 100vw;
+  height: 100vh;
+  left: -100vw;
+  bottom: 0;
+  box-shadow: 1px 0 0 rgba(12, 13, 14, 0.1), 1px 4px 6px rgba(59, 64, 69, 0.1);
+  transition: 0.45s padding ease;
+  background-color: $bg-color;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+
+  ul {
+    height: 100%;
+    width: 100%;
+  }
+
+  .btn {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    font-size: 1.5rem;
+    padding: 0.9rem 1rem;
+    line-height: 1;
+    color: inherit;
+    z-index: 90;
+    border: solid 2px #4dbef3;
+    color: #4dbef3;
+    border-radius: 10rem;
+    background-color: $bg-color;
+    font-weight: 600;
+    box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+  }
+
+  &_open {
+    left: 0;
+    z-index: 81;
+    .btn {
+      color: inherit;
+      background-color: unset;
+      box-shadow: none;
+      border: none;
+      padding: 1rem 0 1rem 1rem;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      bottom: unset;
+    }
+  }
+
+  &__menu {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      position: relative;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+
+        a {
+          flex: 2;
+          padding: 0.7rem 1rem;
+          display: block;
+        }
+      }
+    }
+
+    & & {
+      border-top: 1px rgb(230, 230, 230) solid;
+      padding-left: 1rem;
+    }
+  }
+
+  & > &__menu {
+    height: 100vh;
+    margin-bottom: 4rem;
+  }
+
+  &__menu-btn {
+    position: relative;
+    float: right;
+    color: inherit;
+    cursor: pointer;
+    padding: 1rem;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    outline: none !important;
+  }
+
+  .brand {
+    margin: auto;
+    margin-bottom: 2rem;
+    width: 10rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    margin-top: 4rem;
+    left: 0;
+    margin-top: 7rem;
+    background-color: unset;
+    box-shadow: unset;
+    width: 30%;
+
+    .brand {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 991px) {
+    width: 20%;
+  }
+}

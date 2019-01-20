@@ -22,7 +22,7 @@ Button.propTypes = {
   active: PropTypes.bool,
   'aria-label': PropTypes.string,
   disabled: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.object]),
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func,
