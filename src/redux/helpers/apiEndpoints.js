@@ -1,6 +1,9 @@
+const origin =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:5000/' : './'
+
 export default {
   // Accounts
-  emailLogin: 'http://localhost:5000/login',
-  logout: 'http://localhost:5000/logout',
-  register: 'http://localhost:5000/user',
+  emailLogin: `${origin}login`,
+  logout: `${origin}logout`,
+  register: `${origin}user`,
 }

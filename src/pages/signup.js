@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SEO from '../components/seo'
 
 import PageSpinner from '../components/Spinner/PageSpinner'
-import LoginForm from '../components/Login/LoginForm'
+import SignupForm from '../components/Signup/SignupForm'
 
-class Login extends React.Component {
+class Signup extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
   }
@@ -16,16 +16,16 @@ class Login extends React.Component {
 
   render() {
     const { isLoading } = this.props
-    
+
     return (
       <>
         <PageSpinner isLoading={isLoading}>
-          <SEO title="Holepunch Login" />
+          <SEO title="Holepunch Signup" />
           <div className="container page__header">
-            <h2>Login</h2>
+            <h2>Sign up</h2>
           </div>
           <div className="container mb-5">
-            <LoginForm />
+            <SignupForm />
           </div>
         </PageSpinner>
       </>
@@ -33,4 +33,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default Signup

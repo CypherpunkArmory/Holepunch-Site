@@ -1,0 +1,54 @@
+.api-key {
+  padding: 1.5rem 1.9rem;
+  margin: 0 auto 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &__code {
+    border: #c2e8fa dashed 2px;
+    width: 40rem;
+    max-width: 100%;
+    padding: 1rem 1rem;
+    overflow-x: scroll;
+    display: block;
+    margin-bottom: 1.5rem;
+    transition: 0.1s ease all;
+
+    input {
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+    }
+
+    &_active {
+      background: #c2e8fa;
+    }
+  }
+
+  &__copy {
+    border: 2px #4dbef3 solid;
+    padding: 0.9rem 1.4rem;
+    outline: none;
+    border-radius: 20rem;
+    font-weight: 700;
+    color: #4dbef3;
+    transition: 0.15s ease all;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    & > svg {
+      margin-right: 0.45rem;
+    }
+
+    &:hover {
+      background-color: #4dbef3;
+      color: white;
+    }
+  }
+}
