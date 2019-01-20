@@ -15,7 +15,7 @@ You may not accept this EULA if You are not of legal age to form a binding contr
 In this EULA herein the words below shall have the defined meaning assigned to them in this clause, unless the context requires otherwise:
 
 - “Activate” turning the Free version into the Full version of the same application through a purchase at the Google Play store or Apple App store;
-- “UserLAnd” Holepunch Technologies, LLC;
+- “Holepunch” Holepunch Technologies, LLC;
 - “Documentation” the detailed information about the Software, its features and the system requirements as made available on the website of Holepunch, as amended from time to time;
 - “Full version” the license for the Software for the term specified on the webpage of the store where You purchase the license, or in any applicable agreement concerning the purchase of the license (as stand-alone product or as part of a subscription) to Use the Software;
 - “Open Source Software” any software that requires as a condition of use, copying, modification and/or distribution of such software that such software or other software incorporated into, derived from or distributed with such software (a) be disclosed or distributed in source code form, and (b) be licensed for the purpose of making and/or distributing derivative works, and (c) be redistributable at no charge;
@@ -33,7 +33,7 @@ In this EULA herein the words below shall have the defined meaning assigned to t
    2.1 Holepunch grants You a non-exclusive, non-transferable, limited, revocable license to Use the Software in accordance with this EULA. Holepunch reserves all rights not expressly granted to You.
    2.2 Holepunch is and remains the owner of any intellectual property rights with respect to the Software. You shall not acquire any ownership rights other than a license to the Software as result of Your Use of the Software.
 3. Permitted use and restrictions
-   3.1 In order to be able to install the Software and receive Updates and upgrades, Your computer shall have access to the Internet, must have a Google Play or Apple App Store account and shall meet the system requirements described in the Documentation that can be found on the webpage: www.userland.tech.
+   3.1 In order to be able to install the Software and receive Updates and upgrades, Your computer shall have access to the Internet, must have a Google Play or Apple App Store account and shall meet the system requirements described in the Documentation that can be found on the webpage: www.Holepunch.tech.
    3.2 You may Use the Software on multiple devices associated with one email address, unless You have purchased (a) a volume license or (b) more than one Full version or Trial version. In the event You have purchased a volume license or more than one Full version or Trial version, the number of computers You may Use the Software on shall not exceed the number of the Full version or Trial version purchased.
    3.3 If You exceed the limit or violate the terms of this EULA, Holepunch reserves the right to disable or block your account from accessing the Full version or Trial version.
    3.4 You shall Use the Full version or Trial version in accordance with applicable laws and shall not:
@@ -43,7 +43,7 @@ In this EULA herein the words below shall have the defined meaning assigned to t
    delete or alter any disclaimers, warnings, copyright or other proprietary notices accompanying the Software; or
    copy (except as otherwise provided in this EULA), adapt, translate, decompile, reverse engineer, disassemble, attempt to derive the source code of, modify or create derivative works of the Software or any parts thereof, except to the extent permitted by applicable law.
    Holepunch may modify the Software at any time at its sole discretion and without notice to You, for example to comply with applicable law or a court order, to avoid a third party infringement claim or to provide Updates and upgrades.
-   Certain components of the Software are Open Source Software and licensed under the terms of the applicable license(s) of the Open Source Software. You shall adhere to these terms and conditions, which can be found via the webpage: www.userland.tech.
+   Certain components of the Software are Open Source Software and licensed under the terms of the applicable license(s) of the Open Source Software. You shall adhere to these terms and conditions, which can be found via the webpage: www.holepunch.tech.
 4. Maintenance and support
    4.1 Holepunch will notify You of any available Updates and upgrades.
    4.2 You will be entitled to receive software Updates periodically from Holepunch.
