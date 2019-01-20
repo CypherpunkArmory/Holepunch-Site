@@ -1,15 +1,32 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
-import Layout from '../components/layout'
+import content from '../content/features'
+
 import SEO from '../components/seo'
 
 const featuresPage = () => (
-  <Layout>
+  <>
     <SEO title="Holepunch Features" />
-    <p>Welcome to features page</p>
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
+    <div className="container page__header">
+      <h2>{content.pageTitle}</h2>
+      <p>{content.pageSubtitle}</p>
+    </div>
+    <div className="container features">
+      <ul>
+        {content.features.map((feature, i) => {
+          return (
+            <li key={i}>
+              <img src={feature.icon} alt={feature.title + " icon"} />
+              <div>
+                <h6>{feature.title}</h6>
+                <p>{feature.description}</p>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  </>
 )
 
 export default featuresPage
