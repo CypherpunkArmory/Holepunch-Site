@@ -1,0 +1,50 @@
+$text-color: #375463;
+$bg-color: #fafafa;
+
+.footer {
+  background-color: $bg-color;
+  background-image: url('../../images/particles-footer.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding: 3rem 0 3rem;
+
+  &__cta {
+    margin-bottom: 1rem;
+  }
+
+  &__logo {
+    width: 150px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  &__nav {
+    padding: 0;
+    justify-content: center;
+
+    :global(.nav-item) {
+      text-transform: capitalize;
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  &__copy {
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 992px) {
+    background-size: 100% 100%;
+    padding: 5rem 0 1.5rem;
+
+    &__cta {
+      margin-bottom: 4rem;
+    }
+  }
+}
