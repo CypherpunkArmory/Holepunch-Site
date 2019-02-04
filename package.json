@@ -1,5 +1,6 @@
 {
   "name": "holepunch-site",
+  "homepage": "https://holepunch.io",
   "description": "holepunch website",
   "version": "1.0.0",
   "author": "Elbert Cortez",
@@ -27,6 +28,7 @@
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-transformer-remark": "^2.2.0",
     "gatsby-transformer-sharp": "^2.1.8",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
     "prismjs": "^1.15.0",
@@ -47,7 +49,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
