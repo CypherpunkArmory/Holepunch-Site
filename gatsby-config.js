@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: "/Holepunch-Site",
   siteMetadata: {
     title: 'Holepunch.io',
     description: 'Lorem ipsum',
