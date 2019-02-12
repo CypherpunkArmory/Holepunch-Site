@@ -17,6 +17,7 @@ class NavBar extends Component {
     { name: 'Download', route: '/download' },
     { name: 'Docs', route: '/docs' },
     { name: 'Login', route: '/login' },
+    { name: 'Sign up', route: '/signup' },
   ]
   navRef = React.createRef()
 

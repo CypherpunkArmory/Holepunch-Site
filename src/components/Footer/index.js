@@ -54,7 +54,7 @@ function Footer({ cta, ...rest }) {
                 <a
                   className="nav-link"
                   aria-label="twitter"
-                  href="https://twitter.com/holepunch"
+                  href="https://twitter.com/holepunchio"
                 >
                   <FontAwesomeIcon icon={faTwitter} />
                 </a>
