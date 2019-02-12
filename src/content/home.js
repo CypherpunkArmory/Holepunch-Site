@@ -3,10 +3,10 @@ import protectionIcon from '../images/protection-icon.svg';
 import usabilityIcon from '../images/usability-icon.svg';
 
 export default {
-    head: 'Public URLs for exposing your local web server.',
-    subhead: 'Spend more time programming. One command for an instant, secure URL to your localhost server through any NAT or firewall.',
-    why: 'Dignissimos, beatae earum? Quibusdam, nisi earum distinctio numquam, minima architecto deleniti obcaecati dicta libero dolorum maxime, nobis adipisci ratione amet in nihil consequatur mollitia. Ipsam, nihil! Nihil magnam voluptatibus nostrum dicta vitae quaerat?',
-    howItWorks: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat fermentum mauris, tristique dignissim nisi viverra nec adipiscing elit consequat. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat fermentum mauris, tristique dignissim nisi viverra nec.",
+    head: 'Public URLs/IPs for exposing local servers.',
+    subhead: "Expose local servers running behind any NAT or firewall.  This could be a web server, an FTP server, or even a game server.  You start it and we take care of the rest.",
+    why: "Want security and privacy, then host the server yourself.  Want low cost, then host the server yourself.  Want maximum flexibility, then host the server yourself.  With our low cost, secure tunneling service, you won't run out or reasons or ways to use it.",
+    howItWorks: "After signing up for our service, you simply download and use our intutative CLI to create a tunnel.  This makes a connection between your local server and our servers.  Our servers then expose your service at a public URL/IP.  You can choose a subdomain or have a random one assigned.",
     features: [
         {
             title: 'FOSS',
