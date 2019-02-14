@@ -44,10 +44,6 @@ export const pageQuery = graphql`
           routes {
             name
             href
-            routes {
-              name
-              href
-            }
           }
         }
         title

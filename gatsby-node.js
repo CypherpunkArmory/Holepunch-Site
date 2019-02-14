@@ -40,10 +40,6 @@ exports.createPages = ({ actions, graphql }) => {
                 routes {
                   name
                   href
-                  routes {
-                    name
-                    href
-                  }
                 }
               }
             }
