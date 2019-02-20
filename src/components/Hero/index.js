@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
-import './hero.module.scss'
+import './Hero.module.scss'
 
 import Button from '../Button'
-import Particles from './particles'
+import Particles from './Particles'
 
 export default function Hero({ children, className, head, subhead }) {
   return (
