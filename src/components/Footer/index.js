@@ -21,7 +21,7 @@ function Footer({ cta, ...rest }) {
             </div>
           </div>
           <div styleName="footer__cta" className="col-12">
-            <p>Break through!</p>
+            <p>No Cloud, No Problem</p>
             {cta && (
               <Button icon tag={Link} to="/download">
                 Get Started
