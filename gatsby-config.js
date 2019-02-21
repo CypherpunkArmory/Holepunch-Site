@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Holepunch.io',
-    description: 'Holepunch',
+    description: 'No Cloud, No Problem',
     author: '@holepunch',
   },
   plugins: [
