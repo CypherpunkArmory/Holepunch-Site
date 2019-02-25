@@ -65,6 +65,14 @@ class downloadPage extends Component {
                     >
                       32-bit
                     </a>
+                    <p> </p>
+                    <a
+                      href={OS.downloadLinks['64']}
+                      download
+                      onClick={this.setupRedirect}
+                    >
+                      64-bit
+                    </a>
                   </div>
                 </li>
               )
