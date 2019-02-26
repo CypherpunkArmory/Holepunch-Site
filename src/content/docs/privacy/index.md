@@ -9,10 +9,10 @@ Holepunch.io (referred to here as “we,” “our,” or “Holepunch.io") prov
 
 This Privacy Policy is also subject to the holepunch.io Terms of Service. Please note that holepunch.io reserves the right to periodically update this Privacy Policy, as specified in the “Changes to This Privacy Policy” section below.
 
-### CONSENT
+## CONSENT
 Please read the entire and complete Privacy Policy before submitting information to us or using our website. Whenever you submit information via our website or otherwise to us, whether online or offline, you consent to the collection, use and disclosure of that information in accordance with this Privacy Policy. Processing of submitted your personal information by holepunch.io is necessary to operate and administer the service, to comply with legal requirements, and to improve delivery of services to customers.
 
-### PERSONAL INFORMATION COLLECTED BY HOLEPUNCH
+## PERSONAL INFORMATION COLLECTED BY HOLEPUNCH
 
 From Clients of our Service
 E-mail Address for the purposes of registration, account management, and protection from abuse;
@@ -31,7 +31,7 @@ As you use our website, some information can be “passively” collected using 
 WEBSITE CONTACTS
 The Holepunch website includes information that enables data subjects to contact the controller via electronic mail (e-mail address). If a data subject contacts the controller by e-mail or via a contact form, the personal information transmitted by the data subject is automatically stored. Such personal information transmitted on a voluntary basis by a data subject to the data controller are stored for the purpose of processing or contacting the data subject. There is no transfer of this personal information whatsoever to any third parties.
 
-### USES OF PERSONAL INFORMATION COLLECTED BY US
+## USES OF PERSONAL INFORMATION COLLECTED BY US
 E-mail address is used to send subscription information, payment confirmations, customer correspondence, and Holepunch promotional offers only,
 Payment data is used to manage client signups, payments, and cancellations,
 Google analytics data is used to improve our website and delivery of our content,
@@ -49,10 +49,10 @@ The recipients of customers’ personal data, and more generally these disclosur
 
 We may make full use of all information that is de-identified or otherwise not in personally identifiable form.
 
-### SECURITY
+## SECURITY
 We take appropriate steps to protect personal data from loss, misuse and unauthorized access, disclosure, alteration or destruction, whether in transmission or storage. Please keep in mind, however, that there is no such thing as perfect security, and no Internet transmission is ever completely secure or error-free. Moreover, you are responsible for maintaining the confidentiality of any user name and password you use.
 
-### CALIFORNIA PRIVACY RIGHTS
+## CALIFORNIA PRIVACY RIGHTS
 
 California Do Not Track Notice: Because there are not yet common, industry accepted “do not track” standards and systems, our website does not respond to Do Not Track signals. In addition, we may allow third parties to collect personal data from your activity on our website, as described in the “Information Collection and Use” section above.
 
@@ -60,14 +60,14 @@ California Disclosure Information: Although we do not disclose to any third part
 
 Under California Law, California residents have the right to request in writing from businesses with which they have an established business relationship, (1) a list of the categories of personal information, such as name, address, e-mail address, and the type of services provided to the customer, that a business has disclosed to third parties (including affiliates that are separate legal entities) during the immediately preceding calendar year for the third parties' direct marketing purposes, and (2) the names and addresses of all such third parties. We will respond to such written requests within 30 days following receipt at the e-mail address specified below under “Contact Us”. If we receive your request at a different e-mail address, we will respond within a reasonable period of time, but not to exceed 150 days from the date received. Please note that we are required to respond to each customer only once per calendar year. The name and address for the data protection officer can be found below.
 
-### NAME AND ADDRESS OF DATA PROTECTION OFFICER AND NAME AND ADDRESS OF CONTROLLER
+## NAME AND ADDRESS OF DATA PROTECTION OFFICER AND NAME AND ADDRESS OF CONTROLLER
 Our current data protection officer can be reached at the following information below.
 
 
-### CONTACT US
+## CONTACT US
 If you have questions or concerns related to this Privacy Policy or our information practices, would like to update or correct information you have provided or would like to opt-out of promotional communications from us, please contact us as follows: privacy@holepunch.io.
 
-### RIGHTS OF THE DATA SUBJECT
+## RIGHTS OF THE DATA SUBJECT
 Right of Confirmation.
 Each data subject has the right granted by the European legislator to obtain from the controller the confirmation as to whether or not personal information concerning him or her are being processed. If a data subject wishes to exercise this right of confirmation, he or she may, at any time, contact our Data Protection Officer or another employee of the controller.
 
@@ -122,17 +122,17 @@ Each data subject shall have the right granted by the European legislator to wit
 
 If the data subject wishes to exercise the right to withdraw consent, he or she may at any time directly contact our Data Protection Officer or another employee of the controller.
 
-## Provision of personal information as statutory or contractual requirement; Requirement necessary to enter into a contract; Obligation of the data subject to provide the personal information; possible consequences of failure to provide such data
+### Provision of personal information as statutory or contractual requirement; Requirement necessary to enter into a contract; Obligation of the data subject to provide the personal information; possible consequences of failure to provide such data
 
 We clarify that the provision of personal information is partly required by law (e.g. tax regulations) or can also result from contractual provisions (e.g. information on the contractual partner). Sometimes it may be necessary to conclude a contract that the data subject provides us with personal information, which must subsequently be processed by us. The data subject is, for example, obliged to provide us with some personal information when our company signs a contract with him or her. The non-provision of the personal information would have the consequence that the contract with the data subject could not be concluded. Before personal information is provided by the data subject, in this circumstance the data subject must contact our Data Protection Officer. Our Data Protection Officer clarifies to the data subject whether the provision of the personal information is required by law or contract or is necessary for the conclusion of the contract, whether there is an obligation to provide the personal information and the consequences of non-provision of the personal information.
 
-## Legal Basis for Data Processing
+### Legal Basis for Data Processing
 Art. 6(1) lit. a GDPR serves as the legal basis for processing operations for which we obtain consent for a specific processing purpose. If the processing of personal information is necessary for the performance of a contract to which the information subject is party, as is the case, for example, when processing operations are necessary for the supply of goods or to provide any other service, the processing is based on Article 6(1) lit. b GDPR. The same applies to such processing operations which are necessary for carrying out pre-contractual measures, for example in the case of inquiries concerning our products or services. If our company is subject to a legal obligation by which processing of personal information is required, such as for the fulfillment of tax obligations, the processing is based on Art. 6(1) lit. c GDPR. In rare cases, the processing of personal information may be necessary to protect the vital interests of the data subject or of another natural person. Then the processing would be based on Art. 6(1) lit. d GDPR. Finally, processing operations could be based on Article 6(1) lit. f GDPR. This legal basis is used for processing operations which are not covered by any of the aforementioned legal grounds, if processing is necessary for the purposes of the legitimate interests pursued by our company or by a third party, except where such interests are overridden by the interests or fundamental rights and freedoms of the data subject which require protection of personal information. Such processing operations are particularly permissible because they have been specifically mentioned by the European legislator. He considered that a legitimate interest could be assumed if the data subject is a client of the controller (Recital 47 Sentence 2 GDPR).
 
-### CHANGES TO THIS PRIVACY POLICY
+## CHANGES TO THIS PRIVACY POLICY
 BY USING THIS WEBSITE AND/OR SERVICES, YOU AGREE THAT YOU AS THE DATA SUBJECT CONSENT TO THIS PRIVACY POLICY. YOU AGREE THAT HOLEPUNCH.IO MAY MAKE CHANGES TO THIS PRIVACY POLICY AT ANY TIME WITHOUT ANY GIVEN NOTICE AT ITS DISCRETION.
 
-### COPPA DISCLOSURE 
+## COPPA DISCLOSURE 
 The Children’s Online Privacy Protection Act (COPPA) was passed to give parents increased control over what information is collected from their children online and how such information is used. The law applies to websites and services directed to, and which knowingly collect information from, children under the age of 13.  Our online services are not directed to children under the age of 13, nor is information knowingly collected from them.  For additional information on COPPA protections, please see the FTC website at: https://www.consumer.ftc.gov/articles/0031-protecting-your-childs-privacy-online
 
 ## Last Updated: Feb 26th, 2019
