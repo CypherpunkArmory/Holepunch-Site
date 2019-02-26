@@ -13,20 +13,13 @@ This Privacy Policy is also subject to the holepunch.io Terms of Service. Please
 Please read the entire and complete Privacy Policy before submitting information to us or using our website. Whenever you submit information via our website or otherwise to us, whether online or offline, you consent to the collection, use and disclosure of that information in accordance with this Privacy Policy. Processing of submitted your personal information by holepunch.io is necessary to operate and administer the service, to comply with legal requirements, and to improve delivery of services to customers.
 
 ## PERSONAL INFORMATION COLLECTED BY HOLEPUNCH
-
 From Clients of our Service
 E-mail Address for the purposes of registration, account management, and protection from abuse;
 Time and date of sign up; and
 Payment Data for the purposes of processing payments as required by our third-party payment processors. Note that we do not save your credit card and payment details in our systems.
 
 From the Website and Email
-Google analytics data (this data is anonymized). Google may also store a cookie with your consent. You may opt out here with Google's plugin.
-Internationalisation (i18n)
-Affiliates who opt to use the optional control panel will receive a temporary cookie.
-Information included in any submissions on the 'Contact Us' page.
-The email address of any e-mails we receive.
-
-As you use our website, some information can be “passively” collected using various technologies, such as cookies, web beacons and navigational and location data collection (clickstream, log files, server logs). Your Internet browser automatically transmits some of this information, such as the URL of the website you just visited and the Internet Protocol (IP) address and browser version currently being used by your computer. Such technologies help us to keep track of your interactions with our service and provide you with a more customized experience.
+As you use our website, some information can be “passively” collected using various technologies, such as cookies. Your Internet browser automatically transmits some information, such as the URL of the website you just visited and the Internet Protocol (IP) address and browser version currently being used by your computer. This info is used only to provide you the requested content in an optimized way and is not used by or stored by our business logic.
 
 WEBSITE CONTACTS
 The Holepunch website includes information that enables data subjects to contact the controller via electronic mail (e-mail address). If a data subject contacts the controller by e-mail or via a contact form, the personal information transmitted by the data subject is automatically stored. Such personal information transmitted on a voluntary basis by a data subject to the data controller are stored for the purpose of processing or contacting the data subject. There is no transfer of this personal information whatsoever to any third parties.
@@ -34,12 +27,11 @@ The Holepunch website includes information that enables data subjects to contact
 ## USES OF PERSONAL INFORMATION COLLECTED BY US
 E-mail address is used to send subscription information, payment confirmations, customer correspondence, and Holepunch promotional offers only,
 Payment data is used to manage client signups, payments, and cancellations,
-Google analytics data is used to improve our website and delivery of our content,
 Compliance with valid legal process,
 Contact submissions and e-mails will be used for correspondence, and
 Temporary cookies are used to handle control panel logins.
 
-We may disclose personal data you provide to consultants, service providers, and contractors that we use to support our business and operations who have agreed to keep the information confidential and use it only to provide the applicable service(s). In some cases, we work with other companies who help to gather information from you or help us to communicate with you.
+We may disclose personal data you provide to consultants, service providers, and contractors that we use to support our business and operations who have agreed to keep the information confidential and use it only to provide the applicable service(s).
 
 We do not share personally identifiable information with third parties for any marketing or commercial purposes.
 
@@ -53,7 +45,6 @@ We may make full use of all information that is de-identified or otherwise not i
 We take appropriate steps to protect personal data from loss, misuse and unauthorized access, disclosure, alteration or destruction, whether in transmission or storage. Please keep in mind, however, that there is no such thing as perfect security, and no Internet transmission is ever completely secure or error-free. Moreover, you are responsible for maintaining the confidentiality of any user name and password you use.
 
 ## CALIFORNIA PRIVACY RIGHTS
-
 California Do Not Track Notice: Because there are not yet common, industry accepted “do not track” standards and systems, our website does not respond to Do Not Track signals. In addition, we may allow third parties to collect personal data from your activity on our website, as described in the “Information Collection and Use” section above.
 
 California Disclosure Information: Although we do not disclose to any third parties for their marketing purposes any personally identifiable information, California residents are entitled to receive the following disclosure information under California law:
