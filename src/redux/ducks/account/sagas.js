@@ -19,7 +19,7 @@ export function* register(action) {
       data
     )
     yield put(performRegister.success(account))
-    yield call(emailLogin, action)
+    yield navigate('/email_sent')
     return account
   } catch (error) {
     yield put(performRegister.failure(error.response.data.data))
