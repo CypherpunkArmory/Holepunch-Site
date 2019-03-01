@@ -78,7 +78,7 @@ class NavBar extends Component {
     const { location, isLoggedIn, logout } = this.props
     let { navItems } = this
     navItems = isLoggedIn
-      ? navItems.filter(item => ['Login'].indexOf(item.name) === -1)
+      ? navItems.filter(item => ['Login'].indexOf(item.name) === -1).filter(item => ['Sign up'].indexOf(item.name) === -1)
       : navItems
 
     return (
