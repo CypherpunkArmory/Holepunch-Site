@@ -1,50 +1,59 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-import './navbar.module.scss'
+import './sidebar.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faBook } from '@fortawesome/free-solid-svg-icons'
 
 import RecursiveMenu from './RecursiveMenu'
 import Logo from '../Logo'
+import Collapse from './Collapse'
 
-export default class Sidebar extends Component {
-  navRef = React.createRef()
+class Sidebar extends Component {
   state = {
-    isOpen: false,
     scrolled: false,
+    top: 0,
   }
 
-  toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    })
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll)
+    const target = document.getElementById('main-nav')
+    this.setState({ top: target.clientHeight })
   }
 
-  close = () => {
-    this.setState({
-      isOpen: false,
-    })
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll = () => {
+    const target = document.getElementById('main-nav')
+    const currentScrollY = window.scrollY
+
+    if (currentScrollY > target.clientHeight) {
+      this.setState({ scrolled: true })
+    } else {
+      this.setState({ scrolled: false, top: target.clientHeight })
+    }
   }
 
   render() {
-    const { routes } = this.props
-    const { isOpen, scrolled } = this.state
+    const { routes, isOpen, close, toggle, boundaryRef } = this.props
+    const { scrolled } = this.state
 
     return (
       <aside
-        className="fixed"
         styleName={classnames('sidebar', {
-          sidebar_scrolled: scrolled,
           sidebar_open: isOpen,
+          sidebar_scrolled: scrolled,
         })}
-        ref={this.navRef}
+        style={{ top: this.state.top }}
+        ref={boundaryRef}
       >
-        <Logo styleName="brand" />
+        <Logo styleName="sidebar__brand" />
         <button
-          styleName="btn"
-          onClick={this.toggle}
+          styleName="sidebar__btn"
+          onClick={toggle}
           aria-label="documentation button"
         >
           {isOpen ? (
@@ -53,8 +62,10 @@ export default class Sidebar extends Component {
             <FontAwesomeIcon icon={faBook} />
           )}
         </button>
-        <RecursiveMenu navClose={this.close} routes={routes} />
+        <RecursiveMenu navClose={close} routes={routes} />
       </aside>
     )
   }
 }
+
+export default Collapse(Sidebar)
