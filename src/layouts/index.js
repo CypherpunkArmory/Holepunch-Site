@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
 
 import '../styles/normalize.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -13,17 +14,43 @@ const Layout = ({ children, location }) => {
   const hasCta = location.pathname !== '/download'
   const isDocs = !!location.pathname.match(/^\/docs/)
 
-  return isDocs ? (
-    <div className="page">
-      <NavBar location={location} />
-      <Transition location={location}>{children}</Transition>
-    </div>
-  ) : (
-    <div className="page">
-      <NavBar location={location} />
-      <Transition location={location}>{children}</Transition>
-      <Footer cta={hasCta} />
-    </div>
+  return (
+    <StaticQuery
+      query={graphql`
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
+              menu {
+                name
+                route
+              }
+            }
+          }
+        }
+      `}
+      render={data =>
+        isDocs ? (
+          <div className="page">
+            <NavBar
+              location={location}
+              routes={data.site.siteMetadata.menu}
+            />
+            <Transition location={location}>{children}</Transition>
+          </div>
+        ) : (
+          <div className="page">
+            <NavBar
+              location={location}
+              routes={data.site.siteMetadata.menu}
+              sticky={true}
+            />
+            <Transition location={location}>{children}</Transition>
+            <Footer cta={hasCta} />
+          </div>
+        )
+      }
+    />
   )
 }
 

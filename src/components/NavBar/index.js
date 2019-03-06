@@ -1,150 +1,97 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'gatsby'
 import classnames from 'classnames'
-import { Container, NavLink } from 'reactstrap'
 
 import './navbar.module.scss'
 
 import Logo from '../Logo'
+import Collapse from './Collapse'
+import Sticky from './Sticky'
+import Nav from './Nav'
 
 import { getIsLoggedIn } from '../../redux/ducks/account/selectors'
 import { performLogout } from '../../redux/ducks/account/actions'
 
 class NavBar extends Component {
-  navItems = [
-    { name: 'Features', route: '/features' },
-    { name: 'Download', route: '/download' },
-    { name: 'Docs', route: '/docs' },
-    { name: 'Login', route: '/login' },
-    { name: 'Sign up', route: '/signup' },
-  ]
-  navRef = React.createRef()
-
-  state = {
-    isOpen: false,
-    scrolled: false,
+  static propTypes = {
+    className: PropTypes.string,
+    routes: PropTypes.array,
+    isOpen: PropTypes.bool,
+    close: PropTypes.func,
+    toggle: PropTypes.func,
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
-    document.addEventListener('mousedown', this.handleClickOutside)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-    document.removeEventListener('mousedown', this.handleClickOutside)
-  }
-
-  handleScroll = () => {
-    const currentScrollY = window.scrollY
-    const elemScrollHeight = this.navRef.current.clientHeight
-
-    if (currentScrollY > elemScrollHeight) {
-      this.setState({ scrolled: true })
-    } else {
-      this.setState({ scrolled: false })
-    }
-  }
-
-  handleClickOutside = event => {
-    if (
-      this.state.isOpen &&
-      this.navRef &&
-      !this.navRef.current.contains(event.target)
-    ) {
-      this.close()
-    }
-  }
-
-  toggle = () => {
-    document.body.classList.toggle('no-scroll')
-
-    this.setState({
-      isOpen: !this.state.isOpen,
-    })
-  }
-
-  close = () => {
-    document.body.classList.remove('no-scroll')
-
-    this.setState({
-      isOpen: false,
-    })
+  static defaultProps = {
+    routes: [{ name: 'Home', route: '/' }],
+    sticky: false,
   }
 
   render() {
-    const { scrolled, isOpen } = this.state
+    const { boundaryRef, toggle, close, isOpen, scrolled, sticky } = this.props
     const { location, isLoggedIn, logout } = this.props
-    let { navItems } = this
-    navItems = isLoggedIn
-      ? navItems.filter(item => ['Login'].indexOf(item.name) === -1).filter(item => ['Sign up'].indexOf(item.name) === -1)
-      : navItems
+    let { routes } = this.props
+
+    routes = isLoggedIn
+      ? routes
+          .filter(item => ['Login'].indexOf(item.name) === -1)
+          .filter(item => ['Sign up'].indexOf(item.name) === -1)
+      : routes
 
     return (
       <nav
         styleName={classnames('navbar', {
-          navbar_scrolled: scrolled,
           navbar_open: isOpen,
+          navbar_scrolled: scrolled,
+          navbar_sticky: sticky,
         })}
-        ref={this.navRef}
+        id="main-nav"
+        ref={boundaryRef}
       >
-        <Container>
-          <Link
-            styleName="brand"
-            to="/"
-            title="Holepunch Home"
-            aria-label="home"
-          >
-            <Logo styleName="brand" simplified={scrolled} />
-          </Link>
-          <button styleName="btn" onClick={this.toggle} aria-label="menu">
-            <div styleName="btn__bars">
-              <span styleName="btn__bar" />
-              <span styleName="btn__bar" />
-              <span styleName="btn__bar" />
-            </div>
-          </button>
-          <ul styleName="nav">
-            {navItems.map(item => {
-              return (
-                <li key={item.name}>
-                  <NavLink
-                    className={classnames({
-                      active: location.pathname.indexOf(item.route) > -1,
-                    })}
-                    tag={Link}
-                    to={item.route}
-                    onClick={this.close}
-                  >
-                    {item.name}
-                  </NavLink>
-                </li>
-              )
-            })}
+        <div className="container">
+          <div styleName="navbar__controls">
+            <Link
+              styleName="brand"
+              to="/"
+              title="Holepunch Home"
+              aria-label="home"
+            >
+              <Logo simplified={scrolled} />
+            </Link>
+            <button styleName="btn" onClick={toggle} aria-label="menu">
+              <div styleName="btn__bars">
+                <span styleName="btn__bar" />
+                <span styleName="btn__bar" />
+                <span styleName="btn__bar" />
+              </div>
+            </button>
+          </div>
+          <Nav routes={routes} handlesOnClick={close} location={location}>
             {isLoggedIn && (
               <>
                 <li>
-                  <NavLink tag={Link} to="/app/home" onClick={this.close}>
+                  <Link styleName="nav__link" to="/app/home" onClick={close}>
                     My Key
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
+                  <Link
                     tag={Link}
                     to="/"
+                    styleName="nav__link"
                     onClick={() => {
-                      this.close()
+                      close()
                       logout()
                     }}
                   >
                     Logout
-                  </NavLink>
+                  </Link>
                 </li>
               </>
             )}
-          </ul>
-        </Container>
+          </Nav>
+        </div>
       </nav>
     )
   }
@@ -167,4 +114,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavBar)
+)(Sticky(Collapse(NavBar)))

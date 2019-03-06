@@ -2,7 +2,14 @@ module.exports = {
   siteMetadata: {
     title: 'Holepunch.io',
     description: 'No Cloud, No Problem',
-    author: '@holepunch',
+    author: '@holepunchio',
+    menu: [
+      { name: 'Features', route: '/features' },
+      { name: 'Download', route: '/download' },
+      { name: 'Docs', route: '/docs' },
+      { name: 'Login', route: '/login' },
+      { name: 'Sign up', route: '/signup' },
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
