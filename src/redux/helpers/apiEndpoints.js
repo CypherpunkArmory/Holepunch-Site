@@ -6,4 +6,5 @@ export default {
   emailLogin: `${origin}login`,
   logout: `${origin}logout`,
   register: `${origin}user`,
+  resendConfirmationEmail: `${origin}resend`,
 }

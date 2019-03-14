@@ -13,7 +13,34 @@ const accountReducer = (state, action) => {
       }
     case types.REGISTER['SUCCESS']:
       return {
-        account: action.account,
+        account: {
+          ...state.account,
+          ...action.account,
+        }
+      }
+    case types.SEND_EMAIL_CONFIRMATION['REQUEST']:
+      return {
+        account: {
+          ...state.account,
+          emailConfirmation: { isLoading: true, error: null },
+        },
+      }
+    case types.SEND_EMAIL_CONFIRMATION['SUCCESS']:
+      return {
+        account: {
+          ...state.account,
+          emailConfirmation: { isLoading: false, error: null },
+        },
+      }
+    case types.SEND_EMAIL_CONFIRMATION['FAILURE']:
+      return {
+        account: {
+          ...state.account,
+          emailConfirmation: {
+            isLoading: false,
+            error: action.error || action,
+          },
+        },
       }
     case types.SET_CURRENT_USER:
       return {
@@ -25,7 +52,11 @@ const accountReducer = (state, action) => {
 }
 
 export default (
-  state = { account: {}, isLoading: false, error: null },
+  state = {
+    account: { emailConfirmation: { isLoading: false, error: null } },
+    isLoading: false,
+    error: null,
+  },
   action
 ) => {
   return {

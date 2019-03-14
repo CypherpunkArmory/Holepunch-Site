@@ -1,7 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { navigate } from 'gatsby'
 import types from './types'
-import { performEmailLogin, performRegister, performLogout } from './actions'
+import {
+  performEmailLogin,
+  performRegister,
+  performLogout,
+  sendEmailConfirmation,
+} from './actions'
 import { axiosRequest } from '../../helpers/axiosRequest'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
@@ -18,7 +23,7 @@ export function* register(action) {
       'POST',
       data
     )
-    yield put(performRegister.success(account))
+    yield put(performRegister.success({ account, email: action.email }))
     yield navigate('/email_sent')
     return account
   } catch (error) {
@@ -59,10 +64,27 @@ export function* logout() {
   }
 }
 
+export function* resendConfirmationEmail(action) {
+  put(sendEmailConfirmation.request())
+  try {
+    const request = yield call(axiosRequest, apiEndpoints.resendConfirmationEmail, 'POST', {
+      email: action.email,
+    })
+    yield put(sendEmailConfirmation.success())
+    return request
+  } catch (error) {
+    yield put(sendEmailConfirmation.failure(error))
+  }
+}
+
 export default function* watchFetchAccount() {
   return [
     yield takeEvery(types.EMAIL_LOGIN['REQUEST'], emailLogin),
     yield takeEvery(types.REGISTER['REQUEST'], register),
     yield takeEvery(types.LOGOUT['REQUEST'], logout),
+    yield takeEvery(
+      types.SEND_EMAIL_CONFIRMATION['REQUEST'],
+      resendConfirmationEmail
+    ),
   ]
 }
