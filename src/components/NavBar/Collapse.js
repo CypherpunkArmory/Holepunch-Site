@@ -15,6 +15,12 @@ export default function Collapse(Component) {
       document.removeEventListener('mousedown', this.handleClickOutside)
     }
 
+    componentDidUpdate(prevProps) {
+      if (this.props.location !== prevProps.location) {
+        this.close()
+      }
+    }
+
     handleClickOutside = event => {
       if (
         this.state.isOpen &&
