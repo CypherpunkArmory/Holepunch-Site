@@ -27,4 +27,8 @@
     margin-bottom: 1rem;
     text-align: center;
   }
+  
+  :global(.invalid-tooltip) {
+    display: none !important;
+  }
 }

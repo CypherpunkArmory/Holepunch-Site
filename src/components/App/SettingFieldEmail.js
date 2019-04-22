@@ -6,7 +6,7 @@ import './settingField.module.scss'
 import Button from '../Button'
 import TextFieldGroup from '../TextFieldGroup'
 
-import { validateEmail } from '../../utils/validation'
+import { validateInput } from '../../utils/validation'
 
 export default class SettingFieldEmail extends Component {
   state = {
@@ -16,7 +16,7 @@ export default class SettingFieldEmail extends Component {
   }
 
   isValid = () => {
-    const { errors, isValid } = validateEmail(this.state)
+    const { errors, isValid } = validateInput(this.state)
     this.setState({
       errors,
     })

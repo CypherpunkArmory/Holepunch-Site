@@ -8,7 +8,7 @@ import { Form } from 'reactstrap'
 import Button from '../components/Button'
 import TextFieldGroup from '../components/TextFieldGroup'
 
-import { validateEmail } from '../../src/utils/validation'
+import { validateInput } from '../../src/utils/validation'
 import { sendResetEmail } from '../../src/redux/ducks/account/actions'
 import { getError } from '../../src/redux/ducks/account/selectors'
 
@@ -20,7 +20,7 @@ class ResetPassword extends Component {
   }
 
   isValid = () => {
-    const { errors, isValid } = validateEmail(this.state)
+    const { errors, isValid } = validateInput(this.state)
     this.setState({
       errors,
     })
