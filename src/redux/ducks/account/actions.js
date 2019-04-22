@@ -24,6 +24,20 @@ export const performEmailLogin = {
   failure: error => actionFactory(types.EMAIL_LOGIN['FAILURE'], { error }),
 }
 
+export const sendResetEmail = {
+  request: email => actionFactory(types.SEND_RESET_EMAIL['REQUEST'], { email }),
+  success: account =>
+    actionFactory(types.SEND_RESET_EMAIL['SUCCESS'], { account }),
+  failure: error => actionFactory(types.SEND_RESET_EMAIL['FAILURE'], { error }),
+}
+
+export const performUpdate = {
+  request: (password, userId, token) => 
+    actionFactory(types.UPDATE_USER['REQUEST'], { password, userId, token }),
+  success: account => actionFactory(types.UPDATE_USER['SUCCESS'], { account }),
+  failure: error => actionFactory(types.UPDATE_USER['FAILURE'], { error }),
+}
+
 export const setCurrentUser = user => {
   return {
     type: types.SET_CURRENT_USER,
@@ -34,4 +48,6 @@ export const setCurrentUser = user => {
 export default {
   performEmailLogin,
   performRegister,
+  sendResetEmail,
+  performUpdate,
 }
