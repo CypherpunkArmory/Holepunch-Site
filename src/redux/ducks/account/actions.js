@@ -36,6 +36,7 @@ export const performUpdate = {
     actionFactory(types.UPDATE_USER['REQUEST'], { password, userId, token }),
   success: account => actionFactory(types.UPDATE_USER['SUCCESS'], { account }),
   failure: error => actionFactory(types.UPDATE_USER['FAILURE'], { error }),
+}
 
 export const sendEmailConfirmation = {
   request: (email) => actionFactory(types.SEND_EMAIL_CONFIRMATION['REQUEST'], { email }),

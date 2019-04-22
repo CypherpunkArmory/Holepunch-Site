@@ -101,6 +101,8 @@ export function* updateUser(action) {
     return {}
   } catch (error) {
     yield put(performUpdate.failure(error))
+  }
+}
 
 export function* resendConfirmationEmail(action) {
   put(sendEmailConfirmation.request())
