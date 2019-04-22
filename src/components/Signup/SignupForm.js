@@ -21,7 +21,7 @@ class SignupForm extends Component {
     email: '',
     password: '',
     errors: {},
-    submited: false
+    submited: false,
   }
 
   isValid = () => {
@@ -50,13 +50,16 @@ class SignupForm extends Component {
         this.setState({
           submited: false,
         })
-      }, 4400);
+      }, 4400)
     }
   }
 
   render() {
     const { errors, submited } = this.state
     const { signupError, isLoading } = this.props
+    const signupErrorMessages = {
+      '422': 'User already in use',
+    }
 
     return (
       <Form
@@ -86,8 +89,14 @@ class SignupForm extends Component {
           styleName="form__input"
           error={errors.password}
         />
-        {(signupError && submited) && <span styleName="form__alert">{signupError.attributes.detail}</span>}
-        <Button styleName="form__btn" disabled={isLoading}>Register</Button>
+        {signupError && submited && (
+          <span styleName="form__alert">
+            {signupErrorMessages[signupError.attributes.status]}
+          </span>
+        )}
+        <Button styleName="form__btn" disabled={isLoading}>
+          Register
+        </Button>
         <span styleName="form__login">
           Already have an account? <Link to="/login">Login</Link>
         </span>

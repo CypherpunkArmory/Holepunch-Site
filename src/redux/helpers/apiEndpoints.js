@@ -8,4 +8,5 @@ export default {
   register: `${origin}user`,
   resetPassword: `${origin}reset_password`,
   updateUser: `${origin}app/user`,
+  resendConfirmationEmail: `${origin}resend`,
 }

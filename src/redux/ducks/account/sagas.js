@@ -7,6 +7,7 @@ import {
   performLogout,
   sendResetEmail,
   performUpdate,
+  sendEmailConfirmation,
 } from './actions'
 import { axiosRequest } from '../../helpers/axiosRequest'
 import apiEndpoints from '../../helpers/apiEndpoints'
@@ -24,7 +25,7 @@ export function* register(action) {
       'POST',
       data
     )
-    yield put(performRegister.success(account))
+    yield put(performRegister.success({ account, email: action.email }))
     yield navigate('/email_sent')
     return account
   } catch (error) {
@@ -100,6 +101,17 @@ export function* updateUser(action) {
     return {}
   } catch (error) {
     yield put(performUpdate.failure(error))
+
+export function* resendConfirmationEmail(action) {
+  put(sendEmailConfirmation.request())
+  try {
+    const request = yield call(axiosRequest, apiEndpoints.resendConfirmationEmail, 'POST', {
+      email: action.email,
+    })
+    yield put(sendEmailConfirmation.success())
+    return request
+  } catch (error) {
+    yield put(sendEmailConfirmation.failure(error))
   }
 }
 
@@ -110,5 +122,9 @@ export default function* watchFetchAccount() {
     yield takeEvery(types.LOGOUT['REQUEST'], logout),
     yield takeEvery(types.SEND_RESET_EMAIL['REQUEST'], resetEmail),
     yield takeEvery(types.UPDATE_USER['REQUEST'], updateUser),
+    yield takeEvery(
+      types.SEND_EMAIL_CONFIRMATION['REQUEST'],
+      resendConfirmationEmail
+    ),
   ]
 }

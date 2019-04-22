@@ -36,6 +36,11 @@ export const performUpdate = {
     actionFactory(types.UPDATE_USER['REQUEST'], { password, userId, token }),
   success: account => actionFactory(types.UPDATE_USER['SUCCESS'], { account }),
   failure: error => actionFactory(types.UPDATE_USER['FAILURE'], { error }),
+
+export const sendEmailConfirmation = {
+  request: (email) => actionFactory(types.SEND_EMAIL_CONFIRMATION['REQUEST'], { email }),
+  success: (account) => actionFactory(types.SEND_EMAIL_CONFIRMATION['SUCCESS'], { account }),
+  failure: error => actionFactory(types.SEND_EMAIL_CONFIRMATION['FAILURE'], { error }),
 }
 
 export const setCurrentUser = user => {
@@ -50,4 +55,5 @@ export default {
   performRegister,
   sendResetEmail,
   performUpdate,
+  sendEmailConfirmation
 }
