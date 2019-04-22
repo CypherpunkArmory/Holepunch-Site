@@ -13,7 +13,7 @@ function TextFieldGroup({
   className,
 }) {
   return (
-    <FormGroup>
+    <FormGroup style={{position: 'relative'}}>
       <Label for={id} hidden>
         {label}
       </Label>

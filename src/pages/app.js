@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { navigate } from 'gatsby'
 import { Router } from '@reach/router'
 import { connect } from 'react-redux'
+import queryString from 'query-string'
 
-import Home from '../components/App/Home'
+import AccountManagement from '../components/App/AccountManagement'
 import PrivateRoute from '../components/PrivateRoute'
 
 import {
@@ -12,22 +13,32 @@ import {
   getIsAccountDetailLoaded,
   accountIsLoading,
 } from '../redux/ducks/account/selectors'
+import ResetPassword from '../components/App/ResetPassword'
 
 class App extends Component {
   componentDidMount = () => {
-    if (this.props.isLoggedIn) {
-      navigate('/app/home')
+    const { location, isLoggedIn } = this.props
+
+    if (isLoggedIn & !location.pathname.includes('/app/account')) {
+      navigate('/app/account/overview')
     }
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn, location } = this.props
+
     return (
       <Router>
         <PrivateRoute
-          path="/app/home"
-          component={Home}
+          path="/app/account/*"
+          component={AccountManagement}
           isLoggedIn={isLoggedIn}
+        />
+        <PrivateRoute
+          path="/app/user/*"
+          component={ResetPassword}
+          query={queryString.parse(location.search)}
+          isLoggedIn={location.search.includes('token')}
         />
       </Router>
     )

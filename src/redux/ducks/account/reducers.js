@@ -42,6 +42,14 @@ const accountReducer = (state, action) => {
           },
         },
       }
+    case types.SEND_RESET_EMAIL['SUCCESS']:
+      return {
+        account: action.account,
+      }
+    case types.UPDATE_USER['SUCCESS']:
+      return {
+        account: action.account,
+      }
     case types.SET_CURRENT_USER:
       return {
         account: action.user,

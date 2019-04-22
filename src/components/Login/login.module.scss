@@ -14,9 +14,9 @@
     margin-right: auto;
     max-width: 20rem;
     margin-bottom: 2rem;
-}
+  }
 
-&__alert {
+  &__alert {
     color: #f55555;
     display: block;
     margin-bottom: 1rem;
@@ -26,5 +26,9 @@
   &__signup {
     display: block;
     text-align: center;
+  }
+
+  :global(.invalid-tooltip) {
+    display: none !important;
   }
 }

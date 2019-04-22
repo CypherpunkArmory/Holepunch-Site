@@ -5,6 +5,8 @@ import {
   performEmailLogin,
   performRegister,
   performLogout,
+  sendResetEmail,
+  performUpdate,
   sendEmailConfirmation,
 } from './actions'
 import { axiosRequest } from '../../helpers/axiosRequest'
@@ -64,6 +66,42 @@ export function* logout() {
   }
 }
 
+export function* resetEmail(action) {
+  const data = {
+    email: action.email,
+  }
+  put(sendResetEmail.request())
+  try {
+    yield call(axiosRequest, apiEndpoints.resetPassword, 'POST', data)
+    yield put(sendResetEmail.success())
+    yield navigate('/email_sent')
+    return {}
+  } catch (error) {
+    yield put(sendResetEmail.failure(error))
+  }
+}
+
+export function* updateUser(action) {
+  const data = { data: { type: 'user', attributes: { password: action.password } } }
+
+  put(performUpdate.request())
+
+  try {
+    yield call(
+      axiosRequest,
+      `${apiEndpoints.updateUser}/${action.userId}`,
+      'PATCH',
+      data,
+      {
+        Authorization: `Bearer ${action.token}`,
+      }
+    )
+    yield put(performUpdate.success())
+    yield navigate('/email_sent')
+    return {}
+  } catch (error) {
+    yield put(performUpdate.failure(error))
+
 export function* resendConfirmationEmail(action) {
   put(sendEmailConfirmation.request())
   try {
@@ -82,6 +120,8 @@ export default function* watchFetchAccount() {
     yield takeEvery(types.EMAIL_LOGIN['REQUEST'], emailLogin),
     yield takeEvery(types.REGISTER['REQUEST'], register),
     yield takeEvery(types.LOGOUT['REQUEST'], logout),
+    yield takeEvery(types.SEND_RESET_EMAIL['REQUEST'], resetEmail),
+    yield takeEvery(types.UPDATE_USER['REQUEST'], updateUser),
     yield takeEvery(
       types.SEND_EMAIL_CONFIRMATION['REQUEST'],
       resendConfirmationEmail

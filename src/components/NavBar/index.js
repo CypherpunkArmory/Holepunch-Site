@@ -71,7 +71,7 @@ class NavBar extends Component {
             {isLoggedIn && (
               <>
                 <li>
-                  <Link styleName="nav__link" to="/app/home" onClick={close}>
+                  <Link styleName="nav__link" to="/app/account/key" onClick={close}>
                     My Key
                   </Link>
                 </li>
