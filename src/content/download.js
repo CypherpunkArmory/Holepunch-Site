@@ -11,7 +11,7 @@ const Paragraph = ({children}) => <p>{children}</p>
 export default {
   pageTitle: 'Download',
   pageSubtitle:
-    'Download the holepunch client, a single binary with zero run-time dependencies.',
+    'Download the holepunch client, punch and start having fun.',
   supportedOS: [
     {
       id: 'mac',
@@ -43,10 +43,11 @@ export default {
   ],
   setupSteps: [
     {
-      title: 'Give downloaded executable proper permissions',
+      title: 'Unzip the download',
       body: [
-        { component: Paragraph, content: "On Linux or OSX you should use chmod to allow the downloaded executable to run.  On Windows, this step is not required." },
-        { component: Code, content: "$  chmod +x /path/to/punch" },
+        { component: Paragraph, content: "On OSX and Linux you unzip the executable with the following command.  On windows, just double click it." },
+        { component: Code, content: "$  unzip /path/to/punch.zip" },
+        { component: Paragraph, content: "Note, the actual downloaded filename will be something like punch-linux-amd64.zip" },
       ],
     },
     {
