@@ -33,4 +33,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^punch_version\d+\.\d+\.\d+$/
+              only: /^punch_version_\d+\.\d+\.\d+$/
