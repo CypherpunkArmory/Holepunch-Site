@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Publish gh-pages"
           command: |
-            git config --global user.email "<email>"
+            git config --global user.email "github-robot@userland.tech"
             git config --global user.name "Holepunch-Site Deployment Bot"
             npm install
             npm run deploy
