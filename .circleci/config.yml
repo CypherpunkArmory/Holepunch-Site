@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Publish gh-pages"
           command: |
-            cd Holepunch-Site
+            ls
             npm install
             npm run deploy
 
