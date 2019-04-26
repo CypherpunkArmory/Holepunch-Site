@@ -40,13 +40,18 @@ export function* emailLogin(action) {
   }
   put(performEmailLogin.request())
   try {
-    const account = yield call(
+    const accountReq = yield call(
       axiosRequest,
       apiEndpoints.emailLogin,
       'POST',
       data
     )
-    yield navigate('/app/home')
+    const account = {
+      email: action.email,
+      ...accountReq
+    }
+
+    yield navigate('/app/account/overview')
     yield put(performEmailLogin.success(account))
     localStorage.setItem('authToken', JSON.stringify(account))
     return account

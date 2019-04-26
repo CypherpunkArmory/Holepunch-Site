@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import './app.module.scss'
 
 import SettingField from './SettingField'
@@ -7,13 +8,15 @@ import SettingFieldPass from './SettingFieldPass'
 
 class AccountOverview extends Component {
   render() {
+    const { account } = this.props
+
     return (
       <div styleName="pannel">
         <h2 className="mb-4">Account Overview</h2>
-        <div className="pannel__body">
+        <div styleName="pannel__body">
           <SettingField
             label="Email"
-            fieldText="myemail@gmail.com"
+            fieldText={account.email}
             content={SettingFieldEmail}
           />
           <SettingField

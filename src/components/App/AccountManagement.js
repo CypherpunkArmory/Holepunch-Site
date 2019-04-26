@@ -31,7 +31,7 @@ class AccountManagement extends Component {
           <AccountMenu routes={routes} />
           <Router className="w-100">
             <ApiKey apiKey={account.access_token} path="/key" />
-            <AccountOverview path="/overview" />
+            <AccountOverview account={account} path="/overview" />
             <AccountBilling path="/billing" />
           </Router>
         </div>
