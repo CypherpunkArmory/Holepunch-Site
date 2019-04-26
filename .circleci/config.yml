@@ -10,11 +10,13 @@ jobs:
     docker:
             - image: circleci/node:latest
     steps:
+      - checkout
       - attach_workspace:
           at: .
       - run:
           name: "Publish gh-pages"
           command: |
+            cd Holepunch-Site
             npm install
             npm run deploy
 
