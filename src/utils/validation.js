@@ -17,15 +17,6 @@ export const validateInput = data => {
     errors.password = 'This field is required'
   }
 
-  return {
-    errors,
-    isValid: isEmpty(errors),
-  }
-}
-
-export const validatePassword = data => {
-  let errors = {}
-
   if (data.hasOwnProperty('oldPassword') && isEmpty(data.oldPassword)) {
     errors.oldPassword = 'This field is required'
   }

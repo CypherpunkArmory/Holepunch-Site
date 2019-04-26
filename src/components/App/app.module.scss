@@ -70,6 +70,28 @@
 
   &__body {
     margin-top: 1rem;
+
+    hr {
+      border-top: 1px solid rgba(174, 174, 174, 0.1);
+    }
+  }
+
+  .delete-btn {
+    border: 0;
+    background: none;
+    display: block;
+    margin: auto;
+    outline: none;
+    color: #FE5C5C;
+    font-weight: 500;
+    font-size: 1.1rem;
+    &:hover {
+      outline: none;
+    }
+  }
+
+  .text_error {
+    color: #f55555;
   }
 }
 

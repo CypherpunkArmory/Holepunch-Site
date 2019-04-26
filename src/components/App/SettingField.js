@@ -6,13 +6,15 @@ import './settingField.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons'
+import SettingEditor from './SettingEditor';
 
 export default class SettingField extends Component {
   static propTypes = {
     className: PropTypes.string,
     label: PropTypes.string,
     fieldText: PropTypes.string,
-    content: PropTypes.func,
+    fields: PropTypes.arrayOf(PropTypes.object),
+    onSubmit: PropTypes.func,
   }
 
   static defaultProps = {
@@ -30,9 +32,14 @@ export default class SettingField extends Component {
     })
   }
 
+  handleSubmit = (payload) => {
+    this.toggleCollapse()
+    this.props.onSubmit(payload)
+  }
+
   render() {
     const { collapsed } = this.state
-    const { label, fieldText, content: Content } = this.props
+    const { label, fieldText, fields } = this.props
 
     return (
       <div styleName={classnames('field', {
@@ -51,7 +58,7 @@ export default class SettingField extends Component {
             <span styleName="field__close" onClick={this.toggleCollapse}>
               <FontAwesomeIcon icon={faTimes} />
             </span>
-            <Content toggleCollapse={this.toggleCollapse} />
+            <SettingEditor onSubmit={this.handleSubmit} fields={fields}/>
           </>
         )}
       </div>
