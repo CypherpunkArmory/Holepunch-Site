@@ -11,6 +11,7 @@
     }
     & span:first-child {
         flex: 30%;
+        font-weight: 600;
     }
     & span:last-child {
         flex: 20%;
@@ -19,8 +20,19 @@
 }
 
 .field {
+    position: relative;
+    margin-bottom: 2rem;
+    &_open {
+        max-width: 20rem;
+    }
+    &__close {
+        padding: 0.4rem 0.9rem;
+        position: absolute;
+        top: 0;
+        right: -3rem;
+        cursor: pointer;
+    }
     &__form {
-        max-width: 17rem;
         position: relative;
         :global(.invalid-tooltip) {
             display: none !important;

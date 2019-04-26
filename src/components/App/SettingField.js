@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import './settingField.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default class SettingField extends Component {
   static propTypes = {
@@ -34,7 +35,9 @@ export default class SettingField extends Component {
     const { label, fieldText, content: Content } = this.props
 
     return (
-      <div className="field mb-4">
+      <div styleName={classnames('field', {
+        field_open: collapsed
+      })}>
         {!collapsed ? (
           <div onClick={this.toggleCollapse} styleName="field__link">
             <span>{label}</span>
@@ -44,7 +47,12 @@ export default class SettingField extends Component {
             </span>
           </div>
         ) : (
-          <Content toggleCollapse={this.toggleCollapse} />
+          <>
+            <span styleName="field__close" onClick={this.toggleCollapse}>
+              <FontAwesomeIcon icon={faTimes} />
+            </span>
+            <Content toggleCollapse={this.toggleCollapse} />
+          </>
         )}
       </div>
     )
