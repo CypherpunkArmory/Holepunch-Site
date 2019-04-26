@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:8.10.0
     steps:
       - run: echo "nothing to do"
 
   publish-gh-pages:
     docker:
-            - image: circleci/node:latest
+      - image: circleci/node:8.10.0
     steps:
       - checkout
       - attach_workspace:
@@ -16,7 +16,6 @@ jobs:
       - run:
           name: "Publish gh-pages"
           command: |
-            ls
             npm install
             npm run deploy
 
