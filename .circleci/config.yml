@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run: echo "nothing to do"
+
+  publish-gh-pages:
+    docker:
+            - image: circleci/node:latest
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "Publish gh-pages"
+          command: |
+            npm install
+            npm run deploy
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - publish-gh-pages:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^punch_version\d+\.\d+\.\d+$/
