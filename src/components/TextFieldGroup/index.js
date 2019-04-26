@@ -2,6 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+
+import './TextFieldGroup.module.scss'
+
 function TextFieldGroup({
   field,
   type,
@@ -13,7 +18,7 @@ function TextFieldGroup({
   className,
 }) {
   return (
-    <FormGroup style={{position: 'relative'}}>
+    <FormGroup styleName="form">
       <Label for={id} hidden>
         {label}
       </Label>
@@ -26,7 +31,7 @@ function TextFieldGroup({
         invalid={!!error}
         className={className}
       />
-      {error && <FormFeedback tooltip>{error}</FormFeedback>}
+      {error && <FormFeedback tooltip><FontAwesomeIcon icon={faExclamationTriangle} />{error}</FormFeedback>}
     </FormGroup>
   )
 }
