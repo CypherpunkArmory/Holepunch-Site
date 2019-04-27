@@ -94,7 +94,7 @@ class LoginForm extends Component {
           Don't have an account? <Link to="/signup">Sign up</Link>
         </span>
         <span styleName="form__signup" className="mt-1">
-          Forgot Your Password? <Link to="/reset">Reset</Link>
+          Forgot Your Password? <Link to="/account-recovery">Reset</Link>
         </span>
       </Form>
     )

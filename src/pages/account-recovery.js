@@ -8,11 +8,11 @@ import { Form } from 'reactstrap'
 import Button from '../components/Button'
 import TextFieldGroup from '../components/TextFieldGroup'
 
-import { validateInput } from '../../src/utils/validation'
-import { sendResetEmail } from '../../src/redux/ducks/account/actions'
-import { getError } from '../../src/redux/ducks/account/selectors'
+import { validateInput } from '../utils/validation'
+import { sendResetEmail } from '../redux/ducks/account/actions'
+import { getError } from '../redux/ducks/account/selectors'
 
-class ResetPassword extends Component {
+class AccountRecovery extends Component {
   state = {
     email: '',
     errors: {},
@@ -42,6 +42,7 @@ class ResetPassword extends Component {
     this.setState({
       submited: true,
     })
+
     setTimeout(() => {
       this.setState({
         submited: false,
@@ -57,7 +58,7 @@ class ResetPassword extends Component {
       <>
         <SEO title="Holepunch Reset Password" />
         <div className="container page__header">
-          <h2>Reset Password</h2>
+          <h2>Recover Password</h2>
         </div>
         <div className="container" style={{ marginBottom: '7rem' }}>
           <Form
@@ -106,4 +107,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ResetPassword)
+)(AccountRecovery)

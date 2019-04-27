@@ -53,7 +53,7 @@ export function* emailLogin(action) {
     )
     const account = {
       email: action.email,
-      ...accountReq
+      ...accountReq,
     }
 
     yield navigate('/account/overview')
@@ -78,8 +78,14 @@ export function* logout() {
 
 export function* resetEmail(action) {
   const data = {
-    email: action.email,
+    data: {
+      type: 'password_reset',
+      attributes: {
+        email: action.email,
+      },
+    },
   }
+
   put(sendResetEmail.request())
   try {
     yield call(axiosRequest, apiEndpoints.resetPassword, 'POST', data)
@@ -92,22 +98,33 @@ export function* resetEmail(action) {
 }
 
 export function* updateUser(action) {
-  const data = { data: { type: 'user', attributes: { password: action.password } } }
+  const data = {
+    data: { type: 'user', attributes: { new_password: action.password } },
+  }
 
   put(performUpdate.request())
 
   try {
-    yield call(
+    const tokenRequest = yield call(
       axiosRequest,
-      `${apiEndpoints.updateUser}/${action.userId}`,
+      `http://localhost:5000/account/confirm/${action.token}`,
+      'GET'
+    )
+
+    const account = yield call(
+      axiosRequest,
+      apiEndpoints.updateUser,
       'PATCH',
       data,
       {
-        Authorization: `Bearer ${action.token}`,
+        Authorization: `Bearer ${tokenRequest['access_token']}`,
       }
     )
     yield put(performUpdate.success())
-    yield navigate('/email_sent')
+    yield call(emailLogin, {
+      email: account.data.attributes.email,
+      password: action.password,
+    })
     return {}
   } catch (error) {
     yield put(performUpdate.failure(error))
@@ -117,9 +134,14 @@ export function* updateUser(action) {
 export function* resendConfirmationEmail(action) {
   put(sendEmailConfirmation.request())
   try {
-    const request = yield call(axiosRequest, apiEndpoints.resendConfirmationEmail, 'POST', {
-      email: action.email,
-    })
+    const request = yield call(
+      axiosRequest,
+      apiEndpoints.resendConfirmationEmail,
+      'POST',
+      {
+        email: action.email,
+      }
+    )
     yield put(sendEmailConfirmation.success())
     return request
   } catch (error) {

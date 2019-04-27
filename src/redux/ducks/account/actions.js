@@ -32,8 +32,8 @@ export const sendResetEmail = {
 }
 
 export const performUpdate = {
-  request: (password, userId, token) => 
-    actionFactory(types.UPDATE_USER['REQUEST'], { password, userId, token }),
+  request: (password, token) => 
+    actionFactory(types.UPDATE_USER['REQUEST'], { password, token }),
   success: account => actionFactory(types.UPDATE_USER['SUCCESS'], { account }),
   failure: error => actionFactory(types.UPDATE_USER['FAILURE'], { error }),
 }

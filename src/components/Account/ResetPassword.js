@@ -34,12 +34,11 @@ class ResetPassword extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { query, updatePassword } = this.props
-    const userId = this.props['*']
+    const { token, updatePassword } = this.props
     const { newPassword } = this.state
     
     if (this.isValid()) {
-      updatePassword(newPassword, userId, query.token)
+      updatePassword(newPassword, token)
     }
     this.setState({
       submited: true,
@@ -53,7 +52,6 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
-    console.log(this.props);
     
     return (
       <>
@@ -90,8 +88,8 @@ class ResetPassword extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updatePassword: (password, userId, token) => {
-      dispatch(performUpdate.request(password, userId, token))
+    updatePassword: (password, token) => {
+      dispatch(performUpdate.request(password, token))
     },
   }
 }
