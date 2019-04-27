@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './app.module.scss'
+import './account.module.scss'
 
 import SettingField from './SettingField'
 import DeleteAccount from './DeleteAccount'

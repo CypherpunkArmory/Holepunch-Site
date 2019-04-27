@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './app.module.scss'
+import './account.module.scss'
 
 import Modal from '../Modal'
 import SettingEditor from './SettingEditor';

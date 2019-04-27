@@ -53,7 +53,8 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
-
+    console.log(this.props);
+    
     return (
       <>
         <SEO title="Holepunch Reset Password" />

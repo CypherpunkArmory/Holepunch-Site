@@ -51,7 +51,7 @@ export function* emailLogin(action) {
       ...accountReq
     }
 
-    yield navigate('/app/account/overview')
+    yield navigate('/account/overview')
     yield put(performEmailLogin.success(account))
     localStorage.setItem('authToken', JSON.stringify(account))
     return account

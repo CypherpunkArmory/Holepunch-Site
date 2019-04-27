@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classnammes from 'classnames'
 
-import './app.module.scss'
+import './account.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
