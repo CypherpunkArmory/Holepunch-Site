@@ -14,8 +14,13 @@ import apiEndpoints from '../../helpers/apiEndpoints'
 
 export function* register(action) {
   const data = {
-    email: action.email,
-    password: action.password,
+    data: {
+      type: 'user',
+      attributes: {
+        email: action.email,
+        password: action.password,
+      },
+    },
   }
   put(performRegister.request())
   try {
