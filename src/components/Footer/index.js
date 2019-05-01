@@ -43,6 +43,11 @@ function Footer({ cta, ...rest }) {
                   EULA
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/tos">
+                  TOS
+                </Link>
+              </li>
             </ul>
           </nav>
           <nav
