@@ -2,6 +2,8 @@
 path: '/cli'
 title: 'Punch CLI Reference Guide'
 nav:
+  - name: 'Top'
+    href: '/docs'
   - name: 'Setup'
     href: '#setup'
     routes:      
