@@ -1,5 +1,5 @@
 ---
-path: '/cli'
+path: '/docs/cli'
 title: 'Punch CLI Reference Guide'
 nav:
   - name: 'Top'
