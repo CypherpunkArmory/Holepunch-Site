@@ -100,6 +100,10 @@ class SignupForm extends Component {
         <span styleName="form__login">
           Already have an account? <Link to="/login">Login</Link>
         </span>
+        <span className="mt-4 small" styleName="form__login">
+          By signing up, you agree to our <Link to="/TOS">Terms</Link> and that
+          you have read our <Link to="/privacy">Privacy Policy</Link>.
+        </span>
       </Form>
     )
   }

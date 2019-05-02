@@ -7,7 +7,6 @@ import {
 } from '../../helpers/createReducer'
 
 const initState = {
-  account: { email: '', APIKey: '' },
   isLoading: false,
   error: null,
 }
@@ -34,14 +33,7 @@ const handlerMapping = actionTypes => {
   }, {})
 }
 
-const actionTypes = [
-  ..._.values(types.REGISTER),
-  ..._.values(types.UPDATE_ACCOUNT),
-  ..._.values(types.DELETE_ACCOUNT),
-  ..._.values(types.SEND_EMAIL_CONFIRMATION),
-  ..._.values(types.SEND_RESET_EMAIL),
-  types.SET_CURRENT_ACCOUNT,
-]
+const actionTypes = [..._.values(types.EMAIL_LOGIN), ..._.values(types.LOGOUT)]
 
 const reducer = createReducer(initState, actionTypes, {
   ...handlerMapping(actionTypes),

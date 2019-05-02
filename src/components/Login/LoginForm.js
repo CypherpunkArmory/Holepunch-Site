@@ -9,12 +9,12 @@ import Button from '../Button'
 import TextFieldGroup from '../TextFieldGroup'
 
 import { validateInput } from '../../utils/validation'
-import { performEmailLogin } from '../../redux/ducks/account/actions'
+import { performEmailLogin } from '../../redux/ducks/auth/actions'
 import {
   getIsLoggedIn,
-  accountIsLoading,
-} from '../../redux/ducks/account/selectors'
-import { getError } from '../../redux/ducks/account/selectors'
+  authIsLoading,
+  getError
+} from '../../redux/ducks/auth/selectors'
 
 class LoginForm extends Component {
   state = {
@@ -105,7 +105,7 @@ const mapStateToProps = state => {
   return {
     loginError: getError(state),
     isLoggedIn: getIsLoggedIn(state),
-    accountIsLoading: accountIsLoading(state),
+    authIsLoading: authIsLoading(state),
   }
 }
 

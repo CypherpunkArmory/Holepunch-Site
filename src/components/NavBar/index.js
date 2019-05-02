@@ -11,8 +11,8 @@ import Collapse from './Collapse'
 import Sticky from './Sticky'
 import Nav from './Nav'
 
-import { getIsLoggedIn } from '../../redux/ducks/account/selectors'
-import { performLogout } from '../../redux/ducks/account/actions'
+import { getIsLoggedIn } from '../../redux/ducks/auth/selectors'
+import { performLogout } from '../../redux/ducks/auth/actions'
 
 class NavBar extends Component {
   static propTypes = {

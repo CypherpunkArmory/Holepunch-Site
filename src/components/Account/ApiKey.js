@@ -30,7 +30,7 @@ class ApiKey extends Component {
   }
 
   render() {
-    const { apiKey } = this.props
+    const { APIKey } = this.props
 
     return (
       <div styleName="pannel">
@@ -44,7 +44,7 @@ class ApiKey extends Component {
             <input
               ref={this.clipAreaRef}
               type="text"
-              value={apiKey}
+              value={APIKey}
               readOnly
             />
           </span>

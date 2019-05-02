@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import './account.module.scss'
+
+import { updateAccount, deleteAccount } from '../../redux/ducks/account/actions'
 
 import SettingField from './SettingField'
 import DeleteAccount from './DeleteAccount'
 
 class AccountOverview extends Component {
+  state = {
+    updatePasswordError: '',
+    updateEmailError: '',
+  }
   updatePasswordFields = [
     {
       label: 'Old Password',
@@ -24,31 +31,46 @@ class AccountOverview extends Component {
   ]
   updateEmailFields = [
     {
-      label: 'Current Password',
-      type: 'password',
-      field: 'password',
-      id: 'currPassword',
-      placeholder: 'Current Password',
+      label: 'Current Email',
+      type: 'email',
+      field: 'email',
+      id: 'currentEmail',
+      placeholder: 'Current Email',
     },
     {
       label: 'New Email',
       type: 'email',
-      field: 'email',
+      field: 'newEmail',
       id: 'newEmail',
       placeholder: 'New Email',
     },
   ]
 
-  updatePassword(payload) {
-    alert(`Password Updated to ${payload.newPassword}`)
+  updatePassword = payload => {
+    this.props.updateAccount({
+      new_password: payload.newPassword,
+      old_password: payload.oldPassword,
+    })
+    return true
   }
 
-  updateEmail(payload) {
-    alert(`Email Updated to ${payload.email}`)
+  updateEmail = ({ email, newEmail }) => {
+    if (email === newEmail) {
+      this.setState({
+        updateEmailError: "New Email Can't be the same",
+      })
+      return false
+    } else {
+      this.setState({
+        updateEmailError: '',
+      })
+      this.props.updateAccount({ email: newEmail })
+      return true
+    }
   }
 
   render() {
-    const { account } = this.props
+    const { account, deleteAccount } = this.props
 
     return (
       <div styleName="pannel">
@@ -58,20 +80,39 @@ class AccountOverview extends Component {
             label="Email"
             fieldText={account.email}
             onSubmit={this.updateEmail}
+            submitError={this.state.updateEmailError}
             fields={this.updateEmailFields}
           />
           <SettingField
             label="Password"
             fieldText="●●●●●●●●●●●●●"
             onSubmit={this.updatePassword}
+            submitError={this.state.updatePasswordError}
             fields={this.updatePasswordFields}
           />
           <hr />
-          <DeleteAccount fields={this.deleteAccountFields} />
+          <DeleteAccount
+            onSubmit={deleteAccount}
+            fields={this.deleteAccountFields}
+          />
         </div>
       </div>
     )
   }
 }
 
-export default AccountOverview
+const mapDispatchToProps = dispatch => {
+  return {
+    updateAccount: newDetails => {
+      dispatch(updateAccount.request(newDetails))
+    },
+    deleteAccount: password => {
+      dispatch(deleteAccount.request(password))
+    },
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AccountOverview)

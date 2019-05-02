@@ -11,19 +11,6 @@ export const performRegister = {
   failure: error => actionFactory(types.REGISTER['FAILURE'], { error }),
 }
 
-export const performLogout = {
-  request: () => actionFactory(types.LOGOUT['REQUEST'], {}),
-  success: account => actionFactory(types.LOGOUT['SUCCESS'], { account }),
-  failure: error => actionFactory(types.LOGOUT['FAILURE'], { error }),
-}
-
-export const performEmailLogin = {
-  request: (email, password) =>
-    actionFactory(types.EMAIL_LOGIN['REQUEST'], { email, password }),
-  success: account => actionFactory(types.EMAIL_LOGIN['SUCCESS'], { account }),
-  failure: error => actionFactory(types.EMAIL_LOGIN['FAILURE'], { error }),
-}
-
 export const sendResetEmail = {
   request: email => actionFactory(types.SEND_RESET_EMAIL['REQUEST'], { email }),
   success: account =>
@@ -31,30 +18,57 @@ export const sendResetEmail = {
   failure: error => actionFactory(types.SEND_RESET_EMAIL['FAILURE'], { error }),
 }
 
-export const performUpdate = {
-  request: (password, token) => 
-    actionFactory(types.UPDATE_USER['REQUEST'], { password, token }),
-  success: account => actionFactory(types.UPDATE_USER['SUCCESS'], { account }),
-  failure: error => actionFactory(types.UPDATE_USER['FAILURE'], { error }),
+export const getConfirmationToken = {
+  request: JWToken =>
+    actionFactory(types.GET_CONFIRMATION_TOKEN['REQUEST'], { JWToken }),
+  success: () => actionFactory(types.GET_CONFIRMATION_TOKEN['SUCCESS'], {}),
+  failure: error =>
+    actionFactory(types.GET_CONFIRMATION_TOKEN['FAILURE'], { error }),
+}
+
+export const updateAccount = {
+  request: newDetails =>
+    actionFactory(types.UPDATE_ACCOUNT['REQUEST'], { newDetails }),
+  success: account =>
+    actionFactory(types.UPDATE_ACCOUNT['SUCCESS'], { account }),
+  failure: error => actionFactory(types.UPDATE_ACCOUNT['FAILURE'], { error }),
+}
+
+export const updateAccountPassword = {
+  request: newDetails =>
+    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['REQUEST'], { newDetails }),
+  success: account =>
+    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['SUCCESS'], { account }),
+  failure: error =>
+    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['FAILURE'], { error }),
+}
+
+export const deleteAccount = {
+  request: password =>
+    actionFactory(types.DELETE_ACCOUNT['REQUEST'], { password }),
+  success: () => actionFactory(types.DELETE_ACCOUNT['SUCCESS'], {}),
+  failure: error => actionFactory(types.DELETE_ACCOUNT['FAILURE'], { error }),
 }
 
 export const sendEmailConfirmation = {
-  request: (email) => actionFactory(types.SEND_EMAIL_CONFIRMATION['REQUEST'], { email }),
-  success: (account) => actionFactory(types.SEND_EMAIL_CONFIRMATION['SUCCESS'], { account }),
-  failure: error => actionFactory(types.SEND_EMAIL_CONFIRMATION['FAILURE'], { error }),
+  request: email =>
+    actionFactory(types.SEND_EMAIL_CONFIRMATION['REQUEST'], { email }),
+  success: account =>
+    actionFactory(types.SEND_EMAIL_CONFIRMATION['SUCCESS'], { account }),
+  failure: error =>
+    actionFactory(types.SEND_EMAIL_CONFIRMATION['FAILURE'], { error }),
 }
 
-export const setCurrentUser = user => {
-  return {
-    type: types.SET_CURRENT_USER,
-    user,
-  }
-}
+export const setCurrentAccount = account =>
+  actionFactory(types.SET_CURRENT_ACCOUNT, { account })
 
 export default {
-  performEmailLogin,
   performRegister,
   sendResetEmail,
-  performUpdate,
-  sendEmailConfirmation
+  getConfirmationToken,
+  updateAccount,
+  updateAccountPassword,
+  deleteAccount,
+  sendEmailConfirmation,
+  setCurrentAccount,
 }

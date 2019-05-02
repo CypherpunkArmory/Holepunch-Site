@@ -9,9 +9,17 @@ import Button from '../Button'
 import TextFieldGroup from '../TextFieldGroup'
 
 import { validateInput } from '../../utils/validation'
-import { performUpdate } from '../../redux/ducks/account/actions'
+import {
+  getConfirmationToken,
+  updateAccountPassword,
+} from '../../redux/ducks/account/actions'
 
 class ResetPassword extends Component {
+  componentDidMount = () => {
+    const { getConfirmationToken, token } = this.props
+    getConfirmationToken(token)
+  }
+
   state = {
     newPassword: '',
     errors: {},
@@ -34,11 +42,11 @@ class ResetPassword extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { token, updatePassword } = this.props
+    const { updatePassword } = this.props
     const { newPassword } = this.state
-    
+
     if (this.isValid()) {
-      updatePassword(newPassword, token)
+      updatePassword(newPassword)
     }
     this.setState({
       submited: true,
@@ -52,7 +60,7 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
-    
+
     return (
       <>
         <SEO title="Holepunch Reset Password" />
@@ -88,8 +96,11 @@ class ResetPassword extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updatePassword: (password, token) => {
-      dispatch(performUpdate.request(password, token))
+    getConfirmationToken: token => {
+      dispatch(getConfirmationToken.request(token))
+    },
+    updatePassword: new_password => {
+      dispatch(updateAccountPassword.request({ new_password }))
     },
   }
 }

@@ -15,11 +15,13 @@ export default class SettingField extends Component {
     fieldText: PropTypes.string,
     fields: PropTypes.arrayOf(PropTypes.object),
     onSubmit: PropTypes.func,
+    submitError: PropTypes.string
   }
 
   static defaultProps = {
     label: 'email',
     fieldText: 'myemail@provider.com',
+    submitError: '',
   }
 
   state = {
@@ -33,13 +35,13 @@ export default class SettingField extends Component {
   }
 
   handleSubmit = (payload) => {
-    this.toggleCollapse()
-    this.props.onSubmit(payload)
+    const isCollapsed = this.props.onSubmit(payload)
+    isCollapsed && this.toggleCollapse()
   }
 
   render() {
     const { collapsed } = this.state
-    const { label, fieldText, fields } = this.props
+    const { label, fieldText, fields, submitError } = this.props
 
     return (
       <div styleName={classnames('field', {
@@ -58,7 +60,7 @@ export default class SettingField extends Component {
             <span styleName="field__close" onClick={this.toggleCollapse}>
               <FontAwesomeIcon icon={faTimes} />
             </span>
-            <SettingEditor onSubmit={this.handleSubmit} fields={fields}/>
+            <SettingEditor submitError={submitError} onSubmit={this.handleSubmit} fields={fields}/>
           </>
         )}
       </div>

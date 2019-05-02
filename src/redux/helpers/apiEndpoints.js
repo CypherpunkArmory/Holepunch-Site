@@ -7,6 +7,7 @@ export default {
   logout: `${origin}logout`,
   register: `${origin}account`,
   resetPassword: `${origin}account/token`,
-  updateUser: `${origin}account`,
-  resendConfirmationEmail: `${origin}resend`,
+  updateAccount: `${origin}account`,
+  resendConfirmationEmail: `${origin}account/token`,
+  confirmationToken: `${origin}account/confirm`,
 }

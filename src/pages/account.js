@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import AccountManagement from '../components/Account/AccountManagement'
 import PrivateRoute from '../components/PrivateRoute'
 
-import {
-  getIsLoggedIn,
-  getAccountDetails,
-} from '../redux/ducks/account/selectors'
+import { getAccountDetails } from '../redux/ducks/account/selectors'
+
+import { getIsLoggedIn } from '../redux/ducks/auth/selectors'
+
 import ResetPassword from '../components/Account/ResetPassword'
 
 class AccountPage extends Component {
