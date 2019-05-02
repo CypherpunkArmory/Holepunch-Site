@@ -35,7 +35,8 @@ export const createReducer = (initialState, actionTypes, customHandlers) => (
   state = initialState,
   action
 ) =>
-  actionTypes.includes(action.type) &&
-  getActionHandler(customHandlers, state, action)
+  actionTypes.includes(action.type)
+    ? getActionHandler(customHandlers, state, action)
+    : state
 
 export default createReducer

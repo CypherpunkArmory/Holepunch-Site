@@ -9,7 +9,7 @@ const PrivateRoute = ({
 }) => {
   if (!isLoggedIn && location.pathname !== `/login`) {
     // If the user is not logged in, redirect to the login page.
-    navigate(`/login`)
+    typeof window !== 'undefined' && navigate(`/login`)
     return null
   }
 
