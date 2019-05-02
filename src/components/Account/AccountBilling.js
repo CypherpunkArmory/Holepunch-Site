@@ -21,7 +21,7 @@ class AccountBilling extends Component {
             </li>
             <li styleName="plan plan_disabled">
               <h4>Premium</h4>
-              <div className="plan__body">Only $29.90</div>
+              <div className="plan__body">Only $5.00</div>
             </li>
           </ul>
           <h3 className="mb-4">Billing History</h3>
@@ -36,25 +36,9 @@ class AccountBilling extends Component {
             </thead>
             <tbody>
               <tr>
-                <td>Mar 5, 2019</td>
-                <td>Beta (Mar 5, 2019 - Apr 4, 2019)</td>
+                <td>Month Day, Year</td>
+                <td>Beta (Month Day, Year - Month Day, Year)</td>
                 <td>$0</td>
-                <td>
-                  <a href="https://google.com">View Invoice</a>
-                </td>
-              </tr>
-              <tr>
-                <td>May 5, 2019</td>
-                <td>Premium (May 5, 2019 - Jun 4, 2019)</td>
-                <td>$29.90</td>
-                <td>
-                  <a href="https://google.com">View Invoice</a>
-                </td>
-              </tr>
-              <tr>
-                <td>Jun 5, 2019</td>
-                <td>Premium (Jun 5, 2019 - Jul 4, 2019)</td>
-                <td>$29.90</td>
                 <td>
                   <a href="https://google.com">View Invoice</a>
                 </td>

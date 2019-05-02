@@ -2,6 +2,8 @@
 path: '/faq'
 title: 'Frequently Asked Questions'
 nav:
+  - name: 'Top'
+    href: '/docs'
   - name: 'Getting Started'
     href: '#getting-started'
     routes:      
