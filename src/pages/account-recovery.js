@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import SEO from '../seo'
+import SEO from '../components/seo'
 
-import '../Login/login.module.scss'
+import '../components/Login/login.module.scss'
 
 import { Form } from 'reactstrap'
-import Button from '../Button'
-import TextFieldGroup from '../TextFieldGroup'
+import Button from '../components/Button'
+import TextFieldGroup from '../components/TextFieldGroup'
 
-import { validateInput } from '../../utils/validation'
-import { performUpdate } from '../../redux/ducks/account/actions'
+import { validateInput } from '../utils/validation'
+import { sendResetEmail } from '../redux/ducks/account/actions'
+import { getError } from '../redux/ducks/account/selectors'
 
-class ResetPassword extends Component {
+class AccountRecovery extends Component {
   state = {
-    newPassword: '',
+    email: '',
     errors: {},
     submited: false,
   }
@@ -34,16 +35,14 @@ class ResetPassword extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { query, updatePassword } = this.props
-    const userId = this.props['*']
-    const { newPassword } = this.state
-    
+
     if (this.isValid()) {
-      updatePassword(newPassword, userId, query.token)
+      this.props.sendResetEmail(this.state.email)
     }
     this.setState({
       submited: true,
     })
+
     setTimeout(() => {
       this.setState({
         submited: false,
@@ -53,12 +52,13 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
+    const { sendingError } = this.props
 
     return (
       <>
         <SEO title="Holepunch Reset Password" />
         <div className="container page__header">
-          <h2>Reset Password</h2>
+          <h2>Recover Password</h2>
         </div>
         <div className="container" style={{ marginBottom: '7rem' }}>
           <Form
@@ -67,17 +67,20 @@ class ResetPassword extends Component {
             styleName="form"
           >
             <TextFieldGroup
-              label="New Password"
-              type="password"
-              field="newPassword"
+              label="Email"
+              type="email"
+              field="email"
               onChange={this.handleUpdate}
-              id="newPassword"
-              placeholder="New Password"
+              id="resetEmail"
+              placeholder="Enter Email"
               styleName="form__input"
-              error={errors.newPassword}
+              error={errors.email}
             />
-            {errors.newPassword && submited && (
-              <span styleName="form__alert">{errors.newPassword}</span>
+            {errors.email && submited && (
+              <span styleName="form__alert">{errors.email}</span>
+            )}
+            {sendingError && submited && (
+              <span styleName="form__alert">Email not found</span>
             )}
             <Button styleName="form__btn">submit</Button>
           </Form>
@@ -87,15 +90,21 @@ class ResetPassword extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    sendingError: getError(state),
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    updatePassword: (password, userId, token) => {
-      dispatch(performUpdate.request(password, userId, token))
+    sendResetEmail: email => {
+      dispatch(sendResetEmail.request(email))
     },
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(ResetPassword)
+)(AccountRecovery)

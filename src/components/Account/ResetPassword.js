@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import SEO from '../components/seo'
+import SEO from '../seo'
 
-import '../components/Login/login.module.scss'
+import '../Login/login.module.scss'
 
 import { Form } from 'reactstrap'
-import Button from '../components/Button'
-import TextFieldGroup from '../components/TextFieldGroup'
+import Button from '../Button'
+import TextFieldGroup from '../TextFieldGroup'
 
-import { validateInput } from '../../src/utils/validation'
-import { sendResetEmail } from '../../src/redux/ducks/account/actions'
-import { getError } from '../../src/redux/ducks/account/selectors'
+import { validateInput } from '../../utils/validation'
+import {
+  getConfirmationToken,
+  updateAccountPassword,
+} from '../../redux/ducks/account/actions'
 
 class ResetPassword extends Component {
+  componentDidMount = () => {
+    const { getConfirmationToken, token } = this.props
+    getConfirmationToken(token)
+  }
+
   state = {
-    email: '',
+    newPassword: '',
     errors: {},
     submited: false,
   }
@@ -35,9 +42,11 @@ class ResetPassword extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+    const { updatePassword } = this.props
+    const { newPassword } = this.state
 
     if (this.isValid()) {
-      this.props.sendResetEmail(this.state.email)
+      updatePassword(newPassword)
     }
     this.setState({
       submited: true,
@@ -51,7 +60,6 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
-    const { sendingError } = this.props
 
     return (
       <>
@@ -66,20 +74,17 @@ class ResetPassword extends Component {
             styleName="form"
           >
             <TextFieldGroup
-              label="Email"
-              type="email"
-              field="email"
+              label="New Password"
+              type="password"
+              field="newPassword"
               onChange={this.handleUpdate}
-              id="resetEmail"
-              placeholder="Enter Email"
+              id="newPassword"
+              placeholder="New Password"
               styleName="form__input"
-              error={errors.email}
+              error={errors.newPassword}
             />
-            {errors.email && submited && (
-              <span styleName="form__alert">{errors.email}</span>
-            )}
-            {sendingError && submited && (
-              <span styleName="form__alert">Email not found</span>
+            {errors.newPassword && submited && (
+              <span styleName="form__alert">{errors.newPassword}</span>
             )}
             <Button styleName="form__btn">submit</Button>
           </Form>
@@ -89,21 +94,18 @@ class ResetPassword extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    sendingError: getError(state),
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
-    sendResetEmail: email => {
-      dispatch(sendResetEmail.request(email))
+    getConfirmationToken: token => {
+      dispatch(getConfirmationToken.request(token))
+    },
+    updatePassword: new_password => {
+      dispatch(updateAccountPassword.request({ new_password }))
     },
   }
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ResetPassword)

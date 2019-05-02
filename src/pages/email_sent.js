@@ -40,6 +40,7 @@ class emailSentPage extends Component {
   }
   render() {
     const { time, timerOn } = this.state
+    const { account } = this.props
 
     return (
       <>
@@ -48,9 +49,10 @@ class emailSentPage extends Component {
           <h2>{content.pageTitle}</h2>
           <p>{content.pageSubtitle}</p>
 
-          {timerOn ? (
+          {timerOn && (
             <p className="text-danger">You can resend again in {time}s</p>
-          ) : (
+          )}
+          {!timerOn && account.email && (
             <Button onClick={this.handlesOnClick}>Resend email</Button>
           )}
         </div>

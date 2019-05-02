@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classnammes from 'classnames'
 
-import './app.module.scss'
+import './account.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
@@ -30,7 +30,7 @@ class ApiKey extends Component {
   }
 
   render() {
-    const { apiKey } = this.props
+    const { APIKey } = this.props
 
     return (
       <div styleName="pannel">
@@ -44,7 +44,7 @@ class ApiKey extends Component {
             <input
               ref={this.clipAreaRef}
               type="text"
-              value={apiKey}
+              value={APIKey}
               readOnly
             />
           </span>

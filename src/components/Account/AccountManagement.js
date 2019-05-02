@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { Router } from '@reach/router'
 
-import './app.module.scss'
-
-import { getAccountDetails } from '../../redux/ducks/account/selectors'
+import './account.module.scss'
 
 import AccountMenu from './AccountMenu'
 import AccountBilling from './AccountBilling';
@@ -21,17 +18,19 @@ class AccountManagement extends Component {
   render() {
     const { account } = this.props
     const routes = [
-      { name: 'Account Overview', route: '/app/account/overview' },
-      { name: 'Auth Key', route: '/app/account/key' },
-      { name: 'Billing', route: '/app/account/billing' },
+      { name: 'Account Overview', route: '/account/overview' },
+      { name: 'Auth Key', route: '/account/key' },
+      { name: 'Billing', route: '/account/billing' },
     ]
+    
     return (
       <>
         <div styleName="main" className="container">
           <AccountMenu routes={routes} />
           <Router className="w-100">
-            <ApiKey apiKey={account.access_token} path="/key" />
+            <ApiKey APIKey={account.APIKey} path="/key" />
             <AccountOverview account={account} path="/overview" />
+            <AccountOverview account={account} default />
             <AccountBilling path="/billing" />
           </Router>
         </div>
@@ -40,13 +39,4 @@ class AccountManagement extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    account: getAccountDetails(state),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(AccountManagement)
+export default AccountManagement

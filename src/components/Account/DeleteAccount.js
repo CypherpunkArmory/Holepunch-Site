@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './app.module.scss'
+import './account.module.scss'
 
 import Modal from '../Modal'
 import SettingEditor from './SettingEditor';
@@ -26,8 +26,9 @@ export default class DeleteAccount extends Component {
     })
   }
 
-  deleteAccount = (payload) => {
-    alert(`Your account has been deleted successfully using ${payload.password}`)
+  handlesSubmit = (payload) => {
+    alert(`Your account has been deleted successfully using`)
+    this.props.onSubmit(payload.password)
     this.toggleModal()
   }
 
@@ -41,7 +42,7 @@ export default class DeleteAccount extends Component {
               Deleting your account will permanently desactivate your profile
               and delete all your tunnels. This can't be undone.
             </p>
-            <SettingEditor onSubmit={this.deleteAccount} fields={this.fields} />
+            <SettingEditor onSubmit={this.handlesSubmit} fields={this.fields} />
           </Modal>
         )}
         <button

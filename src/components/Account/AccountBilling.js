@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Table } from 'reactstrap'
 
-import './app.module.scss'
+import './account.module.scss'
 
 class AccountBilling extends Component {
   render() {
