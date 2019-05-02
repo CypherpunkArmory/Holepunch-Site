@@ -9,7 +9,7 @@ import {
   deleteAccount,
   getConfirmationToken,
 } from './actions'
-import { performEmailLogin, performLogout } from '../auth/actions'
+import { performLogout } from '../auth/actions'
 import { emailLogin } from '../auth/sagas'
 import { axiosRequest, setAuthorizationToken } from '../../helpers/axiosRequest'
 import apiEndpoints from '../../helpers/apiEndpoints'
