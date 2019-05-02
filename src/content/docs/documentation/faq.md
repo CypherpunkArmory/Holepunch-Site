@@ -1,5 +1,5 @@
 ---
-path: '/faq'
+path: '/docs/faq'
 title: 'Frequently Asked Questions'
 nav:
   - name: 'Top'
