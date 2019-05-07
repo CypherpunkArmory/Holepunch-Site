@@ -4,7 +4,6 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 
 import * as reducers from './ducks'
 import rootSagas from './ducks/rootSaga'
-import { setAuthorizationToken } from '../redux/helpers/axiosRequest'
 import { setCurrentAccount } from './ducks/account/actions'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -34,7 +33,6 @@ export default function configureStore(initialState = {}) {
         email: getAuthState().email,
         APIKey: getAuthState().access_token,
       }
-      setAuthorizationToken(getAuthState().access_token)
       store.dispatch(setCurrentAccount(account))
     }
   }

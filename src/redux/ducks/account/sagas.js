@@ -11,32 +11,33 @@ import {
 } from './actions'
 import { performLogout } from '../auth/actions'
 import { emailLogin } from '../auth/sagas'
-import { axiosRequest, setAuthorizationToken } from '../../helpers/axiosRequest'
+import { axiosRequest, xhr } from '../../helpers/axiosRequest'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
 export function* register(action) {
-  const data = {
+  const xhrConfig = {
+    url: apiEndpoints.register,
+    method: 'POST',
     data: {
-      type: 'user',
-      attributes: {
-        email: action.payload.email,
-        password: action.payload.password,
+      data: {
+        type: 'user',
+        attributes: {
+          email: action.payload.email,
+          password: action.payload.password,
+        },
       },
     },
   }
   put(performRegister.request())
   try {
-    const registerRequest = yield call(
-      axiosRequest,
-      apiEndpoints.register,
-      'POST',
-      data
-    )
-    yield put(performRegister.success({ email: action.payload.email }))
+    const registerRequest = yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: performRegister,
+    })
     yield navigate('/email_sent')
     return registerRequest
   } catch (error) {
-    yield put(performRegister.failure(error.response.data.data))
+    return null
   }
 }
 
@@ -70,7 +71,7 @@ export function* fetchConfirmationToken(action) {
       `${apiEndpoints.confirmationToken}/${action.payload.JWToken}`,
       'GET'
     )
-    setAuthorizationToken(JWTokens.access_token)
+    // setAuthorizationToken(JWTokens.access_token)
     yield put(getConfirmationToken.success())
     return {}
   } catch (error) {
@@ -86,25 +87,34 @@ export function* updateAccountDetails(action) {
     },
   }
 
-  put(updateAccount.request())
-
   try {
-    const account = yield call(
-      axiosRequest,
-      apiEndpoints.updateAccount,
-      'PATCH',
-      data
-    )
-    const accountDetails = account.data.attributes
-    const email = accountDetails.email
-    if (localStorage.authToken) {
-      const JWTokens = JSON.parse(localStorage.getItem('authToken'))
-      localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
+    const xhrConfig = {
+      method: 'PATCH',
+      data: {
+        data: {
+          type: 'user',
+          attributes: { ...action.payload.newDetails },
+        },
+      },
+      responseType: 'json',
+      url: apiEndpoints.updateAccount,
     }
-    yield put(updateAccount.success(accountDetails))
-    return accountDetails
+
+    const account = yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: updateAccount,
+    })
+    console.log(account)
+
+    // const accountDetails = account.data.attributes
+    // const email = accountDetails.email
+    // if (localStorage.authToken) {
+    //   const JWTokens = JSON.parse(localStorage.getItem('authToken'))
+    //   localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
+    // }
+    return {}
   } catch (error) {
-    yield put(updateAccount.failure(error))
+    console.log(error)
   }
 }
 
