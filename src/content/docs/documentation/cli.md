@@ -35,15 +35,11 @@ nav:
     href: '#cleanup'
 ---
 
----
-
 <a name="setup"></a>
----
 
 # Setup
 
 <a name="login"></a>
----
 
 ## Login
 
@@ -62,7 +58,6 @@ punch login [flags]
 ```
 
 <a name="generate-key"></a>
----
 
 ## Generate a pub/priv keypair
 
@@ -83,14 +78,12 @@ punch generate-key <directory> [flags]
 ```
 
 <a name="subdomain"></a>
----
 
 # Subdomain 
 
 
 
 <a name="subdomain-list"></a>
----
 ## List subdomains
 
 List your subdomains
@@ -115,7 +108,6 @@ punch subdomain list [flags]
 * [punch subdomain release](#subdomain-release)
 
 <a name="subdomain-reserve"></a>
----
 
 ## Reserve a subdomain
 
@@ -140,7 +132,6 @@ punch subdomain reserve [subdomain] [flags]
 * [punch subdomain release](#subdomain-release)
 
 <a name="subdomain-release"></a>
----
 
 ## Release a subdomain
 
@@ -165,12 +156,10 @@ punch subdomain release [subdomain] [flags]
 * [punch subdomain reserve](#subdomain-reserve)
 
 <a name="tunnels"></a>
----
 
 # Tunnels 
 
 <a name="http"></a>
----
 
 ## http
 
@@ -196,7 +185,6 @@ punch http [port] [flags]
 * [punch https](#https)
 
 <a name="https"></a>
----
 
 ## https
 
@@ -222,7 +210,6 @@ punch https [port] [flags]
 * [punch http](#http)
 
 <a name="it"></a>
----
 
 ## it
 
@@ -251,7 +238,6 @@ punch it [ports] [flags]
 
 
 <a name="update"></a>
----
 
 ## Update
 
@@ -274,7 +260,6 @@ punch update
 
 
 <a name="cleanup"></a>
----
 
 ## Cleanup a tunnel that failed to close
 
@@ -293,4 +278,3 @@ punch cleanup [subdomain] [flags]
 ```
   -h, --help   help for cleanup
 ```
-

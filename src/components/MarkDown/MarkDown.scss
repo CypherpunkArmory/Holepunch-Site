@@ -702,3 +702,60 @@ $body-color: #495c66;
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+// Custom styles
+
+.markdown-body ol,
+.markdown-body ul {
+  list-style-type: none;
+}
+
+.markdown-body ul {
+  padding-left: 0.8rem;
+}
+
+.markdown-body ul > li::before {
+  content: "\002022";
+  position: relative;
+  margin-right: 0.7rem;
+  color: #4dbef3;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.markdown-body ol {
+  counter-reset: counter-me;
+  padding-left: 1.6rem;
+}
+
+.markdown-body ol > li {
+  counter-increment: counter-me;
+}
+
+.markdown-body ol > li::before {
+  content: counter(counter-me) ". ";
+  position: relative;
+  top: 0;
+  left: -.7rem;
+  color: #4dbef3;
+  font-weight: bold;
+}
+
+.markdown-body .highlight pre, .markdown-body pre {
+  display: inline-block;
+  overflow-x: scroll;
+  border-radius: 6px;
+  width: 100%;
+  background-color: #3c3c3c;
+  font-family: 'Montserrat' !important;
+  padding: 0.5rem 0.8rem;
+  
+  code {
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+    color: white;
+    padding: 0;
+    width: unset;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+}
