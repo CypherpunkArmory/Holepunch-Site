@@ -34,15 +34,6 @@ export const updateAccount = {
   failure: error => actionFactory(types.UPDATE_ACCOUNT['FAILURE'], { error }),
 }
 
-export const updateAccountPassword = {
-  request: newDetails =>
-    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['REQUEST'], { newDetails }),
-  success: account =>
-    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['SUCCESS'], { account }),
-  failure: error =>
-    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['FAILURE'], { error }),
-}
-
 export const deleteAccount = {
   request: password =>
     actionFactory(types.DELETE_ACCOUNT['REQUEST'], { password }),
@@ -67,7 +58,6 @@ export default {
   sendResetEmail,
   getConfirmationToken,
   updateAccount,
-  updateAccountPassword,
   deleteAccount,
   sendEmailConfirmation,
   setCurrentAccount,

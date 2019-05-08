@@ -10,7 +10,6 @@ import {
   getConfirmationToken,
 } from './actions'
 import { performLogout } from '../auth/actions'
-import { emailLogin } from '../auth/sagas'
 import { axiosRequest, xhr } from '../../helpers/axiosRequest'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
@@ -80,19 +79,19 @@ export function* fetchConfirmationToken(action) {
 }
 
 export function* updateAccountDetails(action) {
-  try {
-    const xhrConfig = {
-      method: 'PATCH',
+  const xhrConfig = {
+    method: 'PATCH',
+    data: {
       data: {
-        data: {
-          type: 'user',
-          attributes: { ...action.payload.newDetails },
-        },
+        type: 'user',
+        attributes: { ...action.payload.newDetails },
       },
-      responseType: 'json',
-      url: apiEndpoints.updateAccount,
-    }
+    },
+    responseType: 'json',
+    url: apiEndpoints.updateAccount,
+  }
 
+  try {
     const account = yield call(xhr, xhrConfig, {
       auth: true,
       actionCreator: updateAccount,
@@ -107,43 +106,6 @@ export function* updateAccountDetails(action) {
     return account
   } catch (error) {
     throw error
-  }
-}
-
-export function* passwordUpdate(action) {
-  const data = {
-    data: {
-      type: 'user',
-      attributes: { ...action.payload.newDetails },
-    },
-  }
-
-  put(updateAccount.request())
-
-  try {
-    const account = yield call(
-      axiosRequest,
-      apiEndpoints.updateAccount,
-      'PATCH',
-      data
-    )
-    const accountDetails = account.data.attributes
-    const email = accountDetails.email
-
-    if (localStorage.authToken) {
-      const JWTokens = JSON.parse(localStorage.getItem('authToken'))
-      localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
-    }
-    yield put(updateAccount.success(accountDetails))
-    yield call(emailLogin, {
-      payload: {
-        email: accountDetails.email,
-        password: action.payload.newDetails.new_password,
-      },
-    })
-    return accountDetails
-  } catch (error) {
-    yield put(updateAccount.failure(error))
   }
 }
 
@@ -193,7 +155,6 @@ export default function* watchFetchAccount() {
     yield takeEvery(types.REGISTER['REQUEST'], register),
     yield takeEvery(types.SEND_RESET_EMAIL['REQUEST'], resetEmail),
     yield takeEvery(types.UPDATE_ACCOUNT['REQUEST'], updateAccountDetails),
-    yield takeEvery(types.UPDATE_ACCOUNT_PASSWORD['REQUEST'], passwordUpdate),
     yield takeEvery(types.DELETE_ACCOUNT['REQUEST'], removeAccount),
     yield takeEvery(
       types.GET_CONFIRMATION_TOKEN['REQUEST'],

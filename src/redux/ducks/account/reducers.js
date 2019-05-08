@@ -31,8 +31,6 @@ const setAccount = (state, action) => {
       ...state.account,
       ...action.payload.account,
     },
-    isLoading: false,
-    error: null,
   }
 }
 
@@ -57,6 +55,6 @@ const actionTypes = [
 
 const reducer = createReducer(initState, actionTypes, {
   ...handlerMapping(actionTypes),
-  [types.SET_CURRENT_ACCOUNT]: setAccount
+  [types.SET_CURRENT_ACCOUNT]: setAccount,
 })
 export default reducer
