@@ -43,7 +43,13 @@ export function* emailLogin(action) {
 export function* logout() {
   put(performLogout.request())
   try {
-    yield put(performLogout.success({ email: '' }))
+    yield put(performLogout.success())
+    yield put(
+      setCurrentAccount({
+        email: '',
+        APIKey: '',
+      })
+    )
     localStorage.removeItem('authToken')
     return {}
   } catch (error) {
