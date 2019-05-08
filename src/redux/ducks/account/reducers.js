@@ -17,6 +17,18 @@ const successHandler = (state, action) => {
     ...state,
     account: {
       ...state.account,
+      ...action.payload.account.data.attributes,
+    },
+    isLoading: false,
+    error: null,
+  }
+}
+
+const setAccount = (state, action) => {
+  return {
+    ...state,
+    account: {
+      ...state.account,
       ...action.payload.account,
     },
     isLoading: false,
@@ -45,5 +57,6 @@ const actionTypes = [
 
 const reducer = createReducer(initState, actionTypes, {
   ...handlerMapping(actionTypes),
+  [types.SET_CURRENT_ACCOUNT]: setAccount
 })
 export default reducer

@@ -80,13 +80,6 @@ export function* fetchConfirmationToken(action) {
 }
 
 export function* updateAccountDetails(action) {
-  const data = {
-    data: {
-      type: 'user',
-      attributes: { ...action.payload.newDetails },
-    },
-  }
-
   try {
     const xhrConfig = {
       method: 'PATCH',
@@ -104,17 +97,16 @@ export function* updateAccountDetails(action) {
       auth: true,
       actionCreator: updateAccount,
     })
-    console.log(account)
-
-    // const accountDetails = account.data.attributes
-    // const email = accountDetails.email
-    // if (localStorage.authToken) {
-    //   const JWTokens = JSON.parse(localStorage.getItem('authToken'))
-    //   localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
-    // }
-    return {}
+    const accountDetails = account.data.attributes
+    const email = accountDetails.email
+    
+    if (localStorage.authToken) {
+      const JWTokens = JSON.parse(localStorage.getItem('authToken'))
+      localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
+    }
+    return account
   } catch (error) {
-    console.log(error)
+    throw error
   }
 }
 

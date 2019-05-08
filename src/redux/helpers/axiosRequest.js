@@ -69,7 +69,6 @@ export function* xhr(
     yield _.isObject(actionCreator) && put(actionCreator.success(response.data))
     return response.data
   } catch (error) {
-    const responseError = null;
     yield _.isObject(actionCreator) &&
       put(actionCreator.failure(error.response.data.data))
       throw error
