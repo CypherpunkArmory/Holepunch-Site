@@ -707,25 +707,30 @@ $body-color: #495c66;
 
 .markdown-body ol,
 .markdown-body ul {
-  list-style-type: none;
+  list-style-type: none !important;
+  padding-left: 1.6rem;
 }
 
-.markdown-body ul {
-  padding-left: 0.8rem;
+.markdown-body ol > li,
+.markdown-body ul > li {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: -1.7rem;
+    color: #4dbef3;
+    font-weight: bold;
+  }
 }
 
 .markdown-body ul > li::before {
-  content: "\002022";
-  position: relative;
-  margin-right: 0.7rem;
-  color: #4dbef3;
-  font-weight: bold;
-  font-size: 1.3rem;
+  content: '\002022';
+  font-size: 1.9rem;
+  top: -12px;
 }
 
 .markdown-body ol {
   counter-reset: counter-me;
-  padding-left: 1.6rem;
 }
 
 .markdown-body ol > li {
@@ -733,15 +738,11 @@ $body-color: #495c66;
 }
 
 .markdown-body ol > li::before {
-  content: counter(counter-me) ". ";
-  position: relative;
-  top: 0;
-  left: -.7rem;
-  color: #4dbef3;
-  font-weight: bold;
+  content: counter(counter-me) '. ';
 }
 
-.markdown-body .highlight pre, .markdown-body pre {
+.markdown-body .highlight pre,
+.markdown-body pre {
   display: inline-block;
   overflow-x: scroll;
   border-radius: 6px;
@@ -749,9 +750,10 @@ $body-color: #495c66;
   background-color: #3c3c3c;
   font-family: 'Montserrat' !important;
   padding: 0.5rem 0.8rem;
-  
+
   code {
-    font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
+      Courier New, monospace;
     color: white;
     padding: 0;
     width: unset;
