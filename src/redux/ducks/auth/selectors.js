@@ -9,5 +9,5 @@ export const getError = state => state.authState.error
 
 export const getIsLoggedIn = createSelector(
   [getAccount, getAuthState],
-  (account, authState) => !!account && !!authState
+  (account, authState) => !!account && !!account.email && !!authState
 )

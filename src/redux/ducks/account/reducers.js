@@ -17,7 +17,7 @@ const successHandler = (state, action) => {
     ...state,
     account: {
       ...state.account,
-      ...action.payload.account.data.attributes,
+      ...action.payload.account,
     },
     isLoading: false,
     error: null,
@@ -27,10 +27,7 @@ const successHandler = (state, action) => {
 const setAccount = (state, action) => {
   return {
     ...state,
-    account: {
-      ...state.account,
-      ...action.payload.account,
-    },
+    account: action.payload.account,
   }
 }
 

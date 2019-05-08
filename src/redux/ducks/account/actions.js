@@ -30,7 +30,7 @@ export const updateAccount = {
   request: newDetails =>
     actionFactory(types.UPDATE_ACCOUNT['REQUEST'], { newDetails }),
   success: account =>
-    actionFactory(types.UPDATE_ACCOUNT['SUCCESS'], { account }),
+    actionFactory(types.UPDATE_ACCOUNT['SUCCESS'], { account: account.data.attributes }),
   failure: error => actionFactory(types.UPDATE_ACCOUNT['FAILURE'], { error }),
 }
 

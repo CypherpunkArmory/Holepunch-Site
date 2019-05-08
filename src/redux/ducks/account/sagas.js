@@ -98,7 +98,7 @@ export function* updateAccountDetails(action) {
     })
     const accountDetails = account.data.attributes
     const email = accountDetails.email
-    
+
     if (localStorage.authToken) {
       const JWTokens = JSON.parse(localStorage.getItem('authToken'))
       localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
@@ -110,20 +110,30 @@ export function* updateAccountDetails(action) {
 }
 
 export function* removeAccount(action) {
-  const data = {
-    password: action.payload.password,
+  const xhrConfig = {
+    method: 'DELETE',
+    data: {
+      data: {
+        type: 'user',
+        attributes: {
+          password: action.payload.password,
+        },
+      },
+    },
+    responseType: 'json',
+    url: apiEndpoints.updateAccount,
   }
 
-  put(deleteAccount.request())
-
   try {
-    yield call(axiosRequest, apiEndpoints.updateAccount, 'DELETE', data)
+    yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: deleteAccount,
+    })
 
-    yield put(deleteAccount.success({}))
     yield put(performLogout.request())
-    return {}
+    return null
   } catch (error) {
-    yield put(deleteAccount.failure(error))
+    throw error
   }
 }
 
