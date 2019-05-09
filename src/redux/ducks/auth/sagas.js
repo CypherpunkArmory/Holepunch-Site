@@ -4,7 +4,7 @@ import types from './types'
 
 import { performEmailLogin, performLogout } from './actions'
 import { setCurrentAccount } from '../account/actions'
-import { xhr } from '../../helpers/axiosRequest'
+import xhr from '../../helpers/xhr'
 import { setTokens, clearTokens } from '../../helpers/localStorage'
 import apiEndpoints from '../../helpers/apiEndpoints'
 

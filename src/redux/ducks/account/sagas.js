@@ -13,7 +13,7 @@ import { getTokens, setTokens } from '../../helpers/localStorage'
 import { performLogout } from '../auth/actions'
 import { emailLogin } from '../auth/sagas'
 import { setCurrentAccount } from '../account/actions'
-import { xhr } from '../../helpers/axiosRequest'
+import xhr from '../../helpers/xhr'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
 export function* register(action) {

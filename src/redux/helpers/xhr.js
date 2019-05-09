@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { call, put } from 'redux-saga/effects'
 import _ from 'lodash'
-import { getTokens } from '../helpers/localStorage'
+import { getTokens } from './localStorage'
 
 const axiosInstance = axios.create({
   timeout: 5000,
@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
   },
 })
 
-export function* xhr(
+export default function* xhr(
   config = {
     method: 'GET',
     data: {},
@@ -28,7 +28,7 @@ export function* xhr(
       config = {
         ...config,
         headers: {
-          ['Authorization']: `Bearer ${authTokens.access_token}`,
+          Authorization: `Bearer ${authTokens.access_token}`,
         },
       }
     }
@@ -44,5 +44,3 @@ export function* xhr(
       throw error
   }
 }
-
-export default axiosInstance
