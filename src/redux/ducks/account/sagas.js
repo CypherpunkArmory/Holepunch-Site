@@ -9,6 +9,7 @@ import {
   deleteAccount,
   getConfirmationToken,
 } from './actions'
+import { getTokens, setTokens } from '../../helpers/localStorage'
 import { performLogout } from '../auth/actions'
 import { emailLogin } from '../auth/sagas'
 import { setCurrentAccount } from '../account/actions'
@@ -75,19 +76,19 @@ export function* fetchConfirmationToken(action) {
     url: `${apiEndpoints.confirmationToken}/${action.payload.JWToken}`,
     method: 'GET',
   }
-  
+
   try {
     const tokenRequest = yield call(xhr, xhrConfig, {
       auth: false,
       actionCreator: getConfirmationToken,
     })
-    
+
     if (tokenRequest.status === 204) {
       yield navigate('/login')
       return null
     }
     const JWTokens = tokenRequest.data
-    localStorage.setItem('authToken', JSON.stringify({ ...JWTokens }))
+    setTokens({ ...JWTokens })
     return JWTokens
   } catch (error) {
     return error
@@ -116,10 +117,11 @@ export function* updateAccountDetails(action) {
     const accountDetails = account.data.attributes
     const email = accountDetails.email
 
-    if (localStorage.authToken) {
-      const JWTokens = JSON.parse(localStorage.getItem('authToken'))
-      localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
+    const JWTokens = getTokens()
+    if (JWTokens) {
+      setTokens({ ...JWTokens, email })
     }
+
     return account
   } catch (error) {
     return error

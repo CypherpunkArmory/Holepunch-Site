@@ -1,9 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { navigate } from 'gatsby'
 import types from './types'
+
 import { performEmailLogin, performLogout } from './actions'
 import { setCurrentAccount } from '../account/actions'
 import { xhr } from '../../helpers/axiosRequest'
+import { setTokens, clearTokens } from '../../helpers/localStorage'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
 export function* emailLogin(action) {
@@ -28,10 +30,7 @@ export function* emailLogin(action) {
       APIKey: JWTokens.access_token,
     }
 
-    localStorage.setItem(
-      'authToken',
-      JSON.stringify({ ...JWTokens, ...account })
-    )
+    setTokens({ ...JWTokens, ...account })
     yield put(setCurrentAccount(account))
     yield navigate('/account/overview')
 
@@ -51,7 +50,7 @@ export function* logout() {
         APIKey: '',
       })
     )
-    localStorage.removeItem('authToken')
+    clearTokens()
     return {}
   } catch (error) {
     yield put(performLogout.failure(error))

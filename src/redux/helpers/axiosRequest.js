@@ -1,10 +1,7 @@
 import axios from 'axios'
 import { call, put } from 'redux-saga/effects'
 import _ from 'lodash'
-
-const getAuthTokens = () =>
-  !!localStorage.getItem('authToken') &&
-  JSON.parse(localStorage.getItem('authToken'))
+import { getTokens } from '../helpers/localStorage'
 
 const axiosInstance = axios.create({
   timeout: 5000,
@@ -26,7 +23,7 @@ export function* xhr(
   const { auth, actionCreator } = options
 
   if (auth) {
-    const authTokens = getAuthTokens()
+    const authTokens = getTokens()
     if (authTokens && _.has(authTokens, 'access_token')) {
       config = {
         ...config,
