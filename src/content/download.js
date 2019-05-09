@@ -61,10 +61,9 @@ export default {
     {
       title: 'Time to punch it',
       body: [
-        { component: Paragraph, content: "Check it out by running it from the command line:" },
-        { component: Code, content: "$  ./punch" },
         { component: Paragraph, content: "To start a HTTP tunnel on port 80, run this next:" },
         { component: Code, content: "$  ./punch http 80" },
+        { component: (props) => <Link to="/docs" {...props}/>, content: "Check out what else you can do." },
       ]
     },
   ]
