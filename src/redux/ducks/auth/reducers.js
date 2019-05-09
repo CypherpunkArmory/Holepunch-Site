@@ -14,10 +14,6 @@ const initState = {
 const successHandler = (state, action) => {
   return {
     ...state,
-    account: {
-      ...state.account,
-      ...action.payload.account,
-    },
     isLoading: false,
     error: null,
   }

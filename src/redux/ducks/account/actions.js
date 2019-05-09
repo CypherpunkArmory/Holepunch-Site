@@ -30,17 +30,8 @@ export const updateAccount = {
   request: newDetails =>
     actionFactory(types.UPDATE_ACCOUNT['REQUEST'], { newDetails }),
   success: account =>
-    actionFactory(types.UPDATE_ACCOUNT['SUCCESS'], { account }),
+    actionFactory(types.UPDATE_ACCOUNT['SUCCESS'], { account: account.data.attributes }),
   failure: error => actionFactory(types.UPDATE_ACCOUNT['FAILURE'], { error }),
-}
-
-export const updateAccountPassword = {
-  request: newDetails =>
-    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['REQUEST'], { newDetails }),
-  success: account =>
-    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['SUCCESS'], { account }),
-  failure: error =>
-    actionFactory(types.UPDATE_ACCOUNT_PASSWORD['FAILURE'], { error }),
 }
 
 export const deleteAccount = {
@@ -48,6 +39,12 @@ export const deleteAccount = {
     actionFactory(types.DELETE_ACCOUNT['REQUEST'], { password }),
   success: () => actionFactory(types.DELETE_ACCOUNT['SUCCESS'], {}),
   failure: error => actionFactory(types.DELETE_ACCOUNT['FAILURE'], { error }),
+}
+
+export const resetPassword = {
+  request: new_password => actionFactory(types.RESET_PASSWORD['REQUEST'], { new_password }),
+  success: () => actionFactory(types.RESET_PASSWORD['SUCCESS'], {}),
+  failure: error => actionFactory(types.RESET_PASSWORD['FAILURE'], { error }),
 }
 
 export const sendEmailConfirmation = {
@@ -67,7 +64,6 @@ export default {
   sendResetEmail,
   getConfirmationToken,
   updateAccount,
-  updateAccountPassword,
   deleteAccount,
   sendEmailConfirmation,
   setCurrentAccount,

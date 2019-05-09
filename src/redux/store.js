@@ -4,19 +4,10 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 
 import * as reducers from './ducks'
 import rootSagas from './ducks/rootSaga'
-import { setAuthorizationToken } from '../redux/helpers/axiosRequest'
 import { setCurrentAccount } from './ducks/account/actions'
+import { getTokens } from './helpers/localStorage'
 
 const sagaMiddleware = createSagaMiddleware()
-
-export function getAuthState() {
-  try {
-    const authToken = JSON.parse(localStorage.getItem('authToken')) || undefined
-    return authToken
-  } catch (err) {
-    return undefined
-  }
-}
 
 export default function configureStore(initialState = {}) {
   const rootReducer = combineReducers({
@@ -28,13 +19,14 @@ export default function configureStore(initialState = {}) {
     composeWithDevTools(applyMiddleware(sagaMiddleware))
   )
   sagaMiddleware.run(rootSagas)
+  
   if (typeof window !== 'undefined') {
-    if (localStorage.authToken) {
+    const authTokens = getTokens()
+    if (authTokens) {
       const account = {
-        email: getAuthState().email,
-        APIKey: getAuthState().access_token,
+        email: authTokens.email,
+        APIKey: authTokens.access_token,
       }
-      setAuthorizationToken(getAuthState().access_token)
       store.dispatch(setCurrentAccount(account))
     }
   }

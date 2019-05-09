@@ -31,18 +31,18 @@ class AccountOverview extends Component {
   ]
   updateEmailFields = [
     {
-      label: 'Current Email',
-      type: 'email',
-      field: 'email',
-      id: 'currentEmail',
-      placeholder: 'Current Email',
-    },
-    {
       label: 'New Email',
       type: 'email',
       field: 'newEmail',
       id: 'newEmail',
       placeholder: 'New Email',
+    },
+    {
+      label: 'Repeat Email',
+      type: 'email',
+      field: 'repeatedEmail',
+      id: 'repeatedEmail',
+      placeholder: 'Repeat New Email',
     },
   ]
 
@@ -54,10 +54,10 @@ class AccountOverview extends Component {
     return true
   }
 
-  updateEmail = ({ email, newEmail }) => {
-    if (email === newEmail) {
+  updateEmail = ({ newEmail, repeatedEmail }) => {
+    if (newEmail !== repeatedEmail) {
       this.setState({
-        updateEmailError: "New Email Can't be the same",
+        updateEmailError: 'New email need to match',
       })
       return false
     } else {

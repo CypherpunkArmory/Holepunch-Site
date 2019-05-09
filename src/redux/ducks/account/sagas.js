@@ -9,180 +9,198 @@ import {
   deleteAccount,
   getConfirmationToken,
 } from './actions'
+import { getTokens, setTokens } from '../../helpers/localStorage'
 import { performLogout } from '../auth/actions'
 import { emailLogin } from '../auth/sagas'
-import { axiosRequest, setAuthorizationToken } from '../../helpers/axiosRequest'
+import { setCurrentAccount } from '../account/actions'
+import xhr from '../../helpers/xhr'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
 export function* register(action) {
-  const data = {
+  const xhrConfig = {
+    url: apiEndpoints.register,
+    method: 'POST',
     data: {
-      type: 'user',
-      attributes: {
-        email: action.payload.email,
-        password: action.payload.password,
+      data: {
+        type: 'user',
+        attributes: {
+          email: action.payload.email,
+          password: action.payload.password,
+        },
       },
     },
   }
-  put(performRegister.request())
+
   try {
-    const registerRequest = yield call(
-      axiosRequest,
-      apiEndpoints.register,
-      'POST',
-      data
-    )
-    yield put(performRegister.success({ email: action.payload.email }))
+    const registerRequest = yield call(xhr, xhrConfig, {
+      auth: false,
+      actionCreator: performRegister,
+    })
+    yield put(setCurrentAccount({ email: action.payload.email }))
     yield navigate('/email_sent')
     return registerRequest
   } catch (error) {
-    yield put(performRegister.failure(error.response.data.data))
+    return error
   }
 }
 
 export function* resetEmail(action) {
-  const data = {
+  const xhrConfig = {
+    url: apiEndpoints.resetPassword,
+    method: 'POST',
     data: {
-      type: 'password_reset',
-      attributes: {
-        email: action.payload.email,
+      data: {
+        type: 'password_reset',
+        attributes: {
+          email: action.payload.email,
+        },
       },
     },
   }
 
-  put(sendResetEmail.request())
   try {
-    yield call(axiosRequest, apiEndpoints.resetPassword, 'POST', data)
-    yield put(sendResetEmail.success({ email: action.payload.email }))
+    yield call(xhr, xhrConfig, {
+      auth: false,
+      actionCreator: sendResetEmail,
+    })
+    yield put(setCurrentAccount({ email: '', APIKey: '' }))
     yield navigate('/email_sent')
     return {}
   } catch (error) {
-    yield put(sendResetEmail.failure(error))
+    return error
   }
 }
 
 export function* fetchConfirmationToken(action) {
-  put(getConfirmationToken.request())
+  const xhrConfig = {
+    url: `${apiEndpoints.confirmationToken}/${action.payload.JWToken}`,
+    method: 'GET',
+  }
 
   try {
-    const JWTokens = yield call(
-      axiosRequest,
-      `${apiEndpoints.confirmationToken}/${action.payload.JWToken}`,
-      'GET'
-    )
-    setAuthorizationToken(JWTokens.access_token)
-    yield put(getConfirmationToken.success())
-    return {}
+    const tokenRequest = yield call(xhr, xhrConfig, {
+      auth: false,
+      actionCreator: getConfirmationToken,
+    })
+
+    if (tokenRequest.status === 204) {
+      yield navigate('/login')
+      return null
+    }
+    const JWTokens = tokenRequest.data
+    setTokens({ ...JWTokens })
+    return JWTokens
   } catch (error) {
-    yield put(getConfirmationToken.failure(error))
+    return error
   }
 }
 
 export function* updateAccountDetails(action) {
-  const data = {
+  const xhrConfig = {
+    method: 'PATCH',
     data: {
-      type: 'user',
-      attributes: { ...action.payload.newDetails },
-    },
-  }
-
-  put(updateAccount.request())
-
-  try {
-    const account = yield call(
-      axiosRequest,
-      apiEndpoints.updateAccount,
-      'PATCH',
-      data
-    )
-    const accountDetails = account.data.attributes
-    const email = accountDetails.email
-    if (localStorage.authToken) {
-      const JWTokens = JSON.parse(localStorage.getItem('authToken'))
-      localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
-    }
-    yield put(updateAccount.success(accountDetails))
-    return accountDetails
-  } catch (error) {
-    yield put(updateAccount.failure(error))
-  }
-}
-
-export function* passwordUpdate(action) {
-  const data = {
-    data: {
-      type: 'user',
-      attributes: { ...action.payload.newDetails },
-    },
-  }
-
-  put(updateAccount.request())
-
-  try {
-    const account = yield call(
-      axiosRequest,
-      apiEndpoints.updateAccount,
-      'PATCH',
-      data
-    )
-    const accountDetails = account.data.attributes
-    const email = accountDetails.email
-
-    if (localStorage.authToken) {
-      const JWTokens = JSON.parse(localStorage.getItem('authToken'))
-      localStorage.setItem('authToken', JSON.stringify({ ...JWTokens, email }))
-    }
-    yield put(updateAccount.success(accountDetails))
-    yield call(emailLogin, {
-      payload: {
-        email: accountDetails.email,
-        password: action.payload.newDetails.new_password,
+      data: {
+        type: 'user',
+        attributes: { ...action.payload.newDetails },
       },
+    },
+    responseType: 'json',
+    url: apiEndpoints.updateAccount,
+  }
+
+  try {
+    const accountRequest = yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: updateAccount,
     })
-    return accountDetails
+    const account = accountRequest.data
+    const accountDetails = account.data.attributes
+    const email = accountDetails.email
+
+    const JWTokens = getTokens()
+    if (JWTokens) {
+      setTokens({ ...JWTokens, email })
+    }
+
+    return account
   } catch (error) {
-    yield put(updateAccount.failure(error))
+    return error
   }
 }
 
 export function* removeAccount(action) {
-  const data = {
-    password: action.payload.password,
+  const xhrConfig = {
+    method: 'DELETE',
+    data: {
+      data: {
+        type: 'user',
+        attributes: {
+          password: action.payload.password,
+        },
+      },
+    },
+    responseType: 'json',
+    url: apiEndpoints.updateAccount,
   }
 
-  put(deleteAccount.request())
-
   try {
-    yield call(axiosRequest, apiEndpoints.updateAccount, 'DELETE', data)
+    yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: deleteAccount,
+    })
 
-    yield put(deleteAccount.success({}))
     yield put(performLogout.request())
-    return {}
+    return null
   } catch (error) {
-    yield put(deleteAccount.failure(error))
+    return error
+  }
+}
+
+export function* resetAccountPassword(action) {
+  try {
+    const accountRequest = yield call(updateAccountDetails, {
+      payload: {
+        newDetails: {
+          new_password: action.payload.new_password,
+        },
+      },
+    })
+
+    const accountDetails = accountRequest.data.data.attributes
+
+    yield call(emailLogin, {
+      payload: {
+        email: accountDetails.email,
+        password: action.payload.new_password,
+      },
+    })
+  } catch (error) {
+    return error
   }
 }
 
 export function* resendConfirmationEmail(action) {
-  put(sendEmailConfirmation.request())
-  try {
-    const request = yield call(
-      axiosRequest,
-      apiEndpoints.resendConfirmationEmail,
-      'POST',
-      {
-        data: {
-          type: 'email_confirm',
-          attributes: {
-            email: action.payload.email,
-          },
+  const xhrConfig = {
+    url: apiEndpoints.resendConfirmationEmail,
+    method: 'POST',
+    data: {
+      data: {
+        type: 'email_confirm',
+        attributes: {
+          email: action.payload.email,
         },
-      }
-    )
-    yield put(sendEmailConfirmation.success())
+      },
+    },
+  }
+
+  try {
+    const request = yield call(xhr, xhrConfig, {
+      auth: false,
+      actionCreator: sendEmailConfirmation,
+    })
     return request
   } catch (error) {
-    yield put(sendEmailConfirmation.failure(error))
+    return error
   }
 }
 
@@ -191,8 +209,8 @@ export default function* watchFetchAccount() {
     yield takeEvery(types.REGISTER['REQUEST'], register),
     yield takeEvery(types.SEND_RESET_EMAIL['REQUEST'], resetEmail),
     yield takeEvery(types.UPDATE_ACCOUNT['REQUEST'], updateAccountDetails),
-    yield takeEvery(types.UPDATE_ACCOUNT_PASSWORD['REQUEST'], passwordUpdate),
     yield takeEvery(types.DELETE_ACCOUNT['REQUEST'], removeAccount),
+    yield takeEvery(types.RESET_PASSWORD['REQUEST'], resetAccountPassword),
     yield takeEvery(
       types.GET_CONFIRMATION_TOKEN['REQUEST'],
       fetchConfirmationToken
