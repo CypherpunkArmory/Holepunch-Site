@@ -747,17 +747,19 @@ $body-color: #495c66;
   overflow-x: scroll;
   border-radius: 6px;
   width: 100%;
-  background-color: #3c3c3c;
-  font-family: 'Montserrat' !important;
   padding: 0.5rem 0.8rem;
-
+  background-color: #3c3c3c;
+  
   code {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
-      Courier New, monospace;
-    color: white;
-    padding: 0;
-    width: unset;
-    font-weight: 400;
-    white-space: nowrap;
+    white-space: unset;
   }
+}
+
+.markdown-body code {
+  color: white;
+  background-color: #3c3c3c;
+  padding: 0.5rem 0.8rem;
+  width: unset;
+  font-weight: 400;
+  white-space: nowrap;
 }
