@@ -47,6 +47,8 @@ const actionTypes = [
   ..._.values(types.DELETE_ACCOUNT),
   ..._.values(types.SEND_EMAIL_CONFIRMATION),
   ..._.values(types.SEND_RESET_EMAIL),
+  ..._.values(types.RESET_PASSWORD),
+  ..._.values(types.GET_CONFIRMATION_TOKEN),
   types.SET_CURRENT_ACCOUNT,
 ]
 

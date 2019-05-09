@@ -18,10 +18,11 @@ export function* emailLogin(action) {
   }
 
   try {
-    const JWTokens = yield call(xhr, xhrConfig, {
+    const sessionRequest = yield call(xhr, xhrConfig, {
       auth: false,
       actionCreator: performEmailLogin,
     })
+    const JWTokens = sessionRequest.data
     const account = {
       email: action.payload.email,
       APIKey: JWTokens.access_token,
@@ -36,7 +37,7 @@ export function* emailLogin(action) {
 
     return JWTokens
   } catch (error) {
-    console.log(error.data)
+    return error
   }
 }
 

@@ -14,33 +14,6 @@ const axiosInstance = axios.create({
   },
 })
 
-// export const setAuthorizationToken = token =>
-//   token
-//     ? (axiosInstance.defaults.headers.common[
-//         'Authorization'
-//       ] = `Bearer ${token}`)
-//     : delete axiosInstance.defaults.headers.common['Authorization']
-
-// axiosInstance.interceptors.request.use(
-//   config => {
-//     const authTokens = getAuthTokens()
-//     if (authTokens && _.has(authTokens, 'access_token')) {
-//       setAuthorizationToken(authTokens.access_token)
-//     }
-//     return config
-//   },
-//   error => {
-//     return Promise.reject(error)
-//   }
-// )
-
-// axiosInstance.interceptors.response.use(
-//   response => response.data,
-//   error => {
-//     return Promise.reject(error)
-//   }
-// )
-
 export function* xhr(
   config = {
     method: 'GET',
@@ -67,7 +40,7 @@ export function* xhr(
   try {
     const response = yield call(axiosInstance, config)
     yield _.isObject(actionCreator) && put(actionCreator.success(response.data))
-    return response.data
+    return response
   } catch (error) {
     yield _.isObject(actionCreator) &&
       put(actionCreator.failure(error.response.data.data))

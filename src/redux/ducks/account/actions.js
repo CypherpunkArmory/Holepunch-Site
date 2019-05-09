@@ -41,6 +41,12 @@ export const deleteAccount = {
   failure: error => actionFactory(types.DELETE_ACCOUNT['FAILURE'], { error }),
 }
 
+export const resetPassword = {
+  request: new_password => actionFactory(types.RESET_PASSWORD['REQUEST'], { new_password }),
+  success: () => actionFactory(types.RESET_PASSWORD['SUCCESS'], {}),
+  failure: error => actionFactory(types.RESET_PASSWORD['FAILURE'], { error }),
+}
+
 export const sendEmailConfirmation = {
   request: email =>
     actionFactory(types.SEND_EMAIL_CONFIRMATION['REQUEST'], { email }),

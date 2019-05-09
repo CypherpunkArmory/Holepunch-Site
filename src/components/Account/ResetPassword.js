@@ -11,8 +11,10 @@ import TextFieldGroup from '../TextFieldGroup'
 import { validateInput } from '../../utils/validation'
 import {
   getConfirmationToken,
-  updateAccountPassword,
+  resetPassword,
 } from '../../redux/ducks/account/actions'
+import { accountIsLoading } from '../../redux/ducks/account/selectors'
+import PageSpinner from '../Spinner/PageSpinner'
 
 class ResetPassword extends Component {
   componentDidMount = () => {
@@ -60,37 +62,46 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
+    const { isLoading } = this.props
 
     return (
       <>
         <SEO title="Holepunch Reset Password" />
-        <div className="container page__header">
-          <h2>Reset Password</h2>
-        </div>
-        <div className="container" style={{ marginBottom: '7rem' }}>
-          <Form
-            onSubmit={this.handleSubmit}
-            className="mx-auto"
-            styleName="form"
-          >
-            <TextFieldGroup
-              label="New Password"
-              type="password"
-              field="newPassword"
-              onChange={this.handleUpdate}
-              id="newPassword"
-              placeholder="New Password"
-              styleName="form__input"
-              error={errors.newPassword}
-            />
-            {errors.newPassword && submited && (
-              <span styleName="form__alert">{errors.newPassword}</span>
-            )}
-            <Button styleName="form__btn">submit</Button>
-          </Form>
-        </div>
+        <PageSpinner isLoading={isLoading}>
+          <div className="container page__header">
+            <h2>Reset Password</h2>
+          </div>
+          <div className="container" style={{ marginBottom: '7rem' }}>
+            <Form
+              onSubmit={this.handleSubmit}
+              className="mx-auto"
+              styleName="form"
+            >
+              <TextFieldGroup
+                label="New Password"
+                type="password"
+                field="newPassword"
+                onChange={this.handleUpdate}
+                id="newPassword"
+                placeholder="New Password"
+                styleName="form__input"
+                error={errors.newPassword}
+              />
+              {errors.newPassword && submited && (
+                <span styleName="form__alert">{errors.newPassword}</span>
+              )}
+              <Button styleName="form__btn">submit</Button>
+            </Form>
+          </div>
+        </PageSpinner>
       </>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isLoading: accountIsLoading(state),
   }
 }
 
@@ -100,12 +111,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(getConfirmationToken.request(token))
     },
     updatePassword: new_password => {
-      dispatch(updateAccountPassword.request({ new_password }))
+      dispatch(resetPassword.request(new_password))
     },
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ResetPassword)
