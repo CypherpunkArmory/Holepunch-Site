@@ -73,11 +73,11 @@ If this is your first time using punch, you should use `punch setup` instead of 
 
 ### Options
 
-`  -h, --help              help for login`
-
-`  -p, --password string   Your holepunch.io password`
-
-`  -u, --username string   Your holepunch.io username`
+```
+  -h, --help              help for login
+  -p, --password string   Your holepunch.io password
+  -u, --username string   Your holepunch.io username
+```
 
 <a name="generate-key"></a>
 
@@ -95,9 +95,10 @@ You can also specify a name for it using the `-n` flag.
 
 ### Options
 
-`  -n, --filename string   The name your new key files will have (default "holepunch_key")`
-
-`  -h, --help              help for generate-key`
+```
+  -n, --filename string   The name your new key files will have (default "holepunch_key")
+  -h, --help              help for generate-key
+```
 
 <a name="subdomain"></a>
 
