@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import './account.module.scss'
 
 import { updateAccount, deleteAccount } from '../../redux/ducks/account/actions'
+import { getError } from '../../redux/ducks/account/selectors'
 
 import SettingField from './SettingField'
 import DeleteAccount from './DeleteAccount'
@@ -70,7 +71,7 @@ class AccountOverview extends Component {
   }
 
   render() {
-    const { account, deleteAccount } = this.props
+    const { account, deleteAccount, error } = this.props
 
     return (
       <div styleName="pannel">
@@ -93,11 +94,18 @@ class AccountOverview extends Component {
           <hr />
           <DeleteAccount
             onSubmit={deleteAccount}
+            submitError={error && error.attributes.detail}
             fields={this.deleteAccountFields}
           />
         </div>
       </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    error: getError(state),
   }
 }
 
@@ -113,6 +121,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AccountOverview)
