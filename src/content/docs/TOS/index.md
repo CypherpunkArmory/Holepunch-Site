@@ -53,19 +53,7 @@ Holepunch respects the intellectual property rights of third-parties, and reques
 
 If you believe that your content has been reproduced or published to the Holepunch Site in a way that constitutes copyright infringement, please provide Holepunch's Copyright Agent with a “Notification of Alleged Infringement.” Details and requirements for a Notification of Alleged Infringement are available at the U.S. Copyright Office Website at http://www.copyright.gov. It is Holepunch's policy to respond to all valid notices filed under the Digital Millennium Copyright Act (“DMCA”).
 
-The contact information for Holepunch's registered Copyright Agent is:
-
-Holepunch.io DMCA Agent
-
-CO: John Arsenault
-
-4643 S Ulster St
-
-STE 1120
-
-Denver, CO 80237
-
-United States
+To find out more info including where and how to file a complaint, please see our [DMCA Policy](/dmca).
 
 ##Fees and Payment.
 Services are provided to You on a monthly fee basis. You agree to pay Holepunch the agreed upon fees for each Service you purchase or use in accordance with the pricing and payment terms presented to you for such Service. You hereby authorize to charge your credit card on a monthly, annual, or other agreed upon basis, as set forth in the pricing and payment terms presented to you for such Service, in advance of providing the Services. You understand that the Services may be interrupted by Holepunch on accounts that are 5 days or more past due. Fees paid by You for the Services are considered non-refundable, except as provided in these TOS or when required by law. You may cancel your use of the Services at any time as noted on our dashboard. You will receive a pro rata credit of any pre-paid fees.

@@ -47,11 +47,9 @@ Setup punch (run this first)
 
 ### Synopsis
 
-Sets up punch for usage.
-
-This will ask you for your holepunch credentials and help you create pub/priv keys if needed.
-
-`punch setup [flags]`
+Sets up punch for usage.  
+This will ask you for your holepunch credentials and help you create pub/priv keys if needed.  
+`punch setup [flags]`  
 
 ### Options
 
@@ -65,18 +63,16 @@ Login to holepunch.
 
 ### Synopsis
 
-Will prompt you for username and password, or you can provide them as optional arguments.
-
-If this is your first time using punch, you should use `punch setup` instead of `punch login`.
-
+Will prompt you for username and password, or you can provide them as optional arguments.  
+If this is your first time using punch, you should use `punch setup` instead of `punch login`.  
 `punch login [flags]`
 
 ### Options
 
 ```
-  -h, --help              help for login
-  -p, --password string   Your holepunch.io password
-  -u, --username string   Your holepunch.io username
+  -h, --help              help for login  
+  -p, --password string   Your holepunch.io password  
+  -u, --username string   Your holepunch.io username  
 ```
 
 <a name="generate-key"></a>
@@ -87,17 +83,15 @@ Generates a pub/priv keypair at the specified location
 
 ### Synopsis
 
-Generates a pub/priv keypair at the specified location otherwise defaults to current directory.
-
-You can also specify a name for it using the `-n` flag.
-
-`punch generate-key [directory] [flags]`
+Generates a pub/priv keypair at the specified location otherwise defaults to current directory.  
+You can also specify a name for it using the `-n` flag.  
+`punch generate-key [directory] [flags]`  
 
 ### Options
 
 ```
-  -n, --filename string   The name your new key files will have (default "holepunch_key")
-  -h, --help              help for generate-key
+  -n, --filename string   The name your new key files will have (default "holepunch_key")  
+  -h, --help              help for generate-key  
 ```
 
 <a name="subdomain"></a>
@@ -112,9 +106,8 @@ List your subdomains
 
 ### Synopsis
 
-List subdomains you have previously reserved or that are currently in use by you.
-
-`punch list [flags]`
+List subdomains you have previously reserved or that are currently in use by you.  
+`punch list [flags]`  
 
 ### Options
 
@@ -128,11 +121,9 @@ Reserve a subdomain
 
 ### Synopsis
 
-Reserve a subdomain to secure the subdomain for future use.
-
-Once reserved only you can use it.
-
-`punch reserve <subdomain> [flags]`
+Reserve a subdomain to secure the subdomain for future use.  
+Once reserved only you can use it.  
+`punch reserve <subdomain> [flags]`  
 
 ### Options
 
@@ -146,9 +137,8 @@ Release subdomain
 
 ### Synopsis
 
-Release a subdomain you have reserved.
-
-`punch release <subdomain> [flags]`
+Release a subdomain you have reserved.  
+`punch release <subdomain> [flags]`  
 
 ### Options
 
@@ -166,17 +156,12 @@ Expose a local web server on the port you specify
 
 ### Synopsis
 
-Expose a local web server on the port you specify.
-
-Example: `punch http 8080` will expose a local web server running on port 8080.
-
-You can provide an optional 2nd argument to specify the name of a reserved subdomain you want to associate this with.
-
-Example: `punch http 8080 mydomain` will expose a local web server running on port 8080 via "http://mydomain.holepunch.io".
-
-Otherwise it will default to using a new unreserved subdomain.
-
-`punch http <port> [subdomain] [flags]`
+Expose a local web server on the port you specify.  
+Example: `punch http 8080` will expose a local web server running on port 8080.  
+You can provide an optional 2nd argument to specify the name of a reserved subdomain you want to associate this with.  
+Example: `punch http 8080 mydomain` will expose a local web server running on port 8080 via "http://mydomain.holepunch.io".  
+Otherwise it will default to using a new unreserved subdomain.  
+`punch http <port> [subdomain] [flags]`  
 
 ### Options
 
@@ -190,17 +175,12 @@ Expose a local https web server on the port you specify
 
 ### Synopsis
 
-Expose a local https server on the port you specify.
-
-Example: `punch https 8443` will expose a local https web server running on port 8443.
-
-You can provide an optional 2nd argument to specify the name of a reserved subdomain you want to associate this with.
-
-Example: `punch https 8443 mydomain` will expose a local https web server running on port 8443 via "https://mydomain.holepunch.io".
-
-Otherwise it will default to using a new unreserved subdomain.
-
-`punch https <port> [subdomain] [flags]`
+Expose a local https server on the port you specify.  
+Example: `punch https 8443` will expose a local https web server running on port 8443.  
+You can provide an optional 2nd argument to specify the name of a reserved subdomain you want to associate this with.  
+Example: `punch https 8443 mydomain` will expose a local https web server running on port 8443 via "https://mydomain.holepunch.io".  
+Otherwise it will default to using a new unreserved subdomain.  
+`punch https <port> [subdomain] [flags]`  
 
 ### Options
 
@@ -214,17 +194,12 @@ Expose a local web server on the ports you specify
 
 ### Synopsis
 
-Expose a local web server on the ports you specify.
-
-Example: `punch it http:8080 https:8443` will expose a local web server running on port 8080 and an https web server running on port 8443.
-
-You can provide an optional argument to specify the name of a reserved subdomain you want to associate this with.
-
-Example: `punch it http:8080 https:8443 mydomain` will expose a local web server running on port 8080 via "http://mydomain.holepunch.io" and an https web server running on port 8443 via "https://mydomain.holepunch.io".
-
-Otherwise it will default to using a new unreserved subdomain.
-
-`punch it <type:port>... [subdomain] [flags]`
+Expose a local web server on the ports you specify.  
+Example: `punch it http:8080 https:8443` will expose a local web server running on port 8080 and an https web server running on port 8443.  
+You can provide an optional argument to specify the name of a reserved subdomain you want to associate this with.  
+Example: `punch it http:8080 https:8443 mydomain` will expose a local web server running on port 8080 via "http://mydomain.holepunch.io" and an https web server running on port 8443 via "https://mydomain.holepunch.io".  
+Otherwise it will default to using a new unreserved subdomain.  
+`punch it <type:port>... [subdomain] [flags]`  
 
 ### Options
 
@@ -238,9 +213,8 @@ Update CLI version
 
 ### Synopsis
 
-Update CLI to latest release on github.
-
-`punch update [flags]`
+Update CLI to latest release on github.  
+`punch update [flags]`  
 
 ### Options
 
@@ -254,11 +228,9 @@ Cleanup a subdomain that is incorrectly marked as "In Use"
 
 ### Synopsis
 
-Cleanup a subdomain that is incorrectly marked as "In Use".
-
-This closes the tunnel from our end and updates the subdomain database.
-
-`punch cleanup <subdomain> [flags]`
+Cleanup a subdomain that is incorrectly marked as "In Use".  
+This closes the tunnel from our end and updates the subdomain database.  
+`punch cleanup <subdomain> [flags]`  
 
 ### Options
 
