@@ -81,10 +81,9 @@ export default class PricingTable extends Component {
       array.map(elem => {
         if (_.find(seen, ['name', elem.name])) {
           const index = _.findIndex(seen, ['name', elem.name])
-          seen[index].value = [...seen[index].value, elem.value]
-          return
+          return seen[index].value = [...seen[index].value, elem.value]
         }
-        seen = [...seen, { ...elem, value: [elem.value] }]
+        return seen = [...seen, { ...elem, value: [elem.value] }]
       })
 
       return seen
