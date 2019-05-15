@@ -153,15 +153,17 @@ export default class PricingPage extends Component {
           </p>
         </div>
         <div className="container features">
-          <div styleName="yearly-widget">
-            Monthly Billing <Switch handlesClick={this.toggleDiscount} />{' '}
-            <span styleName="yearly-widget__highlight">
-              Yearly Billing
-              <span styleName="yearly-widget__badge">
-                Save {this.state.discountBase}%
+          {false && (
+            <div styleName="yearly-widget">
+              Monthly Billing <Switch handlesClick={this.toggleDiscount} />{' '}
+              <span styleName="yearly-widget__highlight">
+                Yearly Billing
+                <span styleName="yearly-widget__badge">
+                  Save {this.state.discountBase}%
+                </span>
               </span>
-            </span>
-          </div>
+            </div>
+          )}
           {this.state.width < 600 ? (
             plans.map((plan, i) => <PricingTable key={i} plans={[plan]} />)
           ) : (
