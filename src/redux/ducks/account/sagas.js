@@ -92,6 +92,9 @@ export function* fetchConfirmationToken(action) {
     setTokens({ ...JWTokens })
     return JWTokens
   } catch (error) {
+    if (error.response.status === 403) {
+      yield navigate('/bad_token')
+    }
     return error
   }
 }
@@ -217,7 +220,7 @@ export function* revokeAccountTokens(action) {
       actionCreator: revokeTokens,
     })
     yield put(performLogout.request())
-    
+
     return revokeRequest
   } catch (error) {
     return error
