@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { navigate } from 'gatsby'
 
 import '../styles/pricing.module.scss'
 
@@ -47,11 +48,15 @@ export default class PricingPage extends Component {
 
   render() {
     const { discountBase } = this.state
+    const navigateToBilling = () => {
+      navigate('/account/billing')
+      return
+    }
     const plans = [
       {
         title: 'Basic',
         price: '',
-        handler: () => alert('basic'),
+        handler: navigateToBilling,
         features: [
           {
             name: 'HTTP/TCP tunnels on random URLs/ports',
@@ -83,7 +88,7 @@ export default class PricingPage extends Component {
         title: 'Pro',
         price: 5,
         discountBase: discountBase,
-        handler: () => alert('Pro'),
+        handler: navigateToBilling,
         features: [
           {
             name: 'HTTP/TCP tunnels on random URLs/ports',
@@ -115,7 +120,7 @@ export default class PricingPage extends Component {
         title: 'Business',
         price: 8,
         discountBase: discountBase,
-        handler: () => alert('Business'),
+        handler: navigateToBilling,
         features: [
           {
             name: 'HTTP/TCP tunnels on random URLs/ports',
