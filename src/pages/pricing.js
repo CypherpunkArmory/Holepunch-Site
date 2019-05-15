@@ -33,11 +33,14 @@ export default class PricingPage extends Component {
   }
 
   updateDimensions = () => {
-    var w = window,
-      d = document,
-      documentElement = d.documentElement,
-      body = d.getElementsByTagName('body')[0],
+    let width
+    if (typeof window !== 'undefined') {
+      const w = window,
+        d = document,
+        documentElement = d.documentElement,
+        body = d.getElementsByTagName('body')[0]
       width = w.innerWidth || documentElement.clientWidth || body.clientWidth
+    }
 
     this.setState({ width })
   }
