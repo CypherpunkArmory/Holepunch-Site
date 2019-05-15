@@ -21,7 +21,6 @@ export default function* xhr(
   options = { auth: false, actionCreator: null }
 ) {
   const { auth, actionCreator } = options
-
   if (auth) {
     const authTokens = getTokens()
     if (authTokens && _.has(authTokens, 'access_token')) {
@@ -41,6 +40,6 @@ export default function* xhr(
   } catch (error) {
     yield _.isObject(actionCreator) &&
       put(actionCreator.failure(error.response.data.data))
-      throw error
+    throw error
   }
 }

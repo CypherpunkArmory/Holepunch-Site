@@ -56,6 +56,15 @@ export const sendEmailConfirmation = {
     actionFactory(types.SEND_EMAIL_CONFIRMATION['FAILURE'], { error }),
 }
 
+export const revokeTokens = {
+  request: () =>
+    actionFactory(types.REVOKE_TOKEN['REQUEST'], {}),
+  success: JWToken =>
+    actionFactory(types.REVOKE_TOKEN['SUCCESS'], { JWToken }),
+  failure: error =>
+    actionFactory(types.REVOKE_TOKEN['FAILURE'], { error }),
+}
+
 export const setCurrentAccount = account =>
   actionFactory(types.SET_CURRENT_ACCOUNT, { account })
 
@@ -67,4 +76,5 @@ export default {
   deleteAccount,
   sendEmailConfirmation,
   setCurrentAccount,
+  revokeTokens,
 }

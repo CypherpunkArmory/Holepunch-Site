@@ -8,6 +8,7 @@ import {
   sendEmailConfirmation,
   deleteAccount,
   getConfirmationToken,
+  revokeTokens,
 } from './actions'
 import { getTokens, setTokens } from '../../helpers/localStorage'
 import { performLogout } from '../auth/actions'
@@ -91,6 +92,9 @@ export function* fetchConfirmationToken(action) {
     setTokens({ ...JWTokens })
     return JWTokens
   } catch (error) {
+    if (error.response.status === 403) {
+      yield navigate('/bad_token')
+    }
     return error
   }
 }
@@ -204,6 +208,25 @@ export function* resendConfirmationEmail(action) {
   }
 }
 
+export function* revokeAccountTokens(action) {
+  const xhrConfig = {
+    url: apiEndpoints.revokeTokens,
+    method: 'DELETE',
+  }
+
+  try {
+    const revokeRequest = yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: revokeTokens,
+    })
+    yield put(performLogout.request())
+
+    return revokeRequest
+  } catch (error) {
+    return error
+  }
+}
+
 export default function* watchFetchAccount() {
   return [
     yield takeEvery(types.REGISTER['REQUEST'], register),
@@ -219,5 +242,6 @@ export default function* watchFetchAccount() {
       types.SEND_EMAIL_CONFIRMATION['REQUEST'],
       resendConfirmationEmail
     ),
+    yield takeEvery(types.REVOKE_TOKEN['REQUEST'], revokeAccountTokens),
   ]
 }

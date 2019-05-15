@@ -29,7 +29,7 @@ const handlerMapping = actionTypes => {
   }, {})
 }
 
-const actionTypes = [..._.values(types.EMAIL_LOGIN), ..._.values(types.LOGOUT)]
+const actionTypes = [..._.values(types.EMAIL_LOGIN), ..._.values(types.LOGOUT), ..._.values(types.RENEW_SESSION)]
 
 const reducer = createReducer(initState, actionTypes, {
   ...handlerMapping(actionTypes),
