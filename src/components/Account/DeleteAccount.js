@@ -27,7 +27,7 @@ export default class DeleteAccount extends Component {
   }
 
   handlesSubmit = (payload) => {
-    alert(`Your account has been deleted successfully using`)
+    alert(`Your account has been deleted successfully.`)
     this.props.onSubmit(payload.password)
     this.toggleModal()
   }
@@ -39,7 +39,7 @@ export default class DeleteAccount extends Component {
           <Modal handlesClose={this.toggleModal}>
             <h3 className="mb-3" styleName="text_error">Delete Account</h3>
             <p className="mb-3">
-              Deleting your account will permanently desactivate your profile
+              Deleting your account will permanently deactivate your profile
               and delete all your tunnels. This can't be undone.
             </p>
             <SettingEditor onSubmit={this.handlesSubmit} fields={this.fields} />
