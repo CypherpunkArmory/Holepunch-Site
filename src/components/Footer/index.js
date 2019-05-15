@@ -35,7 +35,7 @@ function Footer({ cta, ...rest }) {
             <ul className="flex-row navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link" to="/privacy">
-                  privacy policy
+                  Privacy
                 </Link>
               </li>
               <li className="nav-item">
@@ -46,6 +46,11 @@ function Footer({ cta, ...rest }) {
               <li className="nav-item">
                 <Link className="nav-link" to="/tos">
                   TOS
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/dmca">
+                  DMCA
                 </Link>
               </li>
             </ul>
