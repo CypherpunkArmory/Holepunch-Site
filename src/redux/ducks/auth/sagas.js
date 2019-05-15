@@ -2,10 +2,10 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { navigate } from 'gatsby'
 import types from './types'
 
-import { performEmailLogin, performLogout } from './actions'
+import { performEmailLogin, performLogout, renewSession } from './actions'
 import { setCurrentAccount } from '../account/actions'
 import xhr from '../../helpers/xhr'
-import { setTokens, clearTokens } from '../../helpers/localStorage'
+import { setTokens, clearTokens, getTokens } from '../../helpers/localStorage'
 import apiEndpoints from '../../helpers/apiEndpoints'
 
 export function* emailLogin(action) {
@@ -30,7 +30,7 @@ export function* emailLogin(action) {
       APIKey: JWTokens.access_token,
     }
 
-    setTokens({ ...JWTokens, ...account })
+    setTokens({ ...JWTokens, email: account.email })
     yield put(setCurrentAccount(account))
     yield navigate('/account/overview')
 
@@ -57,9 +57,40 @@ export function* logout() {
   }
 }
 
+export function* session() {
+  const JWTokens = getTokens()
+  const xhrConfig = {
+    method: 'PUT',
+    responseType: 'json',
+    url: apiEndpoints.session,
+    headers: {
+      Authorization: `Bearer ${JWTokens.refresh_token}`,
+    },
+  }
+
+  try {
+    const sessionRequest = yield call(xhr, xhrConfig, {
+      auth: false,
+      actionCreator: renewSession,
+    })
+    const newTokens = sessionRequest.data
+    const account = {
+      email: JWTokens.email,
+      APIKey: newTokens.access_token,
+    }
+
+    setTokens({ ...JWTokens, ...newTokens })
+    yield put(setCurrentAccount(account))
+    return newTokens
+  } catch (error) {
+    return error
+  }
+}
+
 export default function* watchAuth() {
   return [
     yield takeEvery(types.EMAIL_LOGIN['REQUEST'], emailLogin),
     yield takeEvery(types.LOGOUT['REQUEST'], logout),
+    yield takeEvery(types.RENEW_SESSION['REQUEST'], session),
   ]
 }

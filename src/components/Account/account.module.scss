@@ -6,14 +6,16 @@
   justify-content: space-between;
 
   &__code {
+    position: relative;
+    cursor: pointer;
     border: #c2e8fa dashed 2px;
     width: 40rem;
     max-width: 100%;
-    padding: 1rem 1rem;
+    padding: 1rem 3.3rem 1rem 1rem;
     overflow-x: scroll;
     display: block;
-    margin-bottom: 1.5rem;
     transition: 0.1s ease all;
+    margin-bottom: 1.5rem;
 
     input {
       border: none;
@@ -24,6 +26,63 @@
 
     &_active {
       background: #c2e8fa;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 6rem;
+    right: 0;
+    top: 0;
+
+    button {
+      padding: 0.9rem 1rem;
+      border: none;
+      background: none;
+      outline: none;
+      font-weight: 700;
+      color: #4dbef3;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__button {
+    border: 2px #4dbef3 solid;
+    padding: 0.6rem 0.8rem;
+    outline: none;
+    border-radius: 20rem;
+    font-weight: 700;
+    color: #4dbef3;
+    transition: 0.15s ease all;
+    cursor: pointer;
+    max-width: 10rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    & > svg {
+      margin-right: 0.45rem;
+    }
+
+    &:hover {
+      background-color: #4dbef3;
+      color: white;
+    }
+
+    &_danger {
+      border-color: #f55555;
+      color: #f55555;
+      &:hover {
+        background-color: #f55555;
+      }
     }
   }
 
@@ -82,7 +141,7 @@
     display: block;
     margin: auto;
     outline: none;
-    color: #FE5C5C;
+    color: #fe5c5c;
     font-weight: 500;
     font-size: 1.1rem;
     &:hover {
@@ -169,7 +228,7 @@
     :global(tbody tr:nth-of-type(odd)) {
       background-color: rgba(201, 238, 255, 0.14);
     }
-    
+
     thead {
       border-bottom: 2px rgba(194, 194, 194, 0.208) solid;
     }
