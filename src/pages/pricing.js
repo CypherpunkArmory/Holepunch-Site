@@ -54,96 +54,120 @@ export default class PricingPage extends Component {
     }
     const plans = [
       {
-        title: 'Basic',
-        price: '',
+        title: 'Beta',
+        price: 'Free',
         handler: navigateToBilling,
         features: [
           {
-            name: 'HTTP/TCP tunnels on random URLs/ports',
+            name: 'HTTP/HTTPS Support',
             value: true,
           },
           {
-            name: 'Custom Subdomains',
-            value: true,
+            name: 'TCP/UDP Support',
+            value: 'coming soon',
           },
           {
-            name: 'Reserved Domains',
-            value: true,
+            name: 'Custom/Reserved Subdomains',
+            value: 1,
           },
           {
-            name: 'Google Apps SSO',
-            value: true,
-          },
-          {
-            name: 'Whitelabel Domains',
+            name: 'Custom Domains',
             value: false,
           },
           {
-            name: 'Priority Support',
+            name: 'Punch Processes',
+            value: 2,
+          },
+          {
+            name: 'Ports per Process',
+            value: 'no limit',
+          },
+          {
+            name: 'Data Rate',
+            value: '1000kBps',
+          },
+          {
+            name: 'End-to-end TLS Tunnels',
+            value: true,
+          },
+        ],
+      },
+      {
+        title: 'Free',
+        price: 'Free',
+        discountBase: discountBase,
+        handler: navigateToBilling,
+        features: [
+          {
+            name: 'HTTP/HTTPS Support',
+            value: true,
+          },
+          {
+            name: 'TCP/UDP Support',
+            value: 'coming soon',
+          },
+          {
+            name: 'Custom/Reserved Subdomains',
             value: false,
+          },
+          {
+            name: 'Custom Domains',
+            value: false,
+          },
+          {
+            name: 'Punch Processes',
+            value: 1,
+          },
+          {
+            name: 'Ports per Process',
+            value: 'no limit',
+          },
+          {
+            name: 'Data Rate',
+            value: '100kBps',
+          },
+          {
+            name: 'End-to-end TLS Tunnels',
+            value: true,
           },
         ],
       },
       {
         title: 'Pro',
-        price: 5,
+        price: 'TBD',
         discountBase: discountBase,
         handler: navigateToBilling,
         features: [
           {
-            name: 'HTTP/TCP tunnels on random URLs/ports',
+            name: 'HTTP/HTTPS Support',
             value: true,
           },
           {
-            name: 'Custom Subdomains',
+            name: 'TCP/UDP Support',
+            value: 'coming soon',
+          },
+          {
+            name: 'Custom/Reserved Subdomains',
             value: true,
           },
           {
-            name: 'Reserved Domains',
-            value: true,
+            name: 'Custom Domains',
+            value: 'true',
           },
           {
-            name: 'Google Apps SSO',
-            value: true,
+            name: 'Punch Processes',
+            value: 'TBD',
           },
           {
-            name: 'Whitelabel Domains',
-            value: true,
+            name: 'Ports per Process',
+            value: 'no limit',
           },
           {
-            name: 'Priority Support',
-            value: false,
-          },
-        ],
-      },
-      {
-        title: 'Business',
-        price: 8,
-        discountBase: discountBase,
-        handler: navigateToBilling,
-        features: [
-          {
-            name: 'HTTP/TCP tunnels on random URLs/ports',
-            value: true,
+            name: 'Data Rate',
+            value: 'TBD',
           },
           {
-            name: 'Custom Subdomains',
-            value: true,
-          },
-          {
-            name: 'Reserved Domains',
-            value: true,
-          },
-          {
-            name: 'Google Apps SSO',
-            value: true,
-          },
-          {
-            name: 'Whitelabel Domains',
-            value: true,
-          },
-          {
-            name: 'Priority Support',
+            name: 'End-to-end TLS Tunnels',
             value: true,
           },
         ],
@@ -154,10 +178,10 @@ export default class PricingPage extends Component {
       <>
         <SEO title="Holepunch Features" />
         <div className="container page__header">
-          <h2>Pricing</h2>
+          <h2>Pick the plan that meets your needs</h2>
           <p>
-            Making it more productive is a no-brainer. <br /> All paid plans
-            come with a 15-day money back guarantee.
+            Simply sign up for a plan and then start sharing with the world. <br />
+            You can upgrade anytime.
           </p>
         </div>
         <div className="container features">

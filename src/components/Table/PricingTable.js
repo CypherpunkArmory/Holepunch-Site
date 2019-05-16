@@ -19,13 +19,11 @@ const PricingPlan = ({ title, price, handler, discountBase }) => {
     <th styleName="plan">
       <p styleName="plan__title">{title}</p>
       <p styleName="plan__price">
-        {price ? (
+        {isNaN(price) ? (price) : (
           <>
             ${calcDiscount(price, discountBase)}
             <span>/month</span>
           </>
-        ) : (
-          'Free'
         )}
       </p>
       <p styleName="plan__discount">
@@ -37,8 +35,8 @@ const PricingPlan = ({ title, price, handler, discountBase }) => {
         )}
       </p>
       {handler && (
-        <Button className="mb-3" onClick={handler}>
-          Try it
+        <Button className="mb-3" onClick={handler} disabled={title === 'Beta' ? false : true}>
+          Sign up
         </Button>
       )}
     </th>
