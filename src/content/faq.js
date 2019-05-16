@@ -1,36 +1,16 @@
 export default {
   pageTitle: 'FAQ',
-  pageSubtitle: 'Omnis mollitia veritatis quia vel nulla possimus',
+  pageSubtitle: 'Answers to some commonly asked questions about Holepunch',
   questions: [
     {
-      name: 'Culpa necessitatibus animi aliquam?',
+      name: 'What is Holepunch?',
       value:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis mollitia veritatis quia vel nulla possimus odio fugiat eum assumenda, illum quod inventore dolore! Quod iusto obcaecati nesciunt repudiandae odio tempora?',
+        "Holepunch is a service that allows you to host your own server locally but share it with the world.  Your server can then be accessed via a public URL or pulbic ip:port pair.",
     },
     {
-      name: 'Inventore eos  assumenda expedita blanditiis, maxime?',
+      name: 'Why should I use Holepunch?',
       value:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis mollitia veritatis quia vel nulla possimus odio fugiat eum assumenda, illum quod inventore dolore! Quod iusto obcaecati nesciunt repudiandae odio tempora?',
-    },
-    {
-      name: 'Consectetur adipisicing elit?',
-      value:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis mollitia veritatis quia vel nulla possimus odio fugiat eum assumenda, illum quod inventore dolore! Quod iusto obcaecati nesciunt repudiandae odio tempora?',
-    },
-    {
-      name: 'Culpa necessitatibus animi aliquam?',
-      value:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis mollitia veritatis quia vel nulla possimus odio fugiat eum assumenda, illum quod inventore dolore! Quod iusto obcaecati nesciunt repudiandae odio tempora?',
-    },
-    {
-      name: 'Assumenda expedita blanditiis, maxime?',
-      value:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis mollitia veritatis quia vel nulla possimus odio fugiat eum assumenda, illum quod inventore dolore! Quod iusto obcaecati nesciunt repudiandae odio tempora?',
-    },
-    {
-      name: 'Consectetur adipisicing elit?',
-      value:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis mollitia veritatis quia vel nulla possimus odio fugiat eum assumenda, illum quod inventore dolore! Quod iusto obcaecati nesciunt repudiandae odio tempora?',
+        "Want security and privacy, then host the server yourself. Want low cost, then host the server yourself. Want maximum flexibility, then host the server yourself. With our low cost, secure tunneling service, you won't run out or reasons or ways to use it.",
     },
   ],
 }
