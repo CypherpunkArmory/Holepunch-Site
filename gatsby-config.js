@@ -6,6 +6,7 @@ module.exports = {
     menu: [
       { name: 'Features', route: '/features' },
       { name: 'Download', route: '/download' },
+      { name: 'Pricing', route: '/pricing' },
       { name: 'Docs', route: '/docs' },
       { name: 'Login', route: '/login' },
       { name: 'Sign up', route: '/signup' },
