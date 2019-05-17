@@ -176,7 +176,7 @@ export default class PricingPage extends Component {
 
     return (
       <>
-        <SEO title="Holepunch Features" />
+        <SEO title="Holepunch Pricing" />
         <div className="container page__header">
           <h2>Pick the plan that meets your needs</h2>
           <p>
