@@ -85,7 +85,11 @@ export function* fetchConfirmationToken(action) {
     })
 
     if (tokenRequest.status === 204) {
-      yield navigate('/login')
+      yield navigate('/login', {
+        state: {
+          signupSuccess: true,
+        },
+      })
       return null
     }
     const JWTokens = tokenRequest.data
