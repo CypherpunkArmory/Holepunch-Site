@@ -89,7 +89,7 @@ class LoginForm extends Component {
         {loginError && submited && (
           <span styleName="form__alert">{loginError.attributes.detail}</span>
         )}
-        <Button styleName="form__btn">Login</Button>
+        <Button styleName="form__btn" round>Login</Button>
         <span styleName="form__signup">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </span>

@@ -53,7 +53,7 @@ class emailSentPage extends Component {
             <p className="text-danger">You can resend again in {time}s</p>
           )}
           {!timerOn && account.email && (
-            <Button onClick={this.handlesOnClick}>Resend email</Button>
+            <Button onClick={this.handlesOnClick} round>Resend email</Button>
           )}
         </div>
       </>

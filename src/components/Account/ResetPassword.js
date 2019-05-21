@@ -90,7 +90,7 @@ class ResetPassword extends Component {
               {errors.newPassword && submited && (
                 <span styleName="form__alert">{errors.newPassword}</span>
               )}
-              <Button styleName="form__btn">submit</Button>
+              <Button styleName="form__btn" round>submit</Button>
             </Form>
           </div>
         </PageSpinner>

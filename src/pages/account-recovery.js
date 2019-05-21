@@ -82,7 +82,7 @@ class AccountRecovery extends Component {
             {sendingError && submited && (
               <span styleName="form__alert">Email not found</span>
             )}
-            <Button styleName="form__btn">submit</Button>
+            <Button styleName="form__btn" round>submit</Button>
           </Form>
         </div>
       </>

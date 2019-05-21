@@ -85,6 +85,7 @@ class downloadPage extends Component {
               href={selectedOs.downloadLinks['64']}
               onClick={this.setupRedirect}
               download
+              round
             >
               Download for {selectedOs.name}
             </Button>

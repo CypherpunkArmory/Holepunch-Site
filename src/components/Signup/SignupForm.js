@@ -94,7 +94,7 @@ class SignupForm extends Component {
             {signupErrorMessages[signupError.attributes.status]}
           </span>
         )}
-        <Button styleName="form__btn" disabled={isLoading}>
+        <Button styleName="form__btn" disabled={isLoading} round>
           Register
         </Button>
         <span styleName="form__login">

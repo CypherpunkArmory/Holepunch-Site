@@ -16,7 +16,7 @@ export default function Hero({ children, className, head, subhead }) {
           <h1>{head}</h1>
           {subhead && <p>{subhead}</p>}
         </div>
-        <Button icon tag={Link} to="/download">
+        <Button icon tag={Link} to="/download" round>
           Get Started
         </Button>
         {children}

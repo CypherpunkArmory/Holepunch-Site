@@ -23,7 +23,7 @@ function Footer({ cta, ...rest }) {
           <div styleName="footer__cta" className="col-12">
             <p>No Cloud, No Problem</p>
             {cta && (
-              <Button icon tag={Link} to="/download">
+              <Button icon tag={Link} to="/download" round>
                 Get Started
               </Button>
             )}

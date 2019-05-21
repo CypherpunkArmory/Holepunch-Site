@@ -35,7 +35,7 @@ const PricingPlan = ({ title, price, handler, discountBase }) => {
         )}
       </p>
       {handler && (
-        <Button className="mb-3" onClick={handler} disabled={title === 'Beta' ? false : true}>
+        <Button className="mb-3" onClick={handler} disabled={title === 'Beta' ? false : true} round>
           Sign up
         </Button>
       )}

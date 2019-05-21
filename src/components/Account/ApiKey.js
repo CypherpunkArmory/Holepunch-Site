@@ -61,7 +61,7 @@ class ApiKey extends Component {
                 connect. <br />
                 <b>You will be disconnected soon after.</b>
               </p>
-              <Button onClick={updateAPIKey}>Confirm</Button>
+              <Button onClick={updateAPIKey} round>Confirm</Button>
             </Modal>
           )}
           <span

@@ -78,7 +78,7 @@ export default class SettingEditor extends Component {
         {submited && submitError && (
           <span styleName="field__error">{submitError}</span>
         )}
-        <Button>Submit</Button>
+        <Button round>Submit</Button>
       </Form>
     )
   }
