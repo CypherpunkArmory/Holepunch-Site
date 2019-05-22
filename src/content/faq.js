@@ -5,7 +5,7 @@ export default {
     {
       name: 'What is Holepunch?',
       value:
-        "Holepunch is a service that allows you to host your own server locally but share it with the world.  Your server can then be accessed via a public URL or pulbic ip:port pair.",
+        "Holepunch is a service that allows you to host your own server locally but share it with the world.  Your server can then be accessed via a public URL or public ip:port pair.",
     },
     {
       name: 'Why should I use Holepunch?',
