@@ -1,1 +1,1 @@
-export const PunchVersion = '0.1.1';
+export const PunchVersion = '0.1.2';
