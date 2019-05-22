@@ -73,6 +73,26 @@ class downloadPage extends Component {
                     >
                       64-bit
                     </a>
+                    {(OS.name === 'Linux') ? (
+                       <React.Fragment>
+                         <p> </p>
+                         <a
+                           href={OS.downloadLinks['arm']}
+                           download
+                           onClick={this.setupRedirect}
+                         >
+                           ARM
+                         </a>
+                         <p> </p>
+                         <a
+                           href={OS.downloadLinks['arm64']}
+                           download
+                           onClick={this.setupRedirect}
+                         >
+                           ARM64
+                         </a>
+                       </React.Fragment>
+                    ) : " "}
                   </div>
                 </li>
               )

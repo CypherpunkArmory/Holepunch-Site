@@ -38,6 +38,8 @@ export default {
         downloadLinks: {
             32: 'https://github.com/CypherpunkArmory/punch/releases/download/' + versions.PunchVersion + '/punch-linux-386.zip',
             64: 'https://github.com/CypherpunkArmory/punch/releases/download/' + versions.PunchVersion + '/punch-linux-amd64.zip',
+            arm: 'https://github.com/CypherpunkArmory/punch/releases/download/' + versions.PunchVersion + '/punch-linux-armv5.zip',
+            arm64: 'https://github.com/CypherpunkArmory/punch/releases/download/' + versions.PunchVersion + '/punch-linux-arm64.zip',
         }
     },
   ],
