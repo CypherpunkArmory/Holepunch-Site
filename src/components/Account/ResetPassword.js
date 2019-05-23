@@ -14,6 +14,7 @@ import {
   resetPassword,
 } from '../../redux/ducks/account/actions'
 import { accountIsLoading } from '../../redux/ducks/account/selectors'
+import { authIsLoading } from '../../redux/ducks/auth/selectors'
 import PageSpinner from '../Spinner/PageSpinner'
 
 class ResetPassword extends Component {
@@ -62,12 +63,12 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
-    const { isLoading } = this.props
+    const { isLoading, authIsLoading } = this.props
 
     return (
       <>
         <SEO title="Holepunch Reset Password" />
-        <PageSpinner isLoading={isLoading}>
+        <PageSpinner isLoading={isLoading || authIsLoading}>
           <div className="container page__header">
             <h2>Reset Password</h2>
           </div>
@@ -102,6 +103,7 @@ class ResetPassword extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: accountIsLoading(state),
+    authIsLoading: authIsLoading(state),
   }
 }
 

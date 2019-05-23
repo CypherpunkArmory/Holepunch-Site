@@ -26,6 +26,7 @@ export default class SettingEditor extends Component {
   static propTypes = {
     fields: PropTypes.arrayOf(PropTypes.object),
     onSubmit: PropTypes.func,
+    isLoading: PropTypes.bool,
   }
 
   isValid = () => {
@@ -61,7 +62,7 @@ export default class SettingEditor extends Component {
 
   render() {
     const { errors, submited } = this.state
-    const { fields, submitError } = this.props
+    const { fields, submitError, isLoading } = this.props
 
     return (
       <Form onSubmit={this.handleSubmit} styleName="field__editor">
@@ -78,7 +79,9 @@ export default class SettingEditor extends Component {
         {submited && submitError && (
           <span styleName="field__error">{submitError}</span>
         )}
-        <Button round>Submit</Button>
+        <Button round disabled={isLoading}>
+          Submit
+        </Button>
       </Form>
     )
   }

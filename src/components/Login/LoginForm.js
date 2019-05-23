@@ -13,7 +13,7 @@ import { performEmailLogin } from '../../redux/ducks/auth/actions'
 import {
   getIsLoggedIn,
   authIsLoading,
-  getError
+  getError,
 } from '../../redux/ducks/auth/selectors'
 
 class LoginForm extends Component {
@@ -56,7 +56,7 @@ class LoginForm extends Component {
 
   render() {
     const { errors, submited } = this.state
-    const { loginError } = this.props
+    const { loginError, authIsLoading } = this.props
 
     return (
       <Form
@@ -89,7 +89,9 @@ class LoginForm extends Component {
         {loginError && submited && (
           <span styleName="form__alert">{loginError.attributes.detail}</span>
         )}
-        <Button styleName="form__btn" round>Login</Button>
+        <Button styleName="form__btn" disabled={authIsLoading} round>
+          Login
+        </Button>
         <span styleName="form__signup">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </span>
