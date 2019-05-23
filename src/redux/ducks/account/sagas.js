@@ -9,10 +9,10 @@ import {
   deleteAccount,
   getConfirmationToken,
   revokeTokens,
+  resetPassword,
 } from './actions'
 import { getTokens, setTokens } from '../../helpers/localStorage'
-import { performLogout } from '../auth/actions'
-import { emailLogin } from '../auth/sagas'
+import { performLogout, performEmailLogin } from '../auth/actions'
 import { setCurrentAccount } from '../account/actions'
 import xhr from '../../helpers/xhr'
 import apiEndpoints from '../../helpers/apiEndpoints'
@@ -165,23 +165,29 @@ export function* removeAccount(action) {
 }
 
 export function* resetAccountPassword(action) {
+  const xhrConfig = {
+    method: 'PATCH',
+    data: {
+      data: {
+        type: 'user',
+        attributes: { new_password: action.payload.new_password },
+      },
+    },
+    responseType: 'json',
+    url: apiEndpoints.updateAccount,
+  }
+
   try {
-    const accountRequest = yield call(updateAccountDetails, {
-      payload: {
-        newDetails: {
-          new_password: action.payload.new_password,
-        },
-      },
+    const accountRequest = yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: resetPassword,
     })
+    const account = accountRequest.data
+    const accountDetails = account.data.attributes
+    const email = accountDetails.email
 
-    const accountDetails = accountRequest.data.data.attributes
-
-    yield call(emailLogin, {
-      payload: {
-        email: accountDetails.email,
-        password: action.payload.new_password,
-      },
-    })
+    yield put(performEmailLogin.request(email, action.payload.new_password))
+    return account
   } catch (error) {
     return error
   }
