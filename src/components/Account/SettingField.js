@@ -30,6 +30,18 @@ export default class SettingField extends Component {
     collapsed: false,
   }
 
+  componentDidUpdate = prevProps => {
+    if (
+      this.props.isLoading !== prevProps.isLoading ||
+      this.props.submitError !== prevProps.submitError
+    ) {
+      if (!this.props.submitError && !this.props.isLoading) {
+        this.setState({
+          collapsed: false,
+        })
+      }
+    }
+  }
   toggleCollapse = () => {
     this.setState({
       collapsed: !this.state.collapsed,
