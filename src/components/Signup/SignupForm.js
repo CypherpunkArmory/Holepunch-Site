@@ -57,9 +57,6 @@ class SignupForm extends Component {
   render() {
     const { errors, submited } = this.state
     const { signupError, isLoading } = this.props
-    const signupErrorMessages = {
-      '422': 'User already in use',
-    }
 
     return (
       <Form
@@ -90,9 +87,7 @@ class SignupForm extends Component {
           error={errors.password}
         />
         {signupError && submited && (
-          <span styleName="form__alert">
-            {signupErrorMessages[signupError.attributes.status]}
-          </span>
+          <span styleName="form__alert">{signupError.attributes.detail}</span>
         )}
         <Button styleName="form__btn" disabled={isLoading} round>
           Register
