@@ -18,15 +18,21 @@ import { authIsLoading } from '../../redux/ducks/auth/selectors'
 import PageSpinner from '../Spinner/PageSpinner'
 
 class ResetPassword extends Component {
-  componentDidMount = () => {
-    const { getConfirmationToken, token } = this.props
-    getConfirmationToken(token)
-  }
+  submitedTimer = null
 
   state = {
     newPassword: '',
     errors: {},
     submited: false,
+  }
+
+  componentDidMount = () => {
+    const { getConfirmationToken, token } = this.props
+    getConfirmationToken(token)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -54,7 +60,7 @@ class ResetPassword extends Component {
     this.setState({
       submited: true,
     })
-    setTimeout(() => {
+    this.submitedTimer = setTimeout(() => {
       this.setState({
         submited: false,
       })
@@ -91,7 +97,9 @@ class ResetPassword extends Component {
               {errors.newPassword && submited && (
                 <span styleName="form__alert">{errors.newPassword}</span>
               )}
-              <Button styleName="form__btn" round>submit</Button>
+              <Button styleName="form__btn" round>
+                submit
+              </Button>
             </Form>
           </div>
         </PageSpinner>

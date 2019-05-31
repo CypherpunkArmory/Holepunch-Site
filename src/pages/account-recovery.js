@@ -13,10 +13,16 @@ import { sendResetEmail } from '../redux/ducks/account/actions'
 import { getError, accountIsLoading } from '../redux/ducks/account/selectors'
 
 class AccountRecovery extends Component {
+  submitedTimer = null
+
   state = {
     email: '',
     errors: {},
     submited: false,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -43,7 +49,7 @@ class AccountRecovery extends Component {
       submited: true,
     })
 
-    setTimeout(() => {
+    this.submitedTimer = setTimeout(() => {
       this.setState({
         submited: false,
       })

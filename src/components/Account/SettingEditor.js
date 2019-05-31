@@ -16,6 +16,7 @@ export default class SettingEditor extends Component {
       [curr.field]: '',
     }
   }, {})
+  submitedTimer = null
 
   state = {
     errors: {},
@@ -27,6 +28,10 @@ export default class SettingEditor extends Component {
     fields: PropTypes.arrayOf(PropTypes.object),
     onSubmit: PropTypes.func,
     isLoading: PropTypes.bool,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -49,7 +54,7 @@ export default class SettingEditor extends Component {
       submited: true,
     })
 
-    setTimeout(() => {
+    this.submitedTimer = setTimeout(() => {
       this.setState({
         submited: false,
       })

@@ -17,11 +17,17 @@ import {
 } from '../../redux/ducks/auth/selectors'
 
 class LoginForm extends Component {
+  submitedTimer = null
+
   state = {
     email: '',
     password: '',
     errors: {},
     submited: false,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -47,7 +53,7 @@ class LoginForm extends Component {
     this.setState({
       submited: true,
     })
-    setTimeout(() => {
+    this.submitedTimer = setTimeout(() => {
       this.setState({
         submited: false,
       })
