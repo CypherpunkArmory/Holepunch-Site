@@ -43,8 +43,8 @@ export default class StatusModal extends Component {
       <Modal
         handlesClose={this.toggleModal}
         styleName={classNames({
-          ['modal_success']: !failure,
-          ['modal_failure']: failure,
+          modal_success: !failure,
+          modal_failure: failure,
         })}
       >
         <FontAwesomeIcon icon={icon} styleName="modal__icon" />

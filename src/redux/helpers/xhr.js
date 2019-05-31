@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { call, put } from 'redux-saga/effects'
-import _ from 'lodash'
 import { getTokens, isTokenExpired } from './localStorage'
 import { session } from '../../redux/ducks/auth/sagas'
 

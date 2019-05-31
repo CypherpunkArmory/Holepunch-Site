@@ -22,9 +22,9 @@ function Button(props) {
   return (
     <Tag
       styleName={classNames('btn', {
-        ['btn_round']: round,
-        ['btn_primary']: !danger,
-        ['btn_danger']: danger,
+        btn_round: round,
+        btn_primary: !danger,
+        btn_danger: danger,
       })}
       className={className}
       type={Tag === 'button' && attributes.onClick ? 'button' : undefined}
