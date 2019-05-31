@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 import { navigate } from 'gatsby'
 import types from './types'
 
@@ -83,6 +84,15 @@ export function* session() {
     yield put(setCurrentAccount(account))
     return newTokens
   } catch (error) {
+    if (error.response.status === 401) {
+      yield navigate('/login', {
+        state: {
+          errorMessage: `Your session expired, please log in again.`,
+        },
+      })
+      yield call(delay, 100)
+      yield put(performLogout.request())
+    }
     return error
   }
 }

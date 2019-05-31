@@ -5,7 +5,8 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 import * as reducers from './ducks'
 import rootSagas from './ducks/rootSaga'
 import { setCurrentAccount } from './ducks/account/actions'
-import { getTokens } from './helpers/localStorage'
+import { renewSession } from './ducks/auth/actions'
+import { getTokens, isTokenExpired } from './helpers/localStorage'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -19,15 +20,20 @@ export default function configureStore(initialState = {}) {
     composeWithDevTools(applyMiddleware(sagaMiddleware))
   )
   sagaMiddleware.run(rootSagas)
-  
+
   if (typeof window !== 'undefined') {
     const authTokens = getTokens()
-    if (authTokens) {
+
+    if (authTokens && !isTokenExpired(authTokens.refresh_token)) {
       const account = {
         email: authTokens.email,
         APIKey: authTokens.access_token,
       }
       store.dispatch(setCurrentAccount(account))
+
+      if (isTokenExpired(authTokens.access_token)) {
+        store.dispatch(renewSession.request())
+      }
     }
   }
   return store

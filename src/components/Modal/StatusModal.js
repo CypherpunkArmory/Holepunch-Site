@@ -37,7 +37,7 @@ export default class StatusModal extends Component {
     const { failure, title, description } = this.props
     const icon = failure ? faTimesCircle : faCheckCircle
     const statusTitle = failure ? 'Failure' : 'Success'
-    const btnName = failure ? 'Try again' : 'Continue'
+    const btnName = failure ? 'Okay' : 'Continue'
 
     return this.state.modal ? null : (
       <Modal

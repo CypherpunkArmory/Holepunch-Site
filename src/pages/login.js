@@ -12,7 +12,10 @@ class Login extends React.Component {
     const signupSuccess = _.has(location, 'state.signupSuccess')
       ? location.state.signupSuccess
       : false
-
+    const errorMessage = _.has(location, 'state.errorMessage')
+      ? location.state.errorMessage
+      : false
+      
     return (
       <>
         <SEO title="Holepunch Login" />
@@ -20,6 +23,13 @@ class Login extends React.Component {
           <StatusModal
             title="Your registration was successful!"
             description="You may now Login."
+          />
+        )}
+        {errorMessage && (
+          <StatusModal
+            title="Sorry"
+            description={errorMessage}
+            failure
           />
         )}
         <div className="container page__header">

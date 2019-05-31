@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { call, put } from 'redux-saga/effects'
 import _ from 'lodash'
-import { getTokens } from './localStorage'
+import { getTokens, isTokenExpired } from './localStorage'
+import { session } from '../../redux/ducks/auth/sagas'
 
 const axiosInstance = axios.create({
   timeout: 5000,
@@ -10,6 +11,11 @@ const axiosInstance = axios.create({
     accept: 'application/json',
   },
 })
+
+const setAuthHeader = () => {
+  const token = getTokens().access_token
+  axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+}
 
 export default function* xhr(
   config = {
@@ -21,25 +27,28 @@ export default function* xhr(
   options = { auth: false, actionCreator: null }
 ) {
   const { auth, actionCreator } = options
-  if (auth) {
-    const authTokens = getTokens()
-    if (authTokens && _.has(authTokens, 'access_token')) {
-      config = {
-        ...config,
-        headers: {
-          Authorization: `Bearer ${authTokens.access_token}`,
-        },
-      }
-    }
-  }
 
   try {
+    if (auth) {
+      const accessToken = getTokens().access_token
+      if (isTokenExpired(accessToken)) {
+        yield call(session)
+        yield call(setAuthHeader)
+      }
+      yield call(setAuthHeader)
+    }
+
     const response = yield call(axiosInstance, config)
-    yield _.isObject(actionCreator) && put(actionCreator.success(response.data))
+    yield !!actionCreator && put(actionCreator.success(response.data))
     return response
   } catch (error) {
-    yield _.isObject(actionCreator) &&
-      put(actionCreator.failure(error.response.data.data))
+    const { data: exception } = error.response
+    yield !!actionCreator &&
+      put(
+        actionCreator.failure(
+          exception.data || { attributes: { details: exception.msg } }
+        )
+      )
     throw error
   }
 }

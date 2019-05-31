@@ -28,6 +28,7 @@ const setAccount = (state, action) => {
   return {
     ...state,
     account: action.payload.account,
+    error: null,
   }
 }
 

@@ -96,7 +96,7 @@ class AccountOverview extends Component {
           <hr />
           <DeleteAccount
             onSubmit={deleteAccount}
-            submitError={error && error.attributes.detail}
+            submitError={errorDetail}
             isLoading={isLoading}
             fields={this.deleteAccountFields}
           />
