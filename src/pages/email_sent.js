@@ -9,9 +9,15 @@ import SEO from '../components/seo'
 import Button from '../components/Button'
 
 class emailSentPage extends Component {
+  timer = null
+  
   state = {
     time: 0,
     timerOn: false,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   countDown = time => {
@@ -27,7 +33,7 @@ class emailSentPage extends Component {
       time: time,
     })
 
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.countDown(time - 1)
     }, 1000)
   }
@@ -53,7 +59,9 @@ class emailSentPage extends Component {
             <p className="text-danger">You can resend again in {time}s</p>
           )}
           {!timerOn && account.email && (
-            <Button onClick={this.handlesOnClick}>Resend email</Button>
+            <Button onClick={this.handlesOnClick} round>
+              Resend email
+            </Button>
           )}
         </div>
       </>

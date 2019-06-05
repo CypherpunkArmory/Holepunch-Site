@@ -6,7 +6,7 @@ import './settingField.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons'
-import SettingEditor from './SettingEditor';
+import SettingEditor from './SettingEditor'
 
 export default class SettingField extends Component {
   static propTypes = {
@@ -15,38 +15,49 @@ export default class SettingField extends Component {
     fieldText: PropTypes.string,
     fields: PropTypes.arrayOf(PropTypes.object),
     onSubmit: PropTypes.func,
-    submitError: PropTypes.string
+    submitError: PropTypes.string,
+    isLoading: PropTypes.bool,
   }
 
   static defaultProps = {
     label: 'email',
     fieldText: 'myemail@provider.com',
     submitError: '',
+    isLoading: false,
   }
 
   state = {
     collapsed: false,
   }
 
+  componentDidUpdate = prevProps => {
+    if (
+      this.props.isLoading !== prevProps.isLoading ||
+      this.props.submitError !== prevProps.submitError
+    ) {
+      if (!this.props.submitError && !this.props.isLoading) {
+        this.setState({
+          collapsed: false,
+        })
+      }
+    }
+  }
   toggleCollapse = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     })
   }
 
-  handleSubmit = (payload) => {
-    const isCollapsed = this.props.onSubmit(payload)
-    isCollapsed && this.toggleCollapse()
-  }
-
   render() {
     const { collapsed } = this.state
-    const { label, fieldText, fields, submitError } = this.props
+    const { label, fieldText, fields, submitError, isLoading } = this.props
 
     return (
-      <div styleName={classnames('field', {
-        field_open: collapsed
-      })}>
+      <div
+        styleName={classnames('field', {
+          field_open: collapsed,
+        })}
+      >
         {!collapsed ? (
           <div onClick={this.toggleCollapse} styleName="field__link">
             <span>{label}</span>
@@ -60,7 +71,14 @@ export default class SettingField extends Component {
             <span styleName="field__close" onClick={this.toggleCollapse}>
               <FontAwesomeIcon icon={faTimes} />
             </span>
-            <SettingEditor submitError={submitError} onSubmit={this.handleSubmit} fields={fields}/>
+            <SettingEditor
+              submitError={submitError}
+              onSubmit={payload => {
+                this.props.onSubmit(payload)
+              }}
+              isLoading={isLoading}
+              fields={fields}
+            />
           </>
         )}
       </div>

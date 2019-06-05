@@ -14,10 +14,15 @@ import Button from '../Button'
 
 class ApiKey extends Component {
   clipAreaRef = React.createRef()
+  copiedTimer = null
 
   state = {
     copied: false,
     modal: false,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.copiedTimer)
   }
 
   handlesClipboardCopy = e => {
@@ -29,7 +34,7 @@ class ApiKey extends Component {
       copied: true,
     })
 
-    setTimeout(() => {
+    this.copiedTimer = setTimeout(() => {
       this.setState({
         copied: false,
       })
@@ -61,7 +66,9 @@ class ApiKey extends Component {
                 connect. <br />
                 <b>You will be disconnected soon after.</b>
               </p>
-              <Button onClick={updateAPIKey}>Confirm</Button>
+              <Button onClick={updateAPIKey} round>
+                Confirm
+              </Button>
             </Modal>
           )}
           <span

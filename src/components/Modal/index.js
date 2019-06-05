@@ -9,9 +9,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 export default class Modal extends Component {
   static propTypes = {
     handlesClose: PropTypes.func,
-    children: PropTypes.node
+    className: PropTypes.string,
+    children: PropTypes.node,
   }
-  
+
   componentDidMount() {
     document.body.classList.add('no-scroll')
   }
@@ -19,10 +20,10 @@ export default class Modal extends Component {
     document.body.classList.remove('no-scroll')
   }
   render() {
-    const { children, handlesClose } = this.props
+    const { children, handlesClose, className } = this.props
     return (
-      <div styleName="modal">
-        <div styleName="modal__body">
+      <div className={className} styleName="modal">
+        <div styleName="modal__card">
           <button styleName="modal__close" onClick={handlesClose}>
             <FontAwesomeIcon icon={faTimes} />
           </button>

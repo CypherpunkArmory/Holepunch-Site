@@ -8,7 +8,6 @@ const timeout = 300
 
 const getTransitionStyles = {
   entering: {
-    position: 'absolute',
     opacity: 0,
   },
   entered: {
@@ -24,7 +23,7 @@ const getTransitionStyles = {
 class Transition extends Component {
   render() {
     const { children, location } = this.props
-    
+
     return (
       <TransitionGroup>
         <ReactTransition

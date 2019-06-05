@@ -10,7 +10,16 @@
   text-decoration: none;
   outline: none;
 
-  &_blue {
+  &_danger {
+    background-image: linear-gradient(
+      -52deg,
+      #ff8888 0%,
+      #ff6a6a 35%,
+      #fd4f4f 100%
+    );
+  }
+
+  &_primary {
     background-image: linear-gradient(
       -52deg,
       #50c3f7 0%,
@@ -25,13 +34,20 @@
 
   &:disabled,
   &[disabled] {
-    background-image: linear-gradient(
-      -52deg,
-      #708893 0%,
-      #5e90a7 35%,
-      #49616d 100%
-    );
-    color: #666666;
+    position: relative;
+    cursor: not-allowed;
+
+    &::after {
+      content: '';
+      border-radius: inherit;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fbfbfb;
+      opacity: 0.8;
+    }
   }
 
   &:active {

@@ -46,6 +46,7 @@ export default class DeleteAccount extends Component {
               onSubmit={this.handlesSubmit}
               submitError={this.props.submitError}
               fields={this.fields}
+              isLoading={this.props.isLoading}
             />
           </Modal>
         )}

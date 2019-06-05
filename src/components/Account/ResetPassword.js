@@ -14,18 +14,25 @@ import {
   resetPassword,
 } from '../../redux/ducks/account/actions'
 import { accountIsLoading } from '../../redux/ducks/account/selectors'
+import { authIsLoading } from '../../redux/ducks/auth/selectors'
 import PageSpinner from '../Spinner/PageSpinner'
 
 class ResetPassword extends Component {
-  componentDidMount = () => {
-    const { getConfirmationToken, token } = this.props
-    getConfirmationToken(token)
-  }
+  submitedTimer = null
 
   state = {
     newPassword: '',
     errors: {},
     submited: false,
+  }
+
+  componentDidMount = () => {
+    const { getConfirmationToken, token } = this.props
+    getConfirmationToken(token)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -53,7 +60,7 @@ class ResetPassword extends Component {
     this.setState({
       submited: true,
     })
-    setTimeout(() => {
+    this.submitedTimer = setTimeout(() => {
       this.setState({
         submited: false,
       })
@@ -62,12 +69,12 @@ class ResetPassword extends Component {
 
   render() {
     const { errors, submited } = this.state
-    const { isLoading } = this.props
+    const { isLoading, authIsLoading } = this.props
 
     return (
       <>
         <SEO title="Holepunch Reset Password" />
-        <PageSpinner isLoading={isLoading}>
+        <PageSpinner isLoading={isLoading || authIsLoading}>
           <div className="container page__header">
             <h2>Reset Password</h2>
           </div>
@@ -90,7 +97,9 @@ class ResetPassword extends Component {
               {errors.newPassword && submited && (
                 <span styleName="form__alert">{errors.newPassword}</span>
               )}
-              <Button styleName="form__btn">submit</Button>
+              <Button styleName="form__btn" round>
+                submit
+              </Button>
             </Form>
           </div>
         </PageSpinner>
@@ -102,6 +111,7 @@ class ResetPassword extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: accountIsLoading(state),
+    authIsLoading: authIsLoading(state),
   }
 }
 

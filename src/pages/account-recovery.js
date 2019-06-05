@@ -10,13 +10,19 @@ import TextFieldGroup from '../components/TextFieldGroup'
 
 import { validateInput } from '../utils/validation'
 import { sendResetEmail } from '../redux/ducks/account/actions'
-import { getError } from '../redux/ducks/account/selectors'
+import { getError, accountIsLoading } from '../redux/ducks/account/selectors'
 
 class AccountRecovery extends Component {
+  submitedTimer = null
+
   state = {
     email: '',
     errors: {},
     submited: false,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -43,7 +49,7 @@ class AccountRecovery extends Component {
       submited: true,
     })
 
-    setTimeout(() => {
+    this.submitedTimer = setTimeout(() => {
       this.setState({
         submited: false,
       })
@@ -52,7 +58,7 @@ class AccountRecovery extends Component {
 
   render() {
     const { errors, submited } = this.state
-    const { sendingError } = this.props
+    const { submitError, isLoading } = this.props
 
     return (
       <>
@@ -76,13 +82,12 @@ class AccountRecovery extends Component {
               styleName="form__input"
               error={errors.email}
             />
-            {errors.email && submited && (
-              <span styleName="form__alert">{errors.email}</span>
+            {submitError && submited && (
+              <span styleName="form__alert">Something Wrong Happened</span>
             )}
-            {sendingError && submited && (
-              <span styleName="form__alert">Email not found</span>
-            )}
-            <Button styleName="form__btn">submit</Button>
+            <Button styleName="form__btn" disabled={isLoading} round>
+              submit
+            </Button>
           </Form>
         </div>
       </>
@@ -92,7 +97,8 @@ class AccountRecovery extends Component {
 
 const mapStateToProps = state => {
   return {
-    sendingError: getError(state),
+    submitError: getError(state),
+    isLoading: accountIsLoading(state),
   }
 }
 

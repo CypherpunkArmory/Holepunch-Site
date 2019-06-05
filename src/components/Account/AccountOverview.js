@@ -4,14 +4,13 @@ import { connect } from 'react-redux'
 import './account.module.scss'
 
 import { updateAccount, deleteAccount } from '../../redux/ducks/account/actions'
-import { getError } from '../../redux/ducks/account/selectors'
+import { getError, accountIsLoading } from '../../redux/ducks/account/selectors'
 
 import SettingField from './SettingField'
 import DeleteAccount from './DeleteAccount'
 
 class AccountOverview extends Component {
   state = {
-    updatePasswordError: '',
     updateEmailError: '',
   }
   updatePasswordFields = [
@@ -71,7 +70,8 @@ class AccountOverview extends Component {
   }
 
   render() {
-    const { account, deleteAccount, error } = this.props
+    const { account, deleteAccount, error, isLoading } = this.props
+    const errorDetail = error && error.attributes.detail
 
     return (
       <div styleName="pannel">
@@ -81,20 +81,23 @@ class AccountOverview extends Component {
             label="Email"
             fieldText={account.email}
             onSubmit={this.updateEmail}
-            submitError={this.state.updateEmailError}
+            isLoading={isLoading}
+            submitError={this.state.updateEmailError || errorDetail}
             fields={this.updateEmailFields}
           />
           <SettingField
             label="Password"
             fieldText="●●●●●●●●●●●●●"
             onSubmit={this.updatePassword}
-            submitError={this.state.updatePasswordError}
+            isLoading={isLoading}
+            submitError={errorDetail}
             fields={this.updatePasswordFields}
-          />
+            />
           <hr />
           <DeleteAccount
             onSubmit={deleteAccount}
-            submitError={error && error.attributes.detail}
+            submitError={errorDetail}
+            isLoading={isLoading}
             fields={this.deleteAccountFields}
           />
         </div>
@@ -106,6 +109,7 @@ class AccountOverview extends Component {
 const mapStateToProps = state => {
   return {
     error: getError(state),
+    isLoading: accountIsLoading(state),
   }
 }
 

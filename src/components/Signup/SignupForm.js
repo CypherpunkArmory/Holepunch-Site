@@ -17,11 +17,17 @@ import {
 } from '../../redux/ducks/account/selectors'
 
 class SignupForm extends Component {
+  submitedTimer = null
+
   state = {
     email: '',
     password: '',
     errors: {},
     submited: false,
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.submitedTimer)
   }
 
   isValid = () => {
@@ -46,7 +52,7 @@ class SignupForm extends Component {
       this.setState({
         submited: true,
       })
-      setTimeout(() => {
+      this.submitedTimer = setTimeout(() => {
         this.setState({
           submited: false,
         })
@@ -57,9 +63,6 @@ class SignupForm extends Component {
   render() {
     const { errors, submited } = this.state
     const { signupError, isLoading } = this.props
-    const signupErrorMessages = {
-      '422': 'User already in use',
-    }
 
     return (
       <Form
@@ -90,11 +93,9 @@ class SignupForm extends Component {
           error={errors.password}
         />
         {signupError && submited && (
-          <span styleName="form__alert">
-            {signupErrorMessages[signupError.attributes.status]}
-          </span>
+          <span styleName="form__alert">{signupError.attributes.detail}</span>
         )}
-        <Button styleName="form__btn" disabled={isLoading}>
+        <Button styleName="form__btn" disabled={isLoading} round>
           Register
         </Button>
         <span styleName="form__login">
