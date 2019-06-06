@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
 
-import contentType from '../content/email_sent'
+import contentType from '../content/emailSent'
 import paperPlane from '../images/paper-plane-icon.svg'
 
 import { getAccountDetails } from '../redux/ducks/account/selectors'

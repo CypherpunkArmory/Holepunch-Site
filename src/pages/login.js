@@ -1,7 +1,7 @@
 import React from 'react'
-import SEO from '../components/seo'
-
 import _ from 'lodash'
+
+import SEO from '../components/seo'
 
 import LoginForm from '../components/Login/LoginForm'
 import StatusModal from '../components/Modal/StatusModal'
@@ -22,7 +22,7 @@ class Login extends React.Component {
         {signupSuccess && (
           <StatusModal
             title="Your registration was successful!"
-            description="You may now Login."
+            description="Your registration was successful, you can now login and start punching holes."
           />
         )}
         {errorMessage && (
