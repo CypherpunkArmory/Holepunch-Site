@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import queryString from 'query-string'
 
 import contentType from '../content/email_sent'
+import paperPlane from '../images/paper-plane-icon.svg'
 
 import { getAccountDetails } from '../redux/ducks/account/selectors'
 import { sendEmailConfirmation } from '../redux/ducks/account/actions'
@@ -53,7 +54,15 @@ class emailSentPage extends Component {
     return (
       <>
         <SEO title="Holepunch Confirmation Email Sent" />
-        <div className="container page__header">
+        <div className="container page__header pb-4">
+          <img
+            src={paperPlane}
+            alt="paperplane icon"
+            style={{
+              width: '11rem',
+              marginBottom: '2rem',
+            }}
+          />
           <h2>{contentType[emailType].pageTitle}</h2>
           <p>{contentType[emailType].pageSubtitle}</p>
 
