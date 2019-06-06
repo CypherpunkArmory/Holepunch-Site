@@ -38,7 +38,7 @@ export function* register(action) {
       actionCreator: performRegister,
     })
     yield put(setCurrentAccount({ email: action.payload.email }))
-    yield navigate('/email_sent')
+    yield navigate('/email_sent?type=confirmation')
     return registerRequest
   } catch (error) {
     return error
@@ -65,7 +65,7 @@ export function* resetEmail(action) {
       actionCreator: sendResetEmail,
     })
     yield put(setCurrentAccount({ email: '', APIKey: '' }))
-    yield navigate('/email_sent')
+    yield navigate('/email_sent?type=reset')
     return {}
   } catch (error) {
     return error
