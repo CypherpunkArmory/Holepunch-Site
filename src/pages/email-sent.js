@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import queryString from 'query-string'
 
-import content from '../content/email_sent'
+import contentType from '../content/emailSent'
+import paperPlane from '../images/paper-plane-icon.svg'
 
 import { getAccountDetails } from '../redux/ducks/account/selectors'
 import { sendEmailConfirmation } from '../redux/ducks/account/actions'
@@ -10,7 +12,7 @@ import Button from '../components/Button'
 
 class emailSentPage extends Component {
   timer = null
-  
+
   state = {
     time: 0,
     timerOn: false,
@@ -46,14 +48,23 @@ class emailSentPage extends Component {
   }
   render() {
     const { time, timerOn } = this.state
-    const { account } = this.props
+    const { account, location } = this.props
+    const emailType = queryString.parse(location.search).type || 'confirmation'
 
     return (
       <>
         <SEO title="Holepunch Confirmation Email Sent" />
-        <div className="container page__header">
-          <h2>{content.pageTitle}</h2>
-          <p>{content.pageSubtitle}</p>
+        <div className="container page__header pb-4">
+          <img
+            src={paperPlane}
+            alt="paperplane icon"
+            style={{
+              width: '11rem',
+              marginBottom: '2rem',
+            }}
+          />
+          <h2>{contentType[emailType].pageTitle}</h2>
+          <p>{contentType[emailType].pageSubtitle}</p>
 
           {timerOn && (
             <p className="text-danger">You can resend again in {time}s</p>

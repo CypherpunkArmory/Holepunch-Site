@@ -38,7 +38,7 @@ export function* register(action) {
       actionCreator: performRegister,
     })
     yield put(setCurrentAccount({ email: action.payload.email }))
-    yield navigate('/email_sent')
+    yield navigate('/email-sent?type=confirmation')
     return registerRequest
   } catch (error) {
     return error
@@ -65,7 +65,7 @@ export function* resetEmail(action) {
       actionCreator: sendResetEmail,
     })
     yield put(setCurrentAccount({ email: '', APIKey: '' }))
-    yield navigate('/email_sent')
+    yield navigate('/email-sent?type=reset')
     return {}
   } catch (error) {
     return error
@@ -97,7 +97,7 @@ export function* fetchConfirmationToken(action) {
     return JWTokens
   } catch (error) {
     if (error.response.status === 403) {
-      yield navigate('/bad_token')
+      yield navigate('/bad-token')
     }
     return error
   }

@@ -1,12 +1,12 @@
 import React from 'react'
 
-import content from '../content/email_confirmed'
+import content from '../content/badToken'
 
 import SEO from '../components/seo'
 
-const emailConfirmedPage = () => (
+const badTokenPage = () => (
   <>
-    <SEO title="Holepunch Email Confirmed" />
+    <SEO title="Holepunch Bad Token Received" />
     <div className="container page__header">
       <h2>{content.pageTitle}</h2>
       <p>{content.pageSubtitle}</p>
@@ -14,4 +14,4 @@ const emailConfirmedPage = () => (
   </>
 )
 
-export default emailConfirmedPage
+export default badTokenPage
