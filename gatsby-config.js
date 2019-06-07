@@ -12,7 +12,7 @@ module.exports = {
       { name: 'Login', route: '/login' },
       { name: 'Sign up', route: '/signup' },
     ],
-    siteMaintenance: true,
+    siteMaintenance: false,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
