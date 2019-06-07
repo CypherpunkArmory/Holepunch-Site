@@ -17,7 +17,7 @@ const Layout = ({ children, location }) => {
   return (
     <StaticQuery
       query={graphql`
-        query SiteTitleQuery {
+        query SiteConfigQuery {
           site {
             siteMetadata {
               title
@@ -25,6 +25,7 @@ const Layout = ({ children, location }) => {
                 name
                 route
               }
+              siteMaintenance
             }
           }
         }
@@ -35,6 +36,7 @@ const Layout = ({ children, location }) => {
             <NavBar
               location={location}
               routes={data.site.siteMetadata.menu}
+              siteMaintenance={data.site.siteMetadata.siteMaintenance}
             />
             <Transition location={location}>{children}</Transition>
           </div>
@@ -44,6 +46,7 @@ const Layout = ({ children, location }) => {
               location={location}
               routes={data.site.siteMetadata.menu}
               sticky={true}
+              siteMaintenance={data.site.siteMetadata.siteMaintenance}
             />
             <Transition location={location}>{children}</Transition>
             <Footer cta={hasCta} />

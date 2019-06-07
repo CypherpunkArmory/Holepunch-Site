@@ -10,6 +10,7 @@ import Logo from '../Logo'
 import Collapse from './Collapse'
 import Sticky from './Sticky'
 import Nav from './Nav'
+import MaintenanceBanner from '../Banner/Maintenance'
 
 import { getIsLoggedIn } from '../../redux/ducks/auth/selectors'
 import { performLogout } from '../../redux/ducks/auth/actions'
@@ -21,15 +22,17 @@ class NavBar extends Component {
     isOpen: PropTypes.bool,
     close: PropTypes.func,
     toggle: PropTypes.func,
+    siteMaintenance: PropTypes.bool,
   }
-
+  
   static defaultProps = {
     routes: [{ name: 'Home', route: '/' }],
     sticky: false,
+    siteMaintenance: false,
   }
 
   render() {
-    const { boundaryRef, toggle, close, isOpen, scrolled, sticky } = this.props
+    const { boundaryRef, toggle, close, isOpen, scrolled, sticky, siteMaintenance } = this.props
     const { location, isLoggedIn, logout } = this.props
     let { routes } = this.props
 
@@ -49,6 +52,9 @@ class NavBar extends Component {
         id="main-nav"
         ref={boundaryRef}
       >
+        {siteMaintenance && (
+          <MaintenanceBanner message="Currently under maintanance, some things might not work properly." />
+        )}
         <div className="container">
           <div styleName="navbar__controls">
             <Link
@@ -71,8 +77,12 @@ class NavBar extends Component {
             {isLoggedIn && (
               <>
                 <li>
-                  <Link styleName="nav__link" to="/account/overview" onClick={close}>
-                    My Account 
+                  <Link
+                    styleName="nav__link"
+                    to="/account/overview"
+                    onClick={close}
+                  >
+                    My Account
                   </Link>
                 </li>
                 <li>
