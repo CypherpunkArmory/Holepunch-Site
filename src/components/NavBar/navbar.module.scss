@@ -6,7 +6,11 @@ $bg-color: #fafafa;
   width: 100%;
   position: absolute;
   overflow: hidden;
-  padding: 0.5rem 0;
+
+  :global(.container) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 
   &__controls {
     display: flex;
@@ -52,9 +56,13 @@ $bg-color: #fafafa;
   }
 
   &_scrolled {
-    padding: 0rem;
     border-bottom: 1px solid rgb(230, 230, 230);
-    
+
+    :global(.container) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
     & .brand {
       width: 2.5rem;
       margin-top: 0.3rem;
