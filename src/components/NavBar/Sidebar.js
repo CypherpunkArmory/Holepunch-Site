@@ -12,8 +12,9 @@ import Collapse from './Collapse'
 
 class Sidebar extends Component {
   state = {
-    scrolled: false,
+    sticky: false,
     top: 0,
+    bottom: 0,
   }
 
   componentDidMount() {
@@ -27,27 +28,40 @@ class Sidebar extends Component {
   }
 
   handleScroll = () => {
-    const target = document.getElementById('main-nav')
+    const mainNav = document.getElementById('main-nav')
+    const mainFooter = document.getElementById('footer')
     const currentScrollY = window.scrollY
+    const viewHeight =
+      window.innerHeight || document.documentElement.clientHeight
+    const bodyHeight = document.body.clientHeight
 
-    if (currentScrollY > target.clientHeight) {
-      this.setState({ scrolled: true })
+    if (bodyHeight - mainFooter.clientHeight < viewHeight + currentScrollY) {
+      this.setState({ top: 'unset', bottom: 0, sticky: false })
+      return
+    }
+
+    if (currentScrollY !== this.state.top) {
+      this.setState({
+        sticky: true,
+        top: mainNav.clientHeight,
+        bottom: 'unset',
+      })
     } else {
-      this.setState({ scrolled: false, top: target.clientHeight })
+      this.setState({ sticky: false })
     }
   }
 
   render() {
     const { routes, isOpen, close, toggle, boundaryRef } = this.props
-    const { scrolled } = this.state
+    const { sticky } = this.state
 
     return (
       <aside
         styleName={classnames('sidebar', {
           sidebar_open: isOpen,
-          sidebar_scrolled: scrolled,
+          sidebar_sticky: sticky,
         })}
-        style={{ top: this.state.top }}
+        style={{ top: this.state.top, bottom: this.state.bottom }}
         ref={boundaryRef}
       >
         <Logo styleName="sidebar__brand" />

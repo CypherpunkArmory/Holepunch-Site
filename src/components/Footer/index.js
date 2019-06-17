@@ -12,7 +12,7 @@ import Logo from '../Logo'
 
 function Footer({ cta, ...rest }) {
   return (
-    <footer styleName="footer" {...rest}>
+    <footer styleName="footer" id="footer" {...rest}>
       <div className="container">
         <div className="row">
           <div className="col-12">

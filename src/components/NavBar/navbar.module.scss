@@ -90,7 +90,7 @@ $bg-color: #fafafa;
       align-items: center;
       width: 100%;
     }
-    &:not(&_sticky) {
+    &__border {
       border-bottom: 1px solid rgb(230, 230, 230);
     }
   }

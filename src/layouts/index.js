@@ -37,8 +37,11 @@ const Layout = ({ children, location }) => {
               location={location}
               routes={data.site.siteMetadata.menu}
               siteMaintenance={data.site.siteMetadata.siteMaintenance}
+              border
+              sticky
             />
             <Transition location={location}>{children}</Transition>
+            <Footer cta={hasCta} />
           </div>
         ) : (
           <div className="page">

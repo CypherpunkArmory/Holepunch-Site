@@ -1,6 +1,7 @@
 .docs {
   display: flex;
-
+  position: relative;
+  
   &__title {
     margin-bottom: 3rem;
     text-align: center;

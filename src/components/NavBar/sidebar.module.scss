@@ -8,7 +8,7 @@ $bg-color: #fafafa;
   height: 100vh;
   top: 0;
   padding: 4rem 0 4rem 0;
-  z-index: 35;
+  z-index: 30;
   border-right: 1px solid #eff0f0;
   overflow-y: scroll;
   left: -100vw;
@@ -90,7 +90,10 @@ $bg-color: #fafafa;
     }
   }
 
-  &_scrolled,
+  &_sticky {
+    position: fixed !important;
+  }
+
   &_open {
     position: fixed !important;
     top: 0 !important;
