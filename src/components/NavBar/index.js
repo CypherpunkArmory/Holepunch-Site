@@ -32,7 +32,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { boundaryRef, toggle, close, isOpen, scrolled, sticky, siteMaintenance } = this.props
+    const { boundaryRef, toggle, close, isOpen, scrolled, sticky, border, siteMaintenance } = this.props
     const { location, isLoggedIn, logout } = this.props
     let { routes } = this.props
 
@@ -48,6 +48,7 @@ class NavBar extends Component {
           navbar_open: isOpen,
           navbar_scrolled: scrolled,
           navbar_sticky: sticky,
+          navbar__border: border,
         })}
         id="main-nav"
         ref={boundaryRef}
