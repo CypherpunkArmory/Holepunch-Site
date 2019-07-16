@@ -14,12 +14,13 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: "Publish gh-pages"
+          name: install awscli
+          command: pip3 install awscli
+      - run:
+          name: "Deploy to CloudFront"
           command: |
-            git config --global user.email "github-robot@userland.tech"
-            git config --global user.name "Holepunch-Site Deployment Bot"
-            npm install
-            npm run deploy
+            npm run-script build
+            aws s3 sync ./public s3://holepunch.io
 
 workflows:
   version: 2
