@@ -27,6 +27,8 @@ nav:
         href: '#http'
       - name: 'HTTPS'
         href: '#https'
+      - name: 'TCP'
+        href: '#tcp'
       - name: 'Multiple ports'
         href: '#it'
   - name: 'Update'
@@ -186,6 +188,23 @@ Otherwise it will default to using a new unreserved subdomain.
 
 `  -h, --help   help for https`
 
+<a name="tcp"></a>
+
+## TCP 
+
+Expose a local tcp server running on the port you specify.
+
+### Synopsis
+
+Expose a local tcp server running on the port you specify.  
+Note: punch will return to you the URL and port where your server is publically exposed. This will look something like `tcp://tcp.holepunch.io:12345`. It could then be accessed with something like `telnet tcp.holepunch.io 12345`.  
+Example: `punch tcp 2000` will expose a local tcp server running on port 2000.  
+`punch tcp <port> [flags]`  
+
+### Options
+
+`  -h, --help   help for tcp`
+
 <a name="it"></a>
 
 ## It
@@ -194,11 +213,13 @@ Expose a local web server on the ports you specify
 
 ### Synopsis
 
-Expose a local web server on the ports you specify.  
-Example: `punch it http:8080 https:8443` will expose a local web server running on port 8080 and an https web server running on port 8443.  
+Expose local servers running on the ports you specify.  
+Example: `punch it http:8080 https:8443 tcp:2000` will expose a local web server running on port 8080, an https web server running on port 8443 and a tcp server running on port 2000.  
 You can provide an optional argument to specify the name of a reserved subdomain you want to associate this with.  
 Example: `punch it http:8080 https:8443 mydomain` will expose a local web server running on port 8080 via "http://mydomain.holepunch.io" and an https web server running on port 8443 via "https://mydomain.holepunch.io".  
 Otherwise it will default to using a new unreserved subdomain.  
+Types supported are http, https and tcp.  
+You can have any number type:port pairs in one command.  
 `punch it <type:port>... [subdomain] [flags]`  
 
 ### Options

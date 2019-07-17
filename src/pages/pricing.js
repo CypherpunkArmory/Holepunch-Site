@@ -63,8 +63,8 @@ export default class PricingPage extends Component {
             value: true,
           },
           {
-            name: 'TCP/UDP Support',
-            value: 'coming soon',
+            name: 'TCP Support',
+            value: true,
           },
           {
             name: 'Custom/Reserved Subdomains',
@@ -103,8 +103,8 @@ export default class PricingPage extends Component {
             value: true,
           },
           {
-            name: 'TCP/UDP Support',
-            value: 'coming soon',
+            name: 'TCP Support',
+            value: true,
           },
           {
             name: 'Custom/Reserved Subdomains',
@@ -143,8 +143,8 @@ export default class PricingPage extends Component {
             value: true,
           },
           {
-            name: 'TCP/UDP Support',
-            value: 'coming soon',
+            name: 'TCP Support',
+            value: true,
           },
           {
             name: 'Custom/Reserved Subdomains',
