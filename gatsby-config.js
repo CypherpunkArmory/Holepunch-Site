@@ -55,6 +55,7 @@ module.exports = {
     'gatsby-plugin-layout',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-stripe',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
