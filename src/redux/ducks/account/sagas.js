@@ -11,6 +11,7 @@ import {
   revokeTokens,
   resetPassword,
 } from './actions'
+import requestPayload from '../../helpers/requestPayload'
 import { getTokens, setTokens } from '../../helpers/localStorage'
 import { performLogout, performEmailLogin } from '../auth/actions'
 import { setCurrentAccount } from '../account/actions'
@@ -21,15 +22,10 @@ export function* register(action) {
   const xhrConfig = {
     url: apiEndpoints.register,
     method: 'POST',
-    data: {
-      data: {
-        type: 'user',
-        attributes: {
-          email: action.payload.email,
-          password: action.payload.password,
-        },
-      },
-    },
+    data: requestPayload('user', {
+      email: action.payload.email,
+      password: action.payload.password,
+    }),
   }
 
   try {
@@ -49,14 +45,9 @@ export function* resetEmail(action) {
   const xhrConfig = {
     url: apiEndpoints.resetPassword,
     method: 'POST',
-    data: {
-      data: {
-        type: 'password_reset',
-        attributes: {
-          email: action.payload.email,
-        },
-      },
-    },
+    data: requestPayload('password_reset', {
+      email: action.payload.email,
+    }),
   }
 
   try {
@@ -106,12 +97,7 @@ export function* fetchConfirmationToken(action) {
 export function* updateAccountDetails(action) {
   const xhrConfig = {
     method: 'PATCH',
-    data: {
-      data: {
-        type: 'user',
-        attributes: { ...action.payload.newDetails },
-      },
-    },
+    data: requestPayload('user', { ...action.payload.newDetails }),
     responseType: 'json',
     url: apiEndpoints.updateAccount,
   }
@@ -139,14 +125,9 @@ export function* updateAccountDetails(action) {
 export function* removeAccount(action) {
   const xhrConfig = {
     method: 'DELETE',
-    data: {
-      data: {
-        type: 'user',
-        attributes: {
-          password: action.payload.password,
-        },
-      },
-    },
+    data: requestPayload('user', {
+      password: action.payload.password,
+    }),
     responseType: 'json',
     url: apiEndpoints.updateAccount,
   }
@@ -167,12 +148,9 @@ export function* removeAccount(action) {
 export function* resetAccountPassword(action) {
   const xhrConfig = {
     method: 'PATCH',
-    data: {
-      data: {
-        type: 'user',
-        attributes: { new_password: action.payload.new_password },
-      },
-    },
+    data: requestPayload('user', {
+      new_password: action.payload.new_password,
+    }),
     responseType: 'json',
     url: apiEndpoints.updateAccount,
   }
@@ -197,14 +175,9 @@ export function* resendConfirmationEmail(action) {
   const xhrConfig = {
     url: apiEndpoints.resendConfirmationEmail,
     method: 'POST',
-    data: {
-      data: {
-        type: 'email_confirm',
-        attributes: {
-          email: action.payload.email,
-        },
-      },
-    },
+    data: requestPayload('email_confirm', {
+      email: action.payload.email,
+    }),
   }
 
   try {
