@@ -8,6 +8,7 @@ import AccountMenu from './AccountMenu'
 import AccountBilling from './AccountBilling';
 import ApiKey from './ApiKey'
 import AccountOverview from './AccountOverview'
+import AccountUpgrade from './AccountUpgrade'
 
 class AccountManagement extends Component {
   static propTypes = {
@@ -21,6 +22,7 @@ class AccountManagement extends Component {
       { name: 'Account Overview', route: '/account/overview' },
       { name: 'Auth Key', route: '/account/key' },
       { name: 'Billing', route: '/account/billing' },
+      { name: 'Upgrade', route: '/account/upgrade' },
     ]
     
     return (
@@ -32,6 +34,7 @@ class AccountManagement extends Component {
             <AccountOverview account={account} path="/overview" />
             <AccountOverview account={account} default />
             <AccountBilling path="/billing" />
+            <AccountUpgrade account={account} path="/upgrade" />
           </Router>
         </div>
       </>

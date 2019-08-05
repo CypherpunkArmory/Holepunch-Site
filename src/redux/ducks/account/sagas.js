@@ -210,6 +210,28 @@ export function* revokeAccountTokens(action) {
   }
 }
 
+export function* updatePlan(action) {
+  // this needs testing
+  const xhrConfig = {
+    url: apiEndpoints.updateAccount,
+    method: 'PATCH',
+    data: requestPayload('user', {
+      stripe_id: action.payload.stripeId,
+    }),
+  }
+  try {
+    const revokeRequest = yield call(xhr, xhrConfig, {
+      auth: true,
+      actionCreator: updateAccount,
+    })
+    yield put(performLogout.request())
+
+    return revokeRequest
+  } catch (error) {
+    return error
+  }
+}
+
 export default function* watchFetchAccount() {
   return [
     yield takeEvery(types.REGISTER['REQUEST'], register),

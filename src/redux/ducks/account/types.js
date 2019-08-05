@@ -9,6 +9,7 @@ const SEND_RESET_EMAIL = createRequestTypes('holepunch/account/SEND_RESET_EMAIL'
 const RESET_PASSWORD = createRequestTypes('holepunch/account/RESET_PASSWORD')
 const SEND_EMAIL_CONFIRMATION = createRequestTypes('holepunch/account/SEND_EMAIL_CONFIRMATION')
 const REVOKE_TOKEN = createRequestTypes('holepunch/account/REVOKE_TOKEN')
+const UPGRADE_PLAN = createRequestTypes('holepunch/account/UPGRADE_PLAN')
 
 export default {
   REGISTER,
@@ -20,4 +21,5 @@ export default {
   RESET_PASSWORD,
   SEND_EMAIL_CONFIRMATION,
   REVOKE_TOKEN,
+  UPGRADE_PLAN,
 }
