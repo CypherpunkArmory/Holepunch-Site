@@ -44,7 +44,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
     "reselect": "^4.0.0",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "keywords": [
     "gatsby"
